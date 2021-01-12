@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/debugger/controls/ScalarControl.gd" type="Script" id=1]
+[ext_resource path="res://addons/debugger/controls/BaseControl.tscn" type="PackedScene" id=2]
+
+[node name="ScalarControl" instance=ExtResource( 2 )]
+margin_right = 41.0
+margin_bottom = 24.0
+script = ExtResource( 1 )
+text_label = "x"
+flags_label = 1
+
+[node name="Label" parent="." index="0"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 19.0
+size_flags_horizontal = 1
+text = "x"
+
+[node name="Text" type="LineEdit" parent="." index="1"]
+margin_left = 11.0
+margin_right = 41.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 30, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/minimum_spaces = -1
+text = "0"
+align = 1
+expand_to_text_length = true
+context_menu_enabled = false
+caret_blink_speed = 0.5
+[connection signal="gui_input" from="." to="." method="_on_ScalarControl_gui_input"]
+[connection signal="focus_exited" from="Text" to="." method="_on_Text_focus_exited"]
+[connection signal="text_changed" from="Text" to="." method="_on_Text_text_changed"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/area/AreaInteractive.gd" type="Script" id=1]
+[ext_resource path="res://scenes/area/AreaDirectional.tscn" type="PackedScene" id=2]
+
+[node name="AreaInteractive" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+arrow_modulate = Color( 1, 1, 0.588235, 1 )
+
+[node name="ArrowAll" parent="Guides" index="2"]
+modulate = Color( 1, 1, 0.588235, 1 )

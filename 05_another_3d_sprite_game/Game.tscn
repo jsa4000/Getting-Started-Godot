@@ -1,0 +1,125 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Game.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://KinematicBody.gd" type="Script" id=2]
+[ext_resource path="res://environment.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenario.tscn" type="PackedScene" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.51408, 0.566761, 0.401539 )
+
+[sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="PanoramaSky" id=3]
+panorama = SubResource( 2 )
+
+[sub_resource type="Environment" id=4]
+background_mode = 1
+background_sky = SubResource( 3 )
+background_color = Color( 0.137255, 0.105882, 0.239216, 1 )
+background_energy = 2.0
+ambient_light_color = Color( 0.105882, 0.14902, 0.231373, 1 )
+fog_enabled = true
+fog_color = Color( 0.0705882, 0.145098, 0.219608, 1 )
+fog_sun_color = Color( 0.301961, 0.305882, 0.313726, 1 )
+fog_depth_begin = 1.0
+fog_depth_end = 20.0
+tonemap_mode = 2
+tonemap_exposure = 1.29
+tonemap_white = 2.16
+auto_exposure_max_luma = 0.3
+ss_reflections_enabled = true
+ssao_enabled = true
+dof_blur_far_enabled = true
+dof_blur_far_distance = 3.25
+dof_blur_far_transition = 3.54
+dof_blur_near_enabled = true
+glow_enabled = true
+glow_hdr_threshold = 0.48
+adjustment_enabled = true
+adjustment_brightness = 1.18
+adjustment_contrast = 1.06
+
+[node name="Game" type="Spatial"]
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25828, 0.67546 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 1, 0, 0, 0 )
+shaded = true
+alpha_cut = 2
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249362, -0.246275, 0 )
+shape = SubResource( 1 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.932689, 0.360681, 0, -0.360681, 0.932689, 0, 1.137, 3.1537 )
+environment = SubResource( 4 )
+current = true
+fov = 78.4
+size = 4.49
+
+[node name="lights" type="Spatial" parent="."]
+
+[node name="SpotLight" type="SpotLight" parent="lights"]
+transform = Transform( 0.563584, -0.605333, -0.56209, 0.824964, 0.377426, 0.420695, -0.0425133, -0.700801, 0.712089, -4.32134, 3.64563, 4.66902 )
+light_color = Color( 0.505882, 0.627451, 0.992157, 1 )
+light_energy = 9.78
+light_indirect_energy = 1.89
+shadow_enabled = true
+shadow_color = Color( 0.105882, 0.0980392, 0.184314, 1 )
+shadow_bias = 0.16
+spot_range = 5.7
+spot_angle = 71.7
+
+[node name="SpotLight4" type="SpotLight" parent="lights"]
+transform = Transform( 0.563584, -0.605333, -0.56209, 0.80463, 0.248297, 0.53937, -0.186933, -0.756254, 0.627005, -13.3171, 5.11411, 6.8101 )
+light_color = Color( 0.505882, 0.627451, 0.992157, 1 )
+light_energy = 9.78
+light_indirect_energy = 1.89
+shadow_enabled = true
+shadow_color = Color( 0.105882, 0.0980392, 0.184314, 1 )
+shadow_bias = 0.16
+spot_range = 5.7
+spot_angle = 71.7
+
+[node name="SpotLight2" type="SpotLight" parent="lights"]
+transform = Transform( 1, 0, 0, 0, 0.74723, 0.664566, 0, -0.664566, 0.74723, 0, 3.5714, 3.88381 )
+light_color = Color( 0.960784, 0.960784, 0.831373, 1 )
+light_energy = 2.48
+light_indirect_energy = 5.6
+shadow_enabled = true
+shadow_color = Color( 0.14902, 0.101961, 0.368627, 1 )
+shadow_bias = 0.2
+spot_range = 8.8
+spot_angle = 41.7
+
+[node name="SpotLight3" type="SpotLight" parent="lights"]
+transform = Transform( 0.597303, -0.532992, 0.59929, 0, 0.74723, 0.664566, -0.802016, -0.396947, 0.446323, 8.85498, 3.5714, 3.62727 )
+light_color = Color( 0.960784, 0.960784, 0.831373, 1 )
+light_energy = 2.48
+light_indirect_energy = 5.6
+shadow_enabled = true
+shadow_color = Color( 0.14902, 0.101961, 0.368627, 1 )
+shadow_bias = 0.2
+spot_range = 8.8
+spot_angle = 41.7
+
+[node name="scenario" parent="." instance=ExtResource( 9 )]
+
+[node name="environment" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27651, -2.87646 )
+
+[node name="environment2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.350126, 0, -0.936703, 0, 1, 0, 0.936703, 0, 0.350126, 10.8841, 2.27651, 0.00731468 )
+
+[node name="sea" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52558, 0 )

@@ -1,0 +1,103 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Camera",
+"class": "CameraTrackTo",
+"language": "GDScript",
+"path": "res://src/controls/CameraTrackTo.gd"
+}, {
+"base": "Transition",
+"class": "ColorTransition",
+"language": "GDScript",
+"path": "res://src/effects/ColorTransition.gd"
+}, {
+"base": "EditorScript",
+"class": "CreatePage",
+"language": "GDScript",
+"path": "res://src/tools/CreateNode.gd"
+}, {
+"base": "Spatial",
+"class": "Page",
+"language": "GDScript",
+"path": "res://src/pages/Page01.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/characters/Player.gd"
+}, {
+"base": "Control",
+"class": "QTEControl",
+"language": "GDScript",
+"path": "res://src/controls/QTEControl.gd"
+}, {
+"base": "Node",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://src/effects/Transition.gd"
+}, {
+"base": "Transition",
+"class": "ViewportTransition",
+"language": "GDScript",
+"path": "res://src/effects/ViewportTransition.gd"
+} ]
+_global_script_class_icons={
+"CameraTrackTo": "",
+"ColorTransition": "",
+"CreatePage": "",
+"Page": "",
+"Player": "",
+"QTEControl": "",
+"Transition": "",
+"ViewportTransition": ""
+}
+
+[application]
+
+config/name="09 3d Comic Viewer"
+run/main_scene="res://src/Game.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[input]
+
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.49,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_render/layer_1="World"
+3d_render/layer_2="Pages"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

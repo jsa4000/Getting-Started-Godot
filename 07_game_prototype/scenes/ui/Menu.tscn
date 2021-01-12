@@ -1,0 +1,257 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/ui/title.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/ArcaMajora3-Bold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/ui/Menu.gd" type="Script" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float x_radius : hint_range(0, 30);
+uniform float y_radius : hint_range(0, 30);
+
+void vertex() {
+	
+	
+  VERTEX.x += sin(TIME) * x_radius * UV.x; 
+  VERTEX.y += cos(TIME) * y_radius * UV.x; 
+
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/x_radius = 16.712
+shader_param/y_radius = 23.288
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+outline_color = Color( 0.427451, 0.427451, 0.427451, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 0.368627, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.0715159, 0.661618 ), 0.0, 0.0, 0, 0, Vector2( 0.31357, 0.875718 ), 0.0, 0.0, 0, 0, Vector2( 0.650978, 0.58329 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 0.32
+emission_shape = 2
+emission_box_extents = Vector3( 5, 2, 1 )
+flag_disable_z = true
+direction = Vector3( 1, -1, 0 )
+spread = 180.0
+gravity = Vector3( 5, 6, 0 )
+initial_velocity = 45.66
+initial_velocity_random = 0.33
+angular_velocity = 59.18
+angular_velocity_random = 0.32
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 3.65
+linear_accel_random = 0.39
+tangential_accel = 2.74
+tangential_accel_random = 0.18
+damping_random = 1.0
+scale = 4.0
+scale_random = 0.63
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+hue_variation = -0.01
+hue_variation_random = 0.06
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+lifetime_randomness = 0.32
+emission_shape = 2
+emission_box_extents = Vector3( 5, 2, 1 )
+flag_disable_z = true
+direction = Vector3( -1, -1, 0 )
+spread = 180.0
+gravity = Vector3( -6, -5, 0 )
+initial_velocity = 41.09
+initial_velocity_random = 0.33
+angular_velocity = 59.18
+angular_velocity_random = 0.32
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 3.65
+linear_accel_random = 0.39
+tangential_accel = 2.74
+tangential_accel_random = 0.18
+damping_random = 1.0
+scale = 3.0
+scale_random = 0.56
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 5 )
+hue_variation = -0.01
+hue_variation_random = 0.06
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftMargin" type="MarginContainer" parent="Layout"]
+margin_right = 600.0
+margin_bottom = 624.0
+rect_min_size = Vector2( 600, 300 )
+
+[node name="Options" type="VBoxContainer" parent="Layout"]
+margin_left = 604.0
+margin_right = 820.0
+margin_bottom = 624.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopMargin" type="MarginContainer" parent="Layout/Options"]
+margin_right = 216.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 300 )
+
+[node name="Options2" type="VBoxContainer" parent="Layout/Options"]
+margin_top = 304.0
+margin_right = 216.0
+margin_bottom = 420.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="Layout/Options/Options2"]
+margin_right = 216.0
+margin_bottom = 20.0
+focus_neighbour_top = NodePath("../ExitButtton2")
+focus_neighbour_bottom = NodePath("../ConfigButtton")
+focus_next = NodePath("../ConfigButtton")
+focus_previous = NodePath("../ExitButtton2")
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+text = "Start"
+flat = true
+
+[node name="ButtomMargin" type="MarginContainer" parent="Layout/Options/Options2"]
+margin_top = 24.0
+margin_right = 216.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="ConfigButtton" type="Button" parent="Layout/Options/Options2"]
+margin_top = 48.0
+margin_right = 216.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../StartButton")
+focus_neighbour_bottom = NodePath("../ExitButtton2")
+focus_next = NodePath("../ExitButtton2")
+focus_previous = NodePath("../StartButton")
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+text = "Configuration"
+flat = true
+
+[node name="ButtomMargin2" type="MarginContainer" parent="Layout/Options/Options2"]
+margin_top = 72.0
+margin_right = 216.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="ExitButtton2" type="Button" parent="Layout/Options/Options2"]
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 116.0
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../ConfigButtton")
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+text = "Exit"
+flat = true
+
+[node name="BottomMargin" type="MarginContainer" parent="Layout/Options"]
+margin_top = 424.0
+margin_right = 216.0
+margin_bottom = 624.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="RightMargin" type="MarginContainer" parent="Layout"]
+margin_left = 824.0
+margin_right = 1024.0
+margin_bottom = 624.0
+rect_min_size = Vector2( 200, 300 )
+
+[node name="Footer" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -30.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.537255, 0.537255, 0.537255, 1 )
+text = "2020 All rights reserved to me "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="Control"]
+position = Vector2( 4.03168, -24.1899 )
+amount = 200
+lifetime = 38.74
+explosiveness = 0.11
+randomness = 0.44
+process_material = SubResource( 8 )
+
+[node name="Particles2D2" type="Particles2D" parent="Control"]
+position = Vector2( 1029.8, 608.78 )
+amount = 200
+lifetime = 38.74
+explosiveness = 0.11
+randomness = 0.44
+process_material = SubResource( 11 )
+[connection signal="button_up" from="Layout/Options/Options2/StartButton" to="." method="_on_StartButton_button_up"]
+[connection signal="button_up" from="Layout/Options/Options2/ConfigButtton" to="." method="_on_ConfigButtton_button_up"]
+[connection signal="button_up" from="Layout/Options/Options2/ExitButtton2" to="." method="_on_ExitButtton2_button_up"]

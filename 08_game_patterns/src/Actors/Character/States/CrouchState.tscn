@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Actors/Character/States/CrouchState.gd" type="Script" id=1]
+
+[node name="CrouchState" type="Node"]
+script = ExtResource( 1 )

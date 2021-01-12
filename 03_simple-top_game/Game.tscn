@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Vacuum.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_hdr_threshold = 0.5
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 191.58, 311.173 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 811.604, 306.529 )
+
+[node name="Vacuum" parent="." instance=ExtResource( 2 )]
+position = Vector2( 521.331, 594.48 )

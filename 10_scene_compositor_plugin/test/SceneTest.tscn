@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://test/SubdivisionTest.gd" type="Script" id=1]
+[ext_resource path="res://assets/materials/cube_material.tres" type="Material" id=2]
+[ext_resource path="res://assets/textures/displacement_noise.tres" type="OpenSimplexNoise" id=3]
+[ext_resource path="res://addons/scene_compositor/assets/camera/CameraGimbal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/primitives/Sphere.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/materials/uv_checker_material.tres" type="Material" id=6]
+
+[sub_resource type="NoiseTexture" id=1]
+noise = ExtResource( 3 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Geometry" type="Spatial"]
+
+[node name="Subdivision" type="Spatial" parent="."]
+script = ExtResource( 1 )
+primitive_type = 5
+imported_mesh = ExtResource( 5 )
+subdivision_type = 1
+subdivisions = 1
+material = ExtResource( 6 )
+displacement_enabled = true
+displacement_texture = SubResource( 1 )
+displacement_height = 0.386
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 2 )
+skeleton = NodePath("")
+material/0 = ExtResource( 2 )
+
+[node name="CameraGimbal" parent="." instance=ExtResource( 4 )]

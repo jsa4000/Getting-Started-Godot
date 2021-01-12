@@ -1,0 +1,6 @@
+[gd_resource type="PanoramaSky" load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/table_mountain_2_4k.hdr" type="Texture" id=1]
+
+[resource]
+panorama = ExtResource( 1 )

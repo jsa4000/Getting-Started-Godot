@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 1.26802, 0.00582997, 0, 0.405102, -0.0526419, -0.048425, -0.405102, 0.0526419, 0.048425, 0.592431, 0.322343, 0.190642, 0.458768, 0.0375979, -0.0539599, -0.458768, -0.0375979, 0.0539599, -0.534591, 0.132211, 0.263205, 0.317581, 0.0614828, -0.0370438, -0.317581, -0.0614828, 0.0370438, -1.53144, 0.311699, 0.143361, 0.256618, 0.315664, -0.00165558, -0.256618, -0.315664, 0.00165558, -2.2029, -0.181933, 0.103549, 0, 0, 0, 0, 0, 0, -2.87418, -0.00874501, 0 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="Spline" type="Spatial"]
+
+[node name="CSGPolygon" type="CSGPolygon" parent="."]
+invert_faces = true
+polygon = PoolVector2Array( 0, 0, 0.13948, 0.114866, 0.89021, 0.106661, 1, 0 )
+mode = 2
+path_node = NodePath("../Path")
+path_interval = 0.294
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = false
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 1 )

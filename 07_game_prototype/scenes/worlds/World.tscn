@@ -1,0 +1,735 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://assets/background/Brooklyn_Bridge_Planks_2k.hdr" type="Texture" id=1]
+[ext_resource path="res://scenes/environment/Environment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/actor/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/portal/PortalManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/camera/CameraSlider.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/portal/Portal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/actor/Statue.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/actor/Ball.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/DialogControl.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/resources/actions/ActionDialog.gd" type="Script" id=10]
+[ext_resource path="res://scenes/resources/dialog/DialogScene.gd" type="Script" id=11]
+[ext_resource path="res://scenes/resources/nodes/NodeResourceInteractive.gd" type="Script" id=12]
+[ext_resource path="res://scenes/actor/Mushroom.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/actor/Tree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/camera/Camera.tscn" type="PackedScene" id=15]
+[ext_resource path="res://shaders/gradient_map.shader" type="Shader" id=16]
+[ext_resource path="res://scenes/resources/actions/ActionItem.gd" type="Script" id=17]
+[ext_resource path="res://scenes/resources/inventory/InventoryItem.gd" type="Script" id=18]
+[ext_resource path="res://scenes/worlds/World2.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.251163, 0.651163, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.460938, 0.117035, 0.423323, 1, 0.369141, 0.738281, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 256
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 16 )
+shader_param/mix_amount = 0.1
+shader_param/gradient = SubResource( 2 )
+
+[sub_resource type="GIProbeData" id=4]
+bounds = AABB( -51.4325, -28.635, -36.85, 102.865, 57.27, 73.7 )
+cell_size = 0.803633
+to_cell_xform = Transform( 1.24435, 0, 0, 0, 1.24435, 0, 0, 0, 1.24435, 64, 35.6319, 45.8543 )
+dynamic_data = PoolIntArray( 0, 8, 128, 128, 128, 1, 0, 0, 0, 0, 478548195, 2609, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+energy = 0.6
+bias = 0.35
+normal_bias = 0.0
+propagation = 0.7
+
+[sub_resource type="PanoramaSky" id=5]
+panorama = ExtResource( 1 )
+
+[sub_resource type="Environment" id=6]
+background_mode = 3
+background_sky = SubResource( 5 )
+background_color = Color( 0.352941, 0.32549, 0.388235, 1 )
+ambient_light_color = Color( 0.25098, 0.172549, 0.352941, 1 )
+ambient_light_sky_contribution = 0.73
+tonemap_mode = 2
+tonemap_exposure = 0.81
+tonemap_white = 2.44
+ss_reflections_enabled = true
+ssao_enabled = true
+ssao_color = Color( 0.266667, 0.223529, 0.501961, 1 )
+glow_enabled = true
+glow_hdr_threshold = 0.82
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.541176, 0.541176, 0.541176, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.603922, 0.603922, 0.603922, 1 )
+
+[sub_resource type="Curve3D" id=9]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -20.2325, 2.1275, 3.8675, 0, 0, 0, 0, 0, 0, 8.145, 1.91, 3.775 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=10]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 8.2075, 2.0375, 4.0825, 0.6025, -2.485, 0, -0.6025, 2.485, 0, 1.9075, 3.615, 5.4725, 0, 0, 0, 0, 0, 0, 4.615, 5.8725, 4.0825 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=11]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -6.955, 5.94, 3.99, 0, 0, 0, 0, 0, 0, 4.09, 5.9125, 3.97 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=12]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -8.8825, 1.9625, 3.935, 0, 0, 0, 0, 0, 0, -6.92, 5.4525, 4.0075 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="GDScript" id=13]
+script/source = "extends PortalTransition
+
+export(float,0,100) var duration = 6.0
+
+onready var camera : Camera
+onready var player : KinematicBody
+onready var slider : CameraSlider
+
+var animation1 : Tween
+var animation2 : Tween
+
+func play():
+	var duration_per_tween = duration / 2.0
+	animation1 = Tween.new()
+	add_child(animation1)
+	animation1.interpolate_property(
+		slider, \"unit_offset\", 
+		1, 0.5, duration_per_tween,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	animation1.interpolate_property(
+		player, \"global_transform:origin\", 
+		player.global_transform.origin, $Middle.global_transform.origin, duration_per_tween,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	animation1.start()
+	yield(animation1, \"tween_completed\")
+	
+	animation2 = Tween.new()
+	add_child(animation2)
+	animation2.interpolate_property(
+		slider, \"unit_offset\", 
+		0.5, 0, duration_per_tween,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	animation2.interpolate_property(
+		player, \"global_transform:origin\", 
+		$Middle.global_transform.origin, $End.global_transform.origin, duration_per_tween,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	animation2.connect(\"tween_completed\", self, \"_on_animation_completed\")
+	animation2.start()
+	
+func _on_animation_completed(obj, key):
+	remove_child(animation1)
+	remove_child(animation2)
+	animation1.queue_free()
+	animation2.queue_free()
+	emit_signal(\"transition_completed\", obj, key)
+"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 11 )
+id = ""
+current = ""
+default = ""
+items = {
+
+}
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 10 )
+id = "ball"
+target_group = "Player"
+type = 0
+parameters = {
+
+}
+scene = SubResource( 14 )
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 12 )
+id = ""
+name = ""
+description = ""
+type = ""
+position = Vector3( 0, 0, 0 )
+actions = [ SubResource( 15 ) ]
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 18 )
+id = ""
+name = ""
+caption = ""
+type = ""
+parameters = {
+
+}
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 11 )
+id = ""
+current = ""
+default = ""
+items = {
+
+}
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 17 )
+id = "bread_big"
+target_group = "Player"
+type = 1
+parameters = {
+
+}
+scene = SubResource( 18 )
+item = SubResource( 17 )
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 12 )
+id = "bread_big"
+name = ""
+description = ""
+type = ""
+position = Vector3( 0, 0, 0 )
+actions = [ SubResource( 19 ) ]
+
+[node name="World" type="Spatial"]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_update_mode = 3
+shadow_atlas_size = 2048
+
+[node name="Effects" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="GIProbe" type="GIProbe" parent="ViewportContainer/Viewport/Effects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0775, 10.0725, 0 )
+visible = false
+extents = Vector3( 51.4325, 28.635, 36.85 )
+energy = 0.6
+bias = 0.35
+data = SubResource( 4 )
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="ViewportContainer/Viewport/Effects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01, 4.94191, -2.08555 )
+extents = Vector3( 25.75, 7.055, 11.4225 )
+enable_shadows = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport/Effects"]
+environment = SubResource( 6 )
+
+[node name="Lights" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport/Lights"]
+transform = Transform( 0.265002, 0.434601, -0.860753, -0.236743, 0.89467, 0.378839, 0.934733, 0.103384, 0.339978, 0, 10.5, 0 )
+shadow_enabled = true
+shadow_color = Color( 0.219608, 0.207843, 0.356863, 1 )
+shadow_bias = 0.3
+shadow_contact = 0.38
+directional_shadow_normal_bias = 0.0
+directional_shadow_bias_split_scale = 0.0
+
+[node name="OmniLight" type="OmniLight" parent="ViewportContainer/Viewport/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.08, 2.115, -2.0875 )
+light_color = Color( 0.913725, 0.572549, 0.0784314, 1 )
+light_energy = 2.03
+light_indirect_energy = 4.05
+light_specular = 0.03
+shadow_enabled = true
+shadow_color = Color( 0.12549, 0.113725, 0.184314, 1 )
+shadow_bias = 0.25
+shadow_contact = 0.29
+omni_range = 6.5
+
+[node name="Camera" parent="ViewportContainer/Viewport" instance=ExtResource( 15 )]
+
+[node name="Static" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="Environment" parent="ViewportContainer/Viewport/Static" instance=ExtResource( 2 )]
+
+[node name="CSG" type="CSGCombiner" parent="ViewportContainer/Viewport/Static"]
+use_collision = true
+collision_mask = 0
+
+[node name="House01" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -19.9562, 3.08327, -5.8297 )
+width = 3.945
+height = 2.315
+depth = 3.335
+material = SubResource( 7 )
+
+[node name="CSGBox7" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -18.5881, 1.0223, -2.57817 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 1.95
+height = 0.825
+depth = 1.0
+material = SubResource( 7 )
+
+[node name="CSGBox2" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -17.9622, 5.53294, -4.50167 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 3.05
+height = 1.37
+depth = 2.625
+material = SubResource( 7 )
+
+[node name="CSGBox3" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -18.5931, 4.1573, -3.43067 )
+snap = 0.0001
+use_collision = true
+width = 2.04
+height = 0.38
+depth = 0.095
+material = SubResource( 7 )
+
+[node name="CSGBox4" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 2.72617, 0, -1.55781, 0, 2.53179e-06, -17.1054, 4.1348, -5.10142 )
+snap = 0.0001
+use_collision = true
+width = 2.04
+height = 0.38
+depth = 0.095
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 2.72617, 0, -1.55781, 0, 2.53179e-06, -16.7488, 3.03207, -5.83081 )
+snap = 0.0001
+use_collision = true
+width = 3.47
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGBox6" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House01"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -19.8783, 3.01707, -3.1803 )
+snap = 0.0001
+use_collision = true
+width = 4.07
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="House03" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -26.9062, 1.98827, -5.8347 )
+width = 3.945
+height = 1.53
+depth = 3.335
+material = SubResource( 7 )
+
+[node name="CSGBox7" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -27.4631, 1.0223, -2.57817 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 2.615
+height = 0.825
+depth = 1.0
+material = SubResource( 7 )
+
+[node name="CSGBox8" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -24.5381, 2.3898, -3.20317 )
+snap = 0.0001
+use_collision = true
+width = 0.655
+height = 0.235
+depth = 0.275
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 1.73794, 0, -1.55781, 0, 2.53179e-06, -23.7888, 3.02935, -5.93581 )
+snap = 0.0001
+use_collision = true
+width = 3.47
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGBox6" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 1.55781, 0, 0, 0, 1.73794, 0, 0, 0, 1.55781, -26.9183, 3.01978, -3.2853 )
+snap = 0.0001
+use_collision = true
+width = 4.07
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGBox9" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 1.73794, 0, -1.55781, 0, 2.53179e-06, -23.7888, 3.75435, -5.93581 )
+snap = 0.0001
+use_collision = true
+width = 3.47
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGBox10" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House03"]
+transform = Transform( 1.55781, 0, 0, 0, 1.73794, 0, 0, 0, 1.55781, -26.9183, 3.74478, -3.2853 )
+snap = 0.0001
+use_collision = true
+width = 4.07
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="Props" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/Props"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -16.4012, 0.61327, -5.8347 )
+width = 0.585
+height = 0.7
+depth = 0.86
+material = SubResource( 7 )
+
+[node name="CSGBox2" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/Props"]
+transform = Transform( 1.43041, 1.07978, 0, -0.617016, 2.50321, 0, 0, 0, 1.55781, -16.0437, 1.74327, -5.8347 )
+operation = 2
+width = 1.265
+height = 0.49
+depth = 2.09
+material = SubResource( 7 )
+
+[node name="House04" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox2" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House04"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 6.13869, -37.0737, 1.98827, -9.39105 )
+width = 3.945
+height = 13.33
+depth = 1.325
+material = SubResource( 7 )
+
+[node name="CSGBox6" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House04"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 6.13869, -45.7687, 1.98827, -9.39105 )
+width = 3.945
+height = 9.3
+depth = 1.325
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House04"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 6.13869, -41.2362, 1.98827, 2.17145 )
+width = 3.945
+height = 4.43
+depth = 1.26
+material = SubResource( 7 )
+
+[node name="CSGBox3" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House04"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 6.13869, -16.6312, 1.98827, -14.5961 )
+width = 3.945
+height = 16.72
+depth = 1.325
+material = SubResource( 7 )
+
+[node name="CSGBox4" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House04"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 6.13869, -27.7012, 1.98827, -13.7235 )
+width = 6.905
+height = 8.68
+depth = 1.325
+material = SubResource( 7 )
+
+[node name="House05" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House05"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 4.02851, -32.9787, 1.98827, 6.85231 )
+width = 3.945
+height = 1.53
+depth = 3.335
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House05"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 1.73794, 0, -4.02851, 0, 6.54722e-06, -29.8613, 3.02935, 6.34968 )
+snap = 0.0001
+use_collision = true
+width = 3.115
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="House06" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House06"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 4.02851, -26.0812, 2.85327, 10.3648 )
+width = 3.945
+height = 2.835
+depth = 1.58
+material = SubResource( 7 )
+
+[node name="House02" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0075, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -11.9112, 3.08327, -6.5147 )
+width = 3.945
+height = 2.315
+depth = 3.335
+material = SubResource( 7 )
+
+[node name="CSGBox7" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -13.9881, 1.0223, -3.26317 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 0.685
+height = 0.825
+depth = 1.0
+material = SubResource( 7 )
+
+[node name="CSGBox8" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 2.72617, 0, 0, 0, 1.55781, -11.0331, 1.6123, -3.26317 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 2.07
+height = 0.625
+depth = 1.0
+material = SubResource( 7 )
+
+[node name="CSGBox2" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 1.49806, 1.30153, 0, -2.27768, 0.856034, -8.21218, 4.94294, -3.73417 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 3.05
+height = 0.82
+depth = 1.485
+material = SubResource( 7 )
+
+[node name="CSGBox4" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 4.64916e-06, 1.55781, 0, -2.72617, 2.68221e-06, -8.21218, 5.76544, -4.24667 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 3.05
+height = 0.82
+depth = 1.485
+material = SubResource( 7 )
+
+[node name="CSGBox3" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 1.49806, 1.30153, 0, -2.27768, 0.856034, -13.3722, 5.41544, -4.52417 )
+operation = 2
+snap = 0.0001
+use_collision = true
+width = 3.05
+height = 3.28
+depth = 1.485
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 2.53179e-06, 0, 1.55781, 0, 1.31197, 0, -1.55781, 0, 2.53179e-06, -8.93882, 3.01707, -6.80581 )
+snap = 0.0001
+use_collision = true
+width = 3.47
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGBox6" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/House02"]
+transform = Transform( 1.55781, 0, 0, 0, 1.31197, 0, 0, 0, 1.55781, -12.0233, 3.01707, -3.9628 )
+snap = 0.0001
+use_collision = true
+width = 4.07
+height = 0.145
+depth = 0.105
+material = SubResource( 7 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="ViewportContainer/Viewport/Static/CSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.675 )
+
+[node name="CSGBox" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37, -0.0175, -6.72 )
+width = 56.145
+height = 0.17
+depth = 9.465
+material = SubResource( 8 )
+
+[node name="CSGBox3" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/CSGCombiner"]
+transform = Transform( 0.34375, 0, 0, 0, 1, 0, 0, 0, 3.15625, -37.7075, -0.0175, 0.8425 )
+width = 56.145
+height = 0.17
+depth = 9.465
+material = SubResource( 8 )
+
+[node name="CSGBox2" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/CSGCombiner"]
+transform = Transform( 0.70625, 0, 0, 0, 3.61104, 0, 0, 0, 1, 12.1325, -0.397499, -0.7275 )
+operation = 2
+width = 47.955
+height = 0.84
+depth = 4.88
+material = SubResource( 8 )
+
+[node name="CSGBox4" type="CSGBox" parent="ViewportContainer/Viewport/Static/CSG/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.37, -0.0175, 10.8575 )
+width = 56.145
+height = 0.17
+depth = 9.465
+material = SubResource( 8 )
+
+[node name="Portals" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="Portal01" parent="ViewportContainer/Viewport/Portals" instance=ExtResource( 6 )]
+curve = SubResource( 9 )
+direction = 0
+transition_enabled = false
+chain_portal_start_path = NodePath("")
+chain_portal_end_path = NodePath("")
+
+[node name="Area" parent="ViewportContainer/Viewport/Portals/Portal01" index="0"]
+visible = false
+disabled = true
+
+[node name="PlayerPosition" parent="ViewportContainer/Viewport/Portals/Portal01/Transition" index="0"]
+visible = false
+
+[node name="Portal02" parent="ViewportContainer/Viewport/Portals" instance=ExtResource( 6 )]
+curve = SubResource( 10 )
+direction = 0
+transition_enabled = true
+chain_portal_start_path = NodePath("")
+chain_portal_end_path = NodePath("")
+
+[node name="Area" parent="ViewportContainer/Viewport/Portals/Portal02" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, 8.165, 1.0175, -0.105 )
+direction = Vector3( 0, 0, -1 )
+
+[node name="Transition" parent="ViewportContainer/Viewport/Portals/Portal02" index="1"]
+duration = 2.0
+
+[node name="PlayerPosition" parent="ViewportContainer/Viewport/Portals/Portal02/Transition" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77, 4.1575, 0 )
+
+[node name="Portal03" parent="ViewportContainer/Viewport/Portals" instance=ExtResource( 6 )]
+curve = SubResource( 11 )
+direction = 1
+transition_path = NodePath(".")
+transition_enabled = false
+chain_portal_start_path = NodePath("")
+chain_portal_end_path = NodePath("")
+
+[node name="Area" parent="ViewportContainer/Viewport/Portals/Portal03" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, 4.18, 4.48, 0 )
+direction = Vector3( -1, 0, 0 )
+
+[node name="Portal04" parent="ViewportContainer/Viewport/Portals" instance=ExtResource( 6 )]
+curve = SubResource( 12 )
+direction = 1
+transition_path = NodePath("Transition2")
+transition_enabled = true
+chain_portal_start_path = NodePath("../Portal01")
+chain_portal_end_path = NodePath("")
+
+[node name="Area" parent="ViewportContainer/Viewport/Portals/Portal04" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, -6.81, 4.48, 0 )
+direction = Vector3( -1, 0, 0 )
+
+[node name="PlayerPosition" parent="ViewportContainer/Viewport/Portals/Portal04/Transition" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.845, 2.0125, 0 )
+visible = false
+
+[node name="Transition2" type="Node" parent="ViewportContainer/Viewport/Portals/Portal04"]
+script = SubResource( 13 )
+duration = 2.0
+
+[node name="Middle" type="Position3D" parent="ViewportContainer/Viewport/Portals/Portal04/Transition2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1425, 2.395, 0 )
+
+[node name="End" type="Position3D" parent="ViewportContainer/Viewport/Portals/Portal04/Transition2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8325, 1.0425, 0 )
+
+[node name="Portal05" parent="ViewportContainer/Viewport/Portals" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.245, 4.4425, -2.5925 )
+direction = 0
+transition_path = NodePath("../Portal05/Transition")
+transition_enabled = true
+chain_portal_start_path = NodePath("")
+chain_portal_end_path = NodePath("")
+chain_scene_end = ExtResource( 19 )
+
+[node name="Area" parent="ViewportContainer/Viewport/Portals/Portal05" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, 0, 0, 1.2025 )
+direction = Vector3( 0, 0, -1 )
+
+[node name="Actors" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="Player" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -20, 0.585731, 1.34987 )
+collision_layer = 2
+collision_mask = 15
+
+[node name="Statue" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4725, 0.82, 1.8 )
+
+[node name="Ball" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9705, 4.07021, 0.900713 )
+collision_mask = 11
+resource = SubResource( 16 )
+
+[node name="Mushroom" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.175, 0.085, 0 )
+
+[node name="Bread" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9, 0.085, 1.1775 )
+resource = SubResource( 20 )
+
+[node name="Tree" parent="ViewportContainer/Viewport/Actors" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.1125, 1.3425, 0 )
+
+[node name="Managers" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="PortalManager" parent="ViewportContainer/Viewport/Managers" instance=ExtResource( 4 )]
+player_path = NodePath("../../Actors/Player")
+portal_paths = [ NodePath("../../Portals/Portal01"), NodePath("../../Portals/Portal02"), NodePath("../../Portals/Portal03"), NodePath("../../Portals/Portal04"), NodePath("../../Portals/Portal05") ]
+
+[node name="CameraSlider" parent="ViewportContainer/Viewport/Managers/PortalManager" instance=ExtResource( 5 )]
+
+[node name="Controls" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="DialogControl" parent="ViewportContainer/Viewport/Controls" instance=ExtResource( 9 )]
+visible = false
+
+[editable path="ViewportContainer/Viewport/Portals/Portal01"]
+
+[editable path="ViewportContainer/Viewport/Portals/Portal02"]
+
+[editable path="ViewportContainer/Viewport/Portals/Portal03"]
+
+[editable path="ViewportContainer/Viewport/Portals/Portal04"]
+
+[editable path="ViewportContainer/Viewport/Portals/Portal05"]

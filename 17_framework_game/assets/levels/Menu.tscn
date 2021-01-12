@@ -1,0 +1,1020 @@
+[gd_scene load_steps=62 format=2]
+
+[ext_resource path="res://assets/scenes/Scene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/cinema/scripts/transitions/CameraTransition.gd" type="Script" id=2]
+[ext_resource path="res://addons/cinema/assets/materials/camera_target.material" type="Material" id=3]
+[ext_resource path="res://addons/cinema/scripts/CameraTarget.gd" type="Script" id=4]
+[ext_resource path="res://addons/cinema/scripts/CameraProxy.gd" type="Script" id=5]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFollowType.gd" type="Script" id=6]
+[ext_resource path="res://src/states/menu/Exit.gd" type="Script" id=7]
+[ext_resource path="res://assets/environments/menu_environment.tres" type="Environment" id=8]
+[ext_resource path="res://assets/textures/arrow-white.svg" type="Texture" id=9]
+[ext_resource path="res://addons/framework/state_machine/StateMachine.gd" type="Script" id=10]
+[ext_resource path="res://addons/framework/state_machine/Transition.gd" type="Script" id=11]
+[ext_resource path="res://src/states/menu/Extra.gd" type="Script" id=12]
+[ext_resource path="res://src/states/menu/Options.gd" type="Script" id=13]
+[ext_resource path="res://src/states/menu/Main.gd" type="Script" id=14]
+[ext_resource path="res://src/states/menu/SelectMenu.gd" type="Script" id=15]
+[ext_resource path="res://assets/textures/fog_simple.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/exit_albedo.png" type="Texture" id=17]
+[ext_resource path="res://src/states/menu/AcceptAction.gd" type="Script" id=18]
+[ext_resource path="res://assets/textures/exit_normal.png" type="Texture" id=19]
+[ext_resource path="res://addons/framework/assets/themes/menu_font_disabled.tres" type="DynamicFont" id=20]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_emission.png" type="Texture" id=21]
+[ext_resource path="res://addons/framework/assets/themes/menu_font_enabled.tres" type="DynamicFont" id=22]
+[ext_resource path="res://src/states/menu/SelectOption.gd" type="Script" id=23]
+[ext_resource path="res://src/states/menu/Change.gd" type="Script" id=24]
+[ext_resource path="res://src/states/menu/ChangeScene.gd" type="Script" id=25]
+[ext_resource path="res://addons/framework/common/selections/SelectionByRepository.gd" type="Script" id=26]
+[ext_resource path="res://addons/framework/common/delegates/game_delegate.tres" type="Resource" id=27]
+[ext_resource path="res://src/scenes/StreetLight.gd" type="Script" id=28]
+[ext_resource path="res://assets/audio/music/fantasy.mp3" type="AudioStream" id=29]
+[ext_resource path="res://assets/audio/effects/knifesharpener1.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/audio/effects/rain_thunder_loop.wav" type="AudioStream" id=31]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+from_camera = NodePath("")
+to_camera = NodePath("")
+transition_type = 2
+ease_type = 2
+duration = 2.0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 6 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 90.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../Targets/CameraTargetForniture")
+lookat_path = NodePath("../../Targets/CameraTargetForniture")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.5
+lookat_dead_zone_speed = 5.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0, 0, 0, 0 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 6 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../Targets/CameraTargetTable")
+lookat_path = NodePath("../../Targets/CameraTargetTable")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.5
+lookat_dead_zone_speed = 5.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0, 0, 0, 0 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 6 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 90.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../Targets/CameraTargetBed")
+lookat_path = NodePath("../../Targets/CameraTargetBed")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.5
+lookat_dead_zone_speed = 5.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0, 0, 0, 0 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 6 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 100.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../Targets/CameraTargetDoor")
+lookat_path = NodePath("../../Targets/CameraTargetDoor")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.5
+lookat_dead_zone_speed = 5.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0, 0, 0, 0 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 26 )
+repository_path = NodePath("../Blackboard")
+key_name = "GameDelegate"
+
+[sub_resource type="Animation" id=8]
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Left:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.215686 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.215686 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.215686 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.215686 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+albedo_color = Color( 1, 1, 1, 0.0431373 )
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 9 )
+size = Vector2( 30, 10 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.513126, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.53222, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 2
+emission_box_extents = Vector3( 3, 2, 3 )
+spread = 107.5
+gravity = Vector3( 0, -0.005, 0 )
+angle = 180.0
+angle_random = 0.15
+color_ramp = SubResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=15]
+material = SubResource( 14 )
+size = Vector2( 0.003, 0.003 )
+
+[sub_resource type="ViewportTexture" id=16]
+viewport_path = NodePath("Controls/Viewport")
+
+[sub_resource type="SpatialMaterial" id=17]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 16 )
+
+[sub_resource type="PlaneMesh" id=18]
+resource_local_to_scene = true
+material = SubResource( 17 )
+size = Vector2( 0.5, 0.4 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.152941, 0.12549, 0.12549, 1 )
+roughness = 0.79
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.152941, 0.12549, 0.12549, 1 )
+roughness = 0.79
+
+[sub_resource type="SpatialMaterial" id=21]
+flags_transparent = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.0
+albedo_color = Color( 1, 1, 1, 0.0431373 )
+albedo_texture = ExtResource( 17 )
+metallic = 1.0
+roughness = 0.69
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource( 19 )
+
+[sub_resource type="PlaneMesh" id=22]
+material = SubResource( 21 )
+size = Vector2( 1, 1 )
+
+[sub_resource type="Animation" id=23]
+length = 10.0
+loop = true
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.45936, 4.5, 4.53654, 4.58332, 4.6562, 9, 9.1, 9.2, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 2.39, 2.31, 0.0, 2.31, 1.0, 2.31, 2.31, 1.0, 2.31, 2.39 ]
+}
+
+[sub_resource type="GIProbeData" id=24]
+bounds = AABB( -10, -10, -10, 20, 20, 20 )
+cell_size = 0.3125
+to_cell_xform = Transform( 3.2, 0, 0, 0, 3.2, 0, 0, 0, 3.2, 32, 32, 32 )
+dynamic_data = PoolIntArray( 0, 7, 64, 64, 64, 1, 0, 0, 81965, 1, 82022, 0, 82023, 0, 82024, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+energy = 0.24
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0.321569, 0.129412, 0.129412, 1 )
+roughness = 0.79
+
+[sub_resource type="SpatialMaterial" id=26]
+albedo_color = Color( 0.129412, 0.129412, 0.321569, 1 )
+roughness = 0.79
+
+[sub_resource type="SpatialMaterial" id=27]
+albedo_color = Color( 0.776471, 0.776471, 0.776471, 1 )
+roughness = 0.79
+
+[sub_resource type="SpatialMaterial" id=28]
+albedo_color = Color( 0.364706, 0.184314, 0.184314, 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+albedo_color = Color( 0.305882, 0.223529, 0.223529, 1 )
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_color = Color( 0.709804, 0.647059, 0.647059, 1 )
+
+[node name="Scene" instance=ExtResource( 1 )]
+
+[node name="Sky" parent="." index="0"]
+enabled = false
+environment = ExtResource( 8 )
+sky_rotation = Vector3( 0, 34, 0 )
+wind_dir = Vector2( 0.620381, 0.7843 )
+
+[node name="Cinema" parent="." index="1"]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0.0114465, 2.12633, 1.61067 )
+default_transition = SubResource( 1 )
+motion_blur_enabled = true
+post_process_enabled = true
+
+[node name="CameraFps" parent="Cinema/Cameras" index="0"]
+transform = Transform( -0.769567, 0, -0.638566, 0, 1, 0, 0.638566, 0, -0.769567, -2, 2.01745, -1.5193 )
+enabled = false
+priority = 0
+
+[node name="CameraProxyFurniture" type="Camera" parent="Cinema/Cameras" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22695, 1.71425, 1.67776 )
+script = ExtResource( 5 )
+id = "CameraProxyFurniture"
+enabled = false
+priority = 1
+use_gimbal_position = false
+type = SubResource( 2 )
+
+[node name="CameraProxyTable" type="Camera" parent="Cinema/Cameras" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42768, 1.36002 )
+script = ExtResource( 5 )
+id = "CameraProxyTable"
+enabled = false
+priority = 0
+use_gimbal_position = false
+type = SubResource( 3 )
+
+[node name="CameraProxyBed" type="Camera" parent="Cinema/Cameras" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.867088, 1.42768, 0.734231 )
+script = ExtResource( 5 )
+id = "CameraProxyBed"
+enabled = false
+priority = 0
+use_gimbal_position = false
+type = SubResource( 4 )
+
+[node name="CameraProxyDoor" type="Camera" parent="Cinema/Cameras" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86279, 2.06014, -1.73797 )
+script = ExtResource( 5 )
+id = "CameraProxyDoor"
+enabled = false
+priority = 0
+use_gimbal_position = false
+type = SubResource( 5 )
+
+[node name="CameraTargetForniture" type="MeshInstance" parent="Cinema/Targets" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21488, 1.63415, 1.62969 )
+layers = 1024
+material_override = ExtResource( 3 )
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = null
+script = ExtResource( 4 )
+visual_layer = 10
+
+[node name="CameraTargetTable" type="MeshInstance" parent="Cinema/Targets" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.414512, 0.925801, 2.36414 )
+layers = 1024
+material_override = ExtResource( 3 )
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = null
+script = ExtResource( 4 )
+visual_layer = 10
+
+[node name="CameraTargetBed" type="MeshInstance" parent="Cinema/Targets" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89916, 0.925801, 1.31473 )
+layers = 1024
+material_override = ExtResource( 3 )
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = null
+script = ExtResource( 4 )
+visual_layer = 10
+
+[node name="CameraTargetDoor" type="MeshInstance" parent="Cinema/Targets" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85459, 1.71164, -1.6786 )
+layers = 1024
+material_override = ExtResource( 3 )
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = null
+script = ExtResource( 4 )
+visual_layer = 10
+
+[node name="Blackboard" parent="." index="2"]
+data = {
+"GameDelegate": ExtResource( 27 )
+}
+
+[node name="StateMachine" type="Node" parent="." index="3"]
+script = ExtResource( 10 )
+enabled = true
+actor_path = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Scene")
+data = {
+"CameraExit": NodePath("../Cinema/Cameras/CameraProxyDoor"),
+"CameraExtra": NodePath("../Cinema/Cameras/CameraProxyFurniture"),
+"CameraMain": NodePath("../Cinema/Cameras/CameraProxyTable"),
+"CameraOptions": NodePath("../Cinema/Cameras/CameraProxyBed"),
+"Continue": NodePath("../Controls/Viewport/PanelContainer/Selection/Continue"),
+"EffectSelected": NodePath("../Audio/MenuButtonsEffect"),
+"GameDelegate": SubResource( 7 ),
+"LeftArrow": NodePath("../Controls/Menu/Left"),
+"NewGame": NodePath("../Controls/Viewport/PanelContainer/Selection/NewGame"),
+"RightArrow": NodePath("../Controls/Menu/Right")
+}
+
+[node name="Main" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( 14 )
+state_name = "Main"
+start = true
+theme_option_enabled = ExtResource( 22 )
+theme_option_disabled = ExtResource( 20 )
+
+[node name="MainToOptions" type="Node" parent="StateMachine/Main" index="0"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Options")
+movement = 1
+
+[node name="MainToExtra" type="Node" parent="StateMachine/Main" index="1"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Extra")
+
+[node name="MainToChange" type="Node" parent="StateMachine/Main" index="2"]
+script = ExtResource( 25 )
+state_path = NodePath("../../Change")
+
+[node name="SelectOption" type="Node" parent="StateMachine/Main" index="3"]
+script = ExtResource( 23 )
+state_path = NodePath("..")
+
+[node name="Options" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 13 )
+state_name = "Options"
+
+[node name="OptionsToMain" type="Node" parent="StateMachine/Options" index="0"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Main")
+
+[node name="OptionsToExit" type="Node" parent="StateMachine/Options" index="1"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Exit")
+movement = 1
+
+[node name="OptionsAction" type="Node" parent="StateMachine/Options" index="2"]
+script = ExtResource( 11 )
+
+[node name="Extra" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 12 )
+state_name = "Extra"
+
+[node name="ExtraToMain" type="Node" parent="StateMachine/Extra" index="0"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Main")
+movement = 1
+
+[node name="ExtraAction" type="Node" parent="StateMachine/Extra" index="1"]
+script = ExtResource( 11 )
+
+[node name="Exit" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 7 )
+state_name = "Exit"
+end = true
+
+[node name="ExitToOptions" type="Node" parent="StateMachine/Exit" index="0"]
+script = ExtResource( 15 )
+state_path = NodePath("../../Options")
+
+[node name="ExitAction" type="Node" parent="StateMachine/Exit" index="1"]
+script = ExtResource( 18 )
+action_name = "Quit"
+
+[node name="Change" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 24 )
+state_name = "ChangeScene"
+end = true
+
+[node name="Menu" type="HBoxContainer" parent="Controls" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="Controls/Menu" index="0"]
+visible = false
+modulate = Color( 1, 1, 1, 0.215686 )
+margin_right = 72.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 50, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource( 9 )
+stretch_mode = 6
+flip_h = true
+
+[node name="Center" type="VBoxContainer" parent="Controls/Menu" index="1"]
+margin_right = 884.0
+margin_bottom = 540.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Right" type="TextureRect" parent="Controls/Menu" index="2"]
+modulate = Color( 1, 1, 1, 0.215686 )
+margin_left = 888.0
+margin_right = 960.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 50, 0 )
+mouse_filter = 2
+size_flags_vertical = 3
+texture = ExtResource( 9 )
+stretch_mode = 6
+
+[node name="MenuButtonPlayer" type="AnimationPlayer" parent="Controls/Menu" index="3"]
+autoplay = "MenuButtons"
+method_call_mode = 1
+anims/MenuButtons = SubResource( 8 )
+
+[node name="Viewport" type="Viewport" parent="Controls" index="1"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Controls/Viewport" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Controls/Viewport/PanelContainer" index="0"]
+modulate = Color( 1, 1, 1, 0.133333 )
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selection" type="VBoxContainer" parent="Controls/Viewport/PanelContainer" index="1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="VBoxContainer" parent="Controls/Viewport/PanelContainer/Selection" index="0"]
+margin_right = 1010.0
+margin_bottom = 274.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NewGame" type="Label" parent="Controls/Viewport/PanelContainer/Selection" index="1"]
+margin_top = 278.0
+margin_right = 1010.0
+margin_bottom = 378.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 22 )
+text = "New Game"
+align = 1
+valign = 1
+
+[node name="Continue" type="Label" parent="Controls/Viewport/PanelContainer/Selection" index="2"]
+margin_top = 382.0
+margin_right = 1010.0
+margin_bottom = 482.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 20 )
+text = "Continue"
+align = 1
+valign = 1
+
+[node name="Bottom" type="VBoxContainer" parent="Controls/Viewport/PanelContainer/Selection" index="3"]
+margin_top = 486.0
+margin_right = 1010.0
+margin_bottom = 586.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+
+[node name="PauseControl" parent="Controls" index="2"]
+enabled = false
+
+[node name="Fog" type="MeshInstance" parent="World/Particles" index="0"]
+transform = Transform( -1, -3.82137e-15, 8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 0, -0.412657, 13.2524 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="World/Particles" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7276, 0 )
+amount = 100
+lifetime = 16.47
+visibility_aabb = AABB( -2.80201, -1.15554, -2.89941, 5.60403, 2.31108, 5.79882 )
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 15 )
+
+[node name="Computer" type="Spatial" parent="World/Objects" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0145581, 0.934583, 2.50961 )
+
+[node name="Labtop" type="MeshInstance" parent="World/Objects/Computer" index="0"]
+transform = Transform( -0.972125, 0.213486, -0.0969306, 0.00607565, 0.436218, 0.89982, -0.234382, -0.874149, 0.425355, -0.0389847, 0.159285, 0.0610211 )
+mesh = SubResource( 18 )
+material/0 = null
+
+[node name="Computer" type="CSGBox" parent="World/Objects/Computer" index="1"]
+transform = Transform( 0.97016, 0, -0.242464, 0, 1, 0, 0.242464, 0, 0.97016, 0.0174285, -0.00805271, -0.1734 )
+operation = 2
+use_collision = true
+width = 0.505066
+height = 0.0110257
+depth = 0.370153
+material = SubResource( 19 )
+
+[node name="Computer2" type="CSGBox" parent="World/Objects/Computer" index="2"]
+transform = Transform( 0.97016, -0.217465, 0.107228, 6.67766e-08, -0.442242, -0.896896, 0.242464, 0.870133, -0.429045, -0.043716, 0.163715, 0.071255 )
+operation = 2
+use_collision = true
+width = 0.505066
+height = 0.0110257
+depth = 0.370153
+material = SubResource( 20 )
+
+[node name="Exit" type="MeshInstance" parent="World/Decals" index="0"]
+transform = Transform( -1.31134e-07, 1, 4.37114e-08, 0.0214082, 1.64569e-08, -0.312266, -0.674473, -8.80132e-08, -0.0099115, -2.9214, 1.84759, -1.67319 )
+mesh = SubResource( 22 )
+material/0 = null
+
+[node name="BedroomLamp" type="OmniLight" parent="World/Lights" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79495, 0 )
+light_color = Color( 1, 1, 0.956863, 1 )
+light_energy = 0.71
+shadow_enabled = true
+shadow_bias = 0.4
+omni_range = 3.4
+omni_attenuation = 1.62451
+
+[node name="TableLamp" type="SpotLight" parent="World/Lights" index="1"]
+transform = Transform( 0.67833, -0.465463, 0.568518, -0.140485, 0.677314, 0.722157, -0.721202, -0.569729, 0.394052, 1.02788, 1.48559, 2.79425 )
+light_color = Color( 0.976471, 0.976471, 0.658824, 1 )
+light_energy = 2.32231
+shadow_enabled = true
+shadow_bias = 0.4
+spot_range = 2.2
+spot_angle = 41.9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Lights/TableLamp" index="0"]
+autoplay = "BlinkAnimation"
+anims/BlinkAnimation = SubResource( 23 )
+
+[node name="TableLamp2" type="OmniLight" parent="World/Lights" index="2"]
+transform = Transform( 0.67833, -0.465463, 0.568518, -0.140485, 0.677314, 0.722157, -0.721202, -0.569729, 0.394052, 2.53815, 1.743, 1.27126 )
+light_color = Color( 0.658824, 0.737255, 0.976471, 1 )
+light_energy = 2.39
+shadow_enabled = true
+shadow_bias = 0.4
+omni_range = 1.2
+omni_attenuation = 3.4822
+
+[node name="StreetLight" type="SpotLight" parent="World/Lights" index="3"]
+transform = Transform( 1, 0, 0, 0, 0.859362, 0.511368, 0, -0.511368, 0.859362, -2.38419e-07, 2.54876, 2.82687 )
+light_color = Color( 0.482353, 0.705882, 0.729412, 1 )
+light_energy = 0.2
+light_indirect_energy = 6.87
+shadow_enabled = true
+shadow_color = Color( 0.117647, 0.113725, 0.129412, 1 )
+spot_range = 4.3
+spot_angle = 69.4
+script = ExtResource( 28 )
+
+[node name="Timer" type="Timer" parent="World/Lights/StreetLight" index="0"]
+wait_time = 8.0
+autostart = true
+
+[node name="DoorLight" type="SpotLight" parent="World/Lights" index="4"]
+transform = Transform( -0.272509, 0.0438345, 0.961154, 0.148799, 0.988863, -0.00291038, -0.950578, 0.142225, -0.275997, -2.24746, 1.67711, -1.97151 )
+light_energy = 0.22
+shadow_enabled = true
+shadow_color = Color( 0.890196, 0.721569, 0.721569, 1 )
+shadow_bias = 0.3
+spot_range = 5.4
+spot_attenuation = 1.6245
+spot_angle = 36.6
+
+[node name="GIProbe" type="GIProbe" parent="World/Lights" index="5"]
+subdiv = 0
+energy = 0.24
+data = SubResource( 24 )
+
+[node name="Floor" parent="World/Environment" index="0"]
+visible = false
+
+[node name="Room" type="Node" parent="World/Environment" index="1"]
+
+[node name="Door" type="CSGBox" parent="World/Environment/Room" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96385, 1.16855, -1.66207 )
+operation = 2
+use_collision = true
+width = 0.0837964
+height = 2.32724
+depth = 1.22519
+material = SubResource( 25 )
+
+[node name="Table" type="CSGCombiner" parent="World/Environment/Room" index="1"]
+
+[node name="Table" type="CSGBox" parent="World/Environment/Room/Table" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.402956, 0.45095, 2.46335 )
+use_collision = true
+width = 1.85942
+height = 0.904075
+depth = 0.994539
+material = SubResource( 25 )
+
+[node name="Table2" type="CSGBox" parent="World/Environment/Room/Table" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74803, 0.3663, 2.06145 )
+operation = 2
+use_collision = true
+width = 1.011
+height = 0.904
+depth = 0.994539
+material = SubResource( 25 )
+
+[node name="Chair" type="CSGCombiner" parent="World/Environment/Room" index="2"]
+transform = Transform( 0.899001, 0, 0.437948, 0, 1, 0, -0.437948, 0, 0.899001, -0.0965657, 0, 0.733472 )
+
+[node name="Table" type="CSGBox" parent="World/Environment/Room/Chair" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.402956, 0.662929, 0.657655 )
+use_collision = true
+width = 0.610847
+height = 1.32755
+depth = 0.0740116
+material = SubResource( 25 )
+
+[node name="Table2" type="CSGBox" parent="World/Environment/Room/Chair" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.402956, 0.32032, 1.23763 )
+use_collision = true
+width = 0.610847
+height = 0.638654
+depth = 0.0740116
+material = SubResource( 25 )
+
+[node name="Table3" type="CSGBox" parent="World/Environment/Room/Chair" index="2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.402956, 0.625619, 0.967013 )
+use_collision = true
+width = 0.610847
+height = 0.638654
+depth = 0.0740116
+material = SubResource( 25 )
+
+[node name="Table4" type="CSGBox" parent="World/Environment/Room/Chair" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.402956, 0.240973, 0.923522 )
+operation = 2
+use_collision = true
+width = 0.442283
+height = 0.638654
+depth = 0.893926
+material = SubResource( 25 )
+
+[node name="Tools" type="Spatial" parent="World/Environment/Room" index="3"]
+
+[node name="Book" type="CSGBox" parent="World/Environment/Room/Tools" index="0"]
+transform = Transform( 0.889544, 0, 0.45685, 0, 1, 0, -0.45685, 0, 0.889544, 0.816337, 0.910912, 2.37605 )
+use_collision = true
+width = 0.370959
+height = 0.0170077
+depth = 0.494654
+material = SubResource( 26 )
+
+[node name="Paper" type="CSGBox" parent="World/Environment/Room/Tools" index="1"]
+transform = Transform( 0.960386, 0, 0.278673, 0, 1, 0, -0.278673, 0, 0.960386, 0.721328, 0.901771, 2.38835 )
+use_collision = true
+width = 0.370959
+height = 0.00680805
+depth = 0.494654
+material = SubResource( 27 )
+
+[node name="Tools2" type="Spatial" parent="World/Environment/Room" index="4"]
+transform = Transform( 0.063104, 0, 0.998007, 0, 1, 0, -0.998007, 0, 0.063104, -1.64225, 0.919031, 1.17491 )
+
+[node name="Book" type="CSGBox" parent="World/Environment/Room/Tools2" index="0"]
+transform = Transform( 0.889544, 0, 0.45685, 0, 1, 0, -0.45685, 0, 0.889544, 0, 0, 0 )
+use_collision = true
+width = 0.370959
+height = 0.0170077
+depth = 0.494654
+material = SubResource( 26 )
+
+[node name="Book2" type="CSGBox" parent="World/Environment/Room/Tools2" index="1"]
+transform = Transform( 0.986563, 0, -0.163378, 0, 1, 0, 0.163378, 0, 0.986563, 0.296256, -0.00240099, -0.535411 )
+use_collision = true
+width = 0.370959
+height = 0.0170077
+depth = 0.494654
+material = SubResource( 26 )
+
+[node name="Paper" type="CSGBox" parent="World/Environment/Room/Tools2" index="2"]
+transform = Transform( 0.960386, 0, 0.278673, 0, 1, 0, -0.278673, 0, 0.960386, 0, 0, 0 )
+use_collision = true
+width = 0.370959
+height = 0.00680805
+depth = 0.494654
+material = SubResource( 27 )
+
+[node name="Paper2" type="CSGBox" parent="World/Environment/Room/Tools2" index="3"]
+transform = Transform( 0.880948, 0, -0.473212, 0, 1, 0, 0.473212, 0, 0.880948, -0.391822, -5.96046e-08, -0.257899 )
+use_collision = true
+width = 0.370959
+height = 0.00680805
+depth = 0.494654
+material = SubResource( 27 )
+
+[node name="Paper3" type="CSGBox" parent="World/Environment/Room/Tools2" index="4"]
+transform = Transform( 0.319522, 0, -0.947579, 0, 1, 0, 0.947579, 0, 0.319522, -0.471208, 0.00590551, -0.355301 )
+use_collision = true
+width = 0.370959
+height = 0.00680805
+depth = 0.494654
+material = SubResource( 27 )
+
+[node name="Structure" type="CSGCombiner" parent="World/Environment/Room" index="5"]
+use_collision = true
+
+[node name="Walls" type="CSGBox" parent="World/Environment/Room/Structure" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+use_collision = true
+invert_faces = true
+width = 6.0
+height = 3.0
+depth = 6.0
+
+[node name="Walls2" type="CSGBox" parent="World/Environment/Room/Structure" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.83419, 1.5, -3.27176 )
+operation = 2
+use_collision = true
+invert_faces = true
+width = 6.0
+height = 3.0
+depth = 6.0
+
+[node name="Window" type="CSGBox" parent="World/Environment/Room/Structure" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 3.4857 )
+operation = 2
+use_collision = true
+height = 1.42173
+depth = 1.0
+
+[node name="Door" type="CSGBox" parent="World/Environment/Room/Structure" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.89931, 1.16855, -1.66207 )
+operation = 2
+use_collision = true
+height = 2.32724
+depth = 1.22519
+material = SubResource( 28 )
+
+[node name="Window" type="CSGCombiner" parent="World/Environment/Room" index="6"]
+material_override = SubResource( 29 )
+
+[node name="Window" type="CSGBox" parent="World/Environment/Room/Window" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 3.02549 )
+use_collision = true
+height = 1.42173
+depth = 0.108476
+
+[node name="Window2" type="CSGBox" parent="World/Environment/Room/Window" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446844, 1.92602, 2.98696 )
+operation = 2
+use_collision = true
+width = 0.79295
+height = 1.14525
+depth = 0.414996
+
+[node name="Window3" type="CSGBox" parent="World/Environment/Room/Window" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.464823, 1.92602, 2.98696 )
+operation = 2
+use_collision = true
+width = 0.79295
+height = 1.14525
+depth = 0.414996
+
+[node name="Furniture" type="CSGCombiner" parent="World/Environment/Room" index="7"]
+
+[node name="Furniture" type="CSGBox" parent="World/Environment/Room/Furniture" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61798, 1.08038, 1.57236 )
+use_collision = true
+width = 0.679833
+height = 2.16853
+depth = 1.67147
+material = SubResource( 25 )
+
+[node name="Furniture2" type="CSGBox" parent="World/Environment/Room/Furniture" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61798, 1.7897, 1.57236 )
+operation = 2
+use_collision = true
+width = 1.11497
+height = 0.533234
+depth = 1.4196
+material = SubResource( 25 )
+
+[node name="Furniture3" type="CSGBox" parent="World/Environment/Room/Furniture" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61798, 1.13811, 1.57236 )
+operation = 2
+use_collision = true
+width = 1.11497
+height = 0.533234
+depth = 1.4196
+material = SubResource( 25 )
+
+[node name="Spatial" type="Spatial" parent="World/Environment/Room" index="8"]
+
+[node name="Bed" type="CSGBox" parent="World/Environment/Room/Spatial" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83508, 0.171535, 1.02748 )
+use_collision = true
+width = 2.27467
+height = 0.141395
+depth = 3.3972
+material = SubResource( 25 )
+
+[node name="Bed2" type="CSGBox" parent="World/Environment/Room/Spatial" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83508, 0.620047, 1.02748 )
+use_collision = true
+width = 2.27467
+height = 0.557406
+depth = 3.3972
+material = SubResource( 30 )
+
+[node name="Bed3" type="CSGBox" parent="World/Environment/Room/Spatial" index="2"]
+transform = Transform( 0.995478, 0, 0.0949944, 0, 1, 0, -0.0949944, 0, 0.995478, -1.91604, 1.01629, 2.40141 )
+use_collision = true
+width = 2.18388
+height = 0.185543
+depth = 0.537455
+material = SubResource( 30 )
+
+[node name="BackgroundMusic" parent="Audio" index="0"]
+stream = ExtResource( 29 )
+volume_db = -15.273
+autoplay = true
+
+[node name="MenuButtonsEffect" type="AudioStreamPlayer" parent="Audio" index="1"]
+stream = ExtResource( 30 )
+volume_db = -18.502
+pitch_scale = 4.0
+
+[node name="RainEffect3D" type="AudioStreamPlayer3D" parent="Audio" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31656, 5.55184 )
+stream = ExtResource( 31 )
+unit_db = 80.0
+autoplay = true
+max_distance = 10.0
+area_mask = 1048575
+
+[node name="SkyPanel" parent="Debug" index="1"]
+target = NodePath("../../Sky")
+
+[node name="CloudPanel" parent="Debug" index="2"]
+target = NodePath("../../Sky")
+
+[node name="EnvironmentPanel" parent="Debug" index="3"]
+target = NodePath("../../Sky")
+
+[connection signal="timeout" from="World/Lights/StreetLight/Timer" to="World/Lights/StreetLight" method="_on_Timer_timeout"]

@@ -1,0 +1,949 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "AudioLayer",
+"language": "GDScript",
+"path": "res://addons/framework/common/layers/AudioLayer.gd"
+}, {
+"base": "HBoxContainer",
+"class": "BaseControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/BaseControl.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTree",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/BehaviorTree.gd"
+}, {
+"base": "BehaviorTreeNode",
+"class": "BehaviorTreeComposite",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/composites/BehaviorTreeComposite.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "BehaviorTreeConditionLeaf",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/leaves/BehaviorTreeConditionLeaf.gd"
+}, {
+"base": "BehaviorTreeNode",
+"class": "BehaviorTreeDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeDecorator.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeFailerDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeFailerDecorator.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeFetcherDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeFetcherDecorator.gd"
+}, {
+"base": "Reference",
+"class": "BehaviorTreeGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/BehaviorTreeGlobal.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeInverterDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeInverterDecorator.gd"
+}, {
+"base": "BehaviorTreeNode",
+"class": "BehaviorTreeLeaf",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/leaves/BehaviorTreeLeaf.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeLimiterDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeLimiterDecorator.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTreeNode",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/BehaviorTreeNode.gd"
+}, {
+"base": "BehaviorTreeComposite",
+"class": "BehaviorTreeParallelComposite",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/composites/BehaviorTreeParallelComposite.gd"
+}, {
+"base": "BehaviorTreeComposite",
+"class": "BehaviorTreeSelectorComposite",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/composites/BehaviorTreeSelectorComposite.gd"
+}, {
+"base": "BehaviorTreeComposite",
+"class": "BehaviorTreeSequenceComposite",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/composites/BehaviorTreeSequenceCompositee.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeStateDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeStateDecorator.gd"
+}, {
+"base": "BehaviorTreeComposite",
+"class": "BehaviorTreeStatesComposite",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/composites/BehaviorTreeStatesComposite.gd"
+}, {
+"base": "BehaviorTreeDecorator",
+"class": "BehaviorTreeSucceederDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/decorators/BehaviorTreeSucceederDecorator.gd"
+}, {
+"base": "BehaviorTreeLeaf",
+"class": "BehaviorTreeTaskLeaf",
+"language": "GDScript",
+"path": "res://addons/framework/behavior_tree/leaves/BehaviorTreeTaskLeaf.gd"
+}, {
+"base": "Repository",
+"class": "Blackboard",
+"language": "GDScript",
+"path": "res://addons/framework/blackboard/Blackboard.gd"
+}, {
+"base": "Reference",
+"class": "BlackboardGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/blackboard/BlackboardGlobal.gd"
+}, {
+"base": "Repository",
+"class": "BlackboardRepository",
+"language": "GDScript",
+"path": "res://addons/framework/blackboard/BlackboardRepository.gd"
+}, {
+"base": "BaseControl",
+"class": "BoolControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/BoolControl.gd"
+}, {
+"base": "Resource",
+"class": "CameraCallback",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/helpers/CameraCallback.gd"
+}, {
+"base": "CameraFollowType",
+"class": "CameraDollyType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraDollyType.gd"
+}, {
+"base": "CameraType",
+"class": "CameraExternalType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraExternalType.gd"
+}, {
+"base": "CameraMotionType",
+"class": "CameraFlyType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraFlyType.gd"
+}, {
+"base": "CameraType",
+"class": "CameraFollowType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraFollowType.gd"
+}, {
+"base": "CameraMotionType",
+"class": "CameraFpsType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraFpsType.gd"
+}, {
+"base": "CameraType",
+"class": "CameraMotionType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraMotionType.gd"
+}, {
+"base": "Camera",
+"class": "CameraProxy",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/CameraProxy.gd"
+}, {
+"base": "Area",
+"class": "CameraSwitch",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/CameraSwitch.gd"
+}, {
+"base": "MeshInstance",
+"class": "CameraTarget",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/CameraTarget.gd"
+}, {
+"base": "Resource",
+"class": "CameraTransition",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/transitions/CameraTransition.gd"
+}, {
+"base": "Resource",
+"class": "CameraType",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/types/CameraType.gd"
+}, {
+"base": "Node",
+"class": "CanvasTransition",
+"language": "GDScript",
+"path": "res://addons/framework/screener/transitions/CanvasTransition.gd"
+}, {
+"base": "Inventory",
+"class": "Catalogue",
+"language": "GDScript",
+"path": "res://addons/framework/catalogue/Catalogue.gd"
+}, {
+"base": "CatalogueItem",
+"class": "CatalogueCardItem",
+"language": "GDScript",
+"path": "res://addons/framework/catalogue/resources/CatalogueCardItem.gd"
+}, {
+"base": "Control",
+"class": "CatalogueControl",
+"language": "GDScript",
+"path": "res://addons/framework/catalogue/CatalogueControl.gd"
+}, {
+"base": "Reference",
+"class": "CatalogueGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/catalogue/CatalogueGlobal.gd"
+}, {
+"base": "Resource",
+"class": "CatalogueItem",
+"language": "GDScript",
+"path": "res://addons/framework/catalogue/resources/CatalogueItem.gd"
+}, {
+"base": "Spatial",
+"class": "Cinema",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/Cinema.gd"
+}, {
+"base": "Reference",
+"class": "CinemaGlobal",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/CinemaGlobal.gd"
+}, {
+"base": "Reference",
+"class": "CollectionUtils",
+"language": "GDScript",
+"path": "res://addons/debugger/utils/CollectionUtils.gd"
+}, {
+"base": "BaseControl",
+"class": "ColorControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/ColorControl.gd"
+}, {
+"base": "CanvasTransition",
+"class": "ColorTransition",
+"language": "GDScript",
+"path": "res://addons/framework/screener/transitions/ColorTransition.gd"
+}, {
+"base": "PanelContainer",
+"class": "ConsolePanel",
+"language": "GDScript",
+"path": "res://addons/debugger/panels/ConsolePanel.gd"
+}, {
+"base": "Loader",
+"class": "ControlLoader",
+"language": "GDScript",
+"path": "res://addons/debugger/core/ControlLoader.gd"
+}, {
+"base": "Node",
+"class": "ControlsLayer",
+"language": "GDScript",
+"path": "res://addons/framework/common/layers/ControlsLayer.gd"
+}, {
+"base": "MeshInstance",
+"class": "DeadZone",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/DeadZone.gd"
+}, {
+"base": "Node",
+"class": "DebugLayer",
+"language": "GDScript",
+"path": "res://addons/framework/common/layers/DebugLayer.gd"
+}, {
+"base": "PanelContainer",
+"class": "DebugPanel",
+"language": "GDScript",
+"path": "res://addons/debugger/panels/DebugPanel.gd"
+}, {
+"base": "PanelContainer",
+"class": "Debugger",
+"language": "GDScript",
+"path": "res://addons/debugger/panels/Debugger.gd"
+}, {
+"base": "MeshInstance",
+"class": "Decal",
+"language": "GDScript",
+"path": "res://addons/decalco/scripts/Decal.gd"
+}, {
+"base": "DialogLoader",
+"class": "DialogFileLoader",
+"language": "GDScript",
+"path": "res://addons/framework/dialogue/loaders/DialogFileLoader.gd"
+}, {
+"base": "Resource",
+"class": "DialogLoader",
+"language": "GDScript",
+"path": "res://addons/framework/dialogue/loaders/DialogLoader.gd"
+}, {
+"base": "Control",
+"class": "DialogPlayer",
+"language": "GDScript",
+"path": "res://addons/framework/dialogue/DialogPlayer.gd"
+}, {
+"base": "Resource",
+"class": "DialogScene",
+"language": "GDScript",
+"path": "res://addons/framework/dialogue/resources/DialogScene.gd"
+}, {
+"base": "Resource",
+"class": "DialogSceneItem",
+"language": "GDScript",
+"path": "res://addons/framework/dialogue/resources/DialogSceneItem.gd"
+}, {
+"base": "BaseControl",
+"class": "DropdownControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/DropdownControl.gd"
+}, {
+"base": "Reference",
+"class": "EventLog",
+"language": "GDScript",
+"path": "res://addons/logging/scripts/EventLog.gd"
+}, {
+"base": "ConvexPolygonShape",
+"class": "FieldOfViewShape",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/helpers/FieldOfViewShape.gd"
+}, {
+"base": "Reference",
+"class": "FileUtils",
+"language": "GDScript",
+"path": "res://addons/debugger/utils/FileUtils.gd"
+}, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://addons/framework/common/interfaces/Game.gd"
+}, {
+"base": "Resource",
+"class": "GameDelegate",
+"language": "GDScript",
+"path": "res://addons/framework/common/delegates/GameDelegate.gd"
+}, {
+"base": "Reference",
+"class": "GameGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/game_manager/GameGlobal.gd"
+}, {
+"base": "Game",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://addons/framework/game_manager/GameManager.gd"
+}, {
+"base": "Node",
+"class": "GameScene",
+"language": "GDScript",
+"path": "res://addons/framework/game_manager/GameScene.gd"
+}, {
+"base": "KinematicBody",
+"class": "Gimbal",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/Gimbal.gd"
+}, {
+"base": "Reference",
+"class": "Global",
+"language": "GDScript",
+"path": "res://addons/debugger/core/Global.gd"
+}, {
+"base": "Object",
+"class": "GrassFactory",
+"language": "GDScript",
+"path": "res://addons/grass/scripts/GrassFactory.gd"
+}, {
+"base": "Reference",
+"class": "Groups",
+"language": "GDScript",
+"path": "res://addons/framework/common/utils/Groups.gd"
+}, {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
+"base": "Node",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://addons/framework/common/interfaces/Interactable.gd"
+}, {
+"base": "Node",
+"class": "Interaction",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/Interaction.gd"
+}, {
+"base": "InteractionPolicy",
+"class": "InteractionFirstPolicy",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/policies/InteractionFirstPolicy.gd"
+}, {
+"base": "Resource",
+"class": "InteractionPolicy",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/policies/InteractionPolicy.gd"
+}, {
+"base": "InteractionPolicy",
+"class": "InteractionRandomPolicy",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/policies/InteractionRandomPolicy.gd"
+}, {
+"base": "InteractionPolicy",
+"class": "InteractionStatePolicy",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/policies/InteractionStatePolicy.gd"
+}, {
+"base": "Reference",
+"class": "Interactions",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/Interactions.gd"
+}, {
+"base": "Interactable",
+"class": "Interactive",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/Interactive.gd"
+}, {
+"base": "Interactable",
+"class": "Interactor",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/Interactor.gd"
+}, {
+"base": "Node",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://addons/framework/common/interfaces/Inventory.gd"
+}, {
+"base": "CPUParticles",
+"class": "LODCPUParticles",
+"language": "GDScript",
+"path": "res://addons/lod/lod_cpu_particles.gd"
+}, {
+"base": "OmniLight",
+"class": "LODOmniLight",
+"language": "GDScript",
+"path": "res://addons/lod/lod_omni_light.gd"
+}, {
+"base": "Particles",
+"class": "LODParticles",
+"language": "GDScript",
+"path": "res://addons/lod/lod_particles.gd"
+}, {
+"base": "Spatial",
+"class": "LODSpatial",
+"language": "GDScript",
+"path": "res://addons/lod/lod_spatial.gd"
+}, {
+"base": "SpotLight",
+"class": "LODSpotLight",
+"language": "GDScript",
+"path": "res://addons/lod/lod_spot_light.gd"
+}, {
+"base": "Reference",
+"class": "Loader",
+"language": "GDScript",
+"path": "res://addons/debugger/core/Loader.gd"
+}, {
+"base": "Node",
+"class": "Logger",
+"language": "GDScript",
+"path": "res://addons/logging/scripts/Logger.gd"
+}, {
+"base": "MeshInstance",
+"class": "MotionBlur",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/MotionBlur.gd"
+}, {
+"base": "TransitionDecorator",
+"class": "NegateTransitionDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/decorators/NegateTransitionDecorator.gd"
+}, {
+"base": "MeshInstance",
+"class": "Ocean",
+"language": "GDScript",
+"path": "res://addons/ocean/scripts/Ocean.gd"
+}, {
+"base": "BaseControl",
+"class": "OpenFileControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/OpenFileControl.gd"
+}, {
+"base": "Control",
+"class": "PauseControl",
+"language": "GDScript",
+"path": "res://addons/framework/game_manager/PauseControl.gd"
+}, {
+"base": "MultiMeshInstance",
+"class": "Planter",
+"language": "GDScript",
+"path": "res://addons/grass/scripts/Planter.gd"
+}, {
+"base": "Reference",
+"class": "ProjectionUtils",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/helpers/ProjectionUtils.gd"
+}, {
+"base": "Control",
+"class": "RadarDrawer",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/helpers/RadarDrawer.gd"
+}, {
+"base": "Node",
+"class": "Repository",
+"language": "GDScript",
+"path": "res://addons/framework/common/interfaces/Repository.gd"
+}, {
+"base": "Reference",
+"class": "ResourceQueue",
+"language": "GDScript",
+"path": "res://addons/framework/screener/helpers/ResourceQueue.gd"
+}, {
+"base": "BaseControl",
+"class": "ScalarControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/ScalarControl.gd"
+}, {
+"base": "Resource",
+"class": "SceneDelegate",
+"language": "GDScript",
+"path": "res://addons/framework/common/delegates/SceneDelegate.gd"
+}, {
+"base": "Node",
+"class": "SceneLoader",
+"language": "GDScript",
+"path": "res://addons/framework/common/interfaces/SceneLoader.gd"
+}, {
+"base": "SceneLoader",
+"class": "Screener",
+"language": "GDScript",
+"path": "res://addons/framework/screener/screener.gd"
+}, {
+"base": "Reference",
+"class": "ScreenerGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/screener/ScreenerGlobal.gd"
+}, {
+"base": "Resource",
+"class": "Selection",
+"language": "GDScript",
+"path": "res://addons/framework/common/selections/Selection.gd"
+}, {
+"base": "Selection",
+"class": "SelectionByGroup",
+"language": "GDScript",
+"path": "res://addons/framework/common/selections/SelectionByGroup.gd"
+}, {
+"base": "Selection",
+"class": "SelectionByNodePath",
+"language": "GDScript",
+"path": "res://addons/framework/common/selections/SelectionByNodePath.gd"
+}, {
+"base": "Resource",
+"class": "SelectionUtils",
+"language": "GDScript",
+"path": "res://addons/framework/common/selections/SelectionUtils.gd"
+}, {
+"base": "Selection",
+"class": "SelectiondByRepository",
+"language": "GDScript",
+"path": "res://addons/framework/common/selections/SelectionByRepository.gd"
+}, {
+"base": "Node",
+"class": "Serializer",
+"language": "GDScript",
+"path": "res://addons/debugger/utils/Serializer.gd"
+}, {
+"base": "Control",
+"class": "ShapeDrawer",
+"language": "GDScript",
+"path": "res://addons/cinema/scripts/helpers/ShapeDrawer.gd"
+}, {
+"base": "Spatial",
+"class": "SkyCloud",
+"language": "GDScript",
+"path": "res://addons/skycloud/scripts/SkyCloud.gd"
+}, {
+"base": "BaseControl",
+"class": "SliderControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/SliderControl.gd"
+}, {
+"base": "Area",
+"class": "Sonar",
+"language": "GDScript",
+"path": "res://addons/framework/interactions/Sonar.gd"
+}, {
+"base": "BaseControl",
+"class": "SpinControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/SpinControl.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/StateMachine.gd"
+}, {
+"base": "Reference",
+"class": "StateMachineGlobal",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/StateMachineGlobal.gd"
+}, {
+"base": "Label",
+"class": "StatsPanel",
+"language": "GDScript",
+"path": "res://addons/debugger/panels/StatsPanel.gd"
+}, {
+"base": "Resource",
+"class": "Subscription",
+"language": "GDScript",
+"path": "res://addons/framework/common/resources/Subscription.gd"
+}, {
+"base": "BaseControl",
+"class": "TextEditControl",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/TextEditControl.gd"
+}, {
+"base": "",
+"class": "TimeLogger",
+"language": "GDScript",
+"path": "res://addons/logging/scripts/TimeLogger.gd"
+}, {
+"base": "Node",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/Transition.gd"
+}, {
+"base": "Transition",
+"class": "TransitionDecorator",
+"language": "GDScript",
+"path": "res://addons/framework/state_machine/decorators/TransitionDecorator.gd"
+}, {
+"base": "Reference",
+"class": "Types",
+"language": "GDScript",
+"path": "res://addons/framework/common/utils/Types.gd"
+}, {
+"base": "BaseControl",
+"class": "Vector2Control",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/Vector2Control.gd"
+}, {
+"base": "BaseControl",
+"class": "Vector3Control",
+"language": "GDScript",
+"path": "res://addons/debugger/controls/Vector3Control.gd"
+}, {
+"base": "CanvasTransition",
+"class": "ViewportTransition",
+"language": "GDScript",
+"path": "res://addons/framework/screener/transitions/ViewportTransition.gd"
+}, {
+"base": "Node",
+"class": "WorldLayer",
+"language": "GDScript",
+"path": "res://addons/framework/common/layers/WorldLayer.gd"
+} ]
+_global_script_class_icons={
+"AudioLayer": "res://addons/framework/icons/audio.svg",
+"BaseControl": "",
+"BehaviorTree": "res://addons/framework/icons/tree.svg",
+"BehaviorTreeComposite": "res://addons/framework/icons/category_composite.svg",
+"BehaviorTreeConditionLeaf": "res://addons/framework/icons/condition.svg",
+"BehaviorTreeDecorator": "res://addons/framework/icons/category_decorator.svg",
+"BehaviorTreeFailerDecorator": "res://addons/framework/icons/fail.svg",
+"BehaviorTreeFetcherDecorator": "res://addons/framework/icons/download.svg",
+"BehaviorTreeGlobal": "",
+"BehaviorTreeInverterDecorator": "res://addons/framework/icons/inverter.svg",
+"BehaviorTreeLeaf": "res://addons/framework/icons/action.svg",
+"BehaviorTreeLimiterDecorator": "res://addons/framework/icons/limiter.svg",
+"BehaviorTreeNode": "res://addons/framework/icons/action.svg",
+"BehaviorTreeParallelComposite": "res://addons/framework/icons/parallel.svg",
+"BehaviorTreeSelectorComposite": "res://addons/framework/icons/selector.svg",
+"BehaviorTreeSequenceComposite": "res://addons/framework/icons/sequencer.svg",
+"BehaviorTreeStateDecorator": "res://addons/framework/icons/state.svg",
+"BehaviorTreeStatesComposite": "res://addons/framework/icons/states.svg",
+"BehaviorTreeSucceederDecorator": "res://addons/framework/icons/succeed.svg",
+"BehaviorTreeTaskLeaf": "res://addons/framework/icons/action.svg",
+"Blackboard": "res://addons/framework/icons/blackboard.svg",
+"BlackboardGlobal": "",
+"BlackboardRepository": "res://addons/framework/icons/blackboard_client.svg",
+"BoolControl": "",
+"CameraCallback": "",
+"CameraDollyType": "",
+"CameraExternalType": "",
+"CameraFlyType": "",
+"CameraFollowType": "",
+"CameraFpsType": "",
+"CameraMotionType": "",
+"CameraProxy": "res://addons/cinema/icons/icon_camera.svg",
+"CameraSwitch": "res://addons/cinema/icons/switch.svg",
+"CameraTarget": "res://addons/cinema/icons/target.svg",
+"CameraTransition": "",
+"CameraType": "",
+"CanvasTransition": "",
+"Catalogue": "res://addons/framework/icons/inventory.svg",
+"CatalogueCardItem": "",
+"CatalogueControl": "res://addons/framework/icons/inventory_view.svg",
+"CatalogueGlobal": "",
+"CatalogueItem": "",
+"Cinema": "res://addons/cinema/icons/icon.svg",
+"CinemaGlobal": "",
+"CollectionUtils": "",
+"ColorControl": "",
+"ColorTransition": "res://addons/framework/icons/fade.svg",
+"ConsolePanel": "",
+"ControlLoader": "",
+"ControlsLayer": "res://addons/framework/icons/layout.svg",
+"DeadZone": "",
+"DebugLayer": "res://addons/framework/icons/debug.svg",
+"DebugPanel": "res://addons/debugger/icons/icon_panel.svg",
+"Debugger": "res://addons/debugger/icons/icon.svg",
+"Decal": "res://addons/decalco/icons/icon_decal.svg",
+"DialogFileLoader": "",
+"DialogLoader": "",
+"DialogPlayer": "res://addons/framework/icons/icon_talk.svg",
+"DialogScene": "",
+"DialogSceneItem": "",
+"DropdownControl": "",
+"EventLog": "",
+"FieldOfViewShape": "",
+"FileUtils": "",
+"Game": "",
+"GameDelegate": "",
+"GameGlobal": "",
+"GameManager": "res://addons/framework/icons/game.svg",
+"GameScene": "res://addons/framework/icons/scene_view.svg",
+"Gimbal": "res://addons/cinema/icons/gimbal.svg",
+"Global": "",
+"GrassFactory": "",
+"Groups": "",
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": "",
+"Interactable": "",
+"Interaction": "res://addons/framework/icons/interaction.svg",
+"InteractionFirstPolicy": "",
+"InteractionPolicy": "",
+"InteractionRandomPolicy": "",
+"InteractionStatePolicy": "",
+"Interactions": "",
+"Interactive": "res://addons/framework/icons/interactive.svg",
+"Interactor": "res://addons/framework/icons/interactor.svg",
+"Inventory": "",
+"LODCPUParticles": "res://addons/lod/lod_cpu_particles.svg",
+"LODOmniLight": "res://addons/lod/lod_omni_light.svg",
+"LODParticles": "res://addons/lod/lod_particles.svg",
+"LODSpatial": "res://addons/lod/lod_spatial.svg",
+"LODSpotLight": "res://addons/lod/lod_spot_light.svg",
+"Loader": "",
+"Logger": "res://addons/logging/icons/icon.svg",
+"MotionBlur": "",
+"NegateTransitionDecorator": "res://addons/framework/icons/inverter.svg",
+"Ocean": "res://addons/ocean/icons/water.svg",
+"OpenFileControl": "",
+"PauseControl": "res://addons/framework/icons/pause.svg",
+"Planter": "",
+"ProjectionUtils": "",
+"RadarDrawer": "",
+"Repository": "",
+"ResourceQueue": "",
+"ScalarControl": "",
+"SceneDelegate": "",
+"SceneLoader": "",
+"Screener": "res://addons/framework/icons/screener.svg",
+"ScreenerGlobal": "",
+"Selection": "",
+"SelectionByGroup": "",
+"SelectionByNodePath": "",
+"SelectionUtils": "",
+"SelectiondByRepository": "",
+"Serializer": "",
+"ShapeDrawer": "",
+"SkyCloud": "res://addons/skycloud/icons/icon.svg",
+"SliderControl": "",
+"Sonar": "res://addons/framework/icons/icon_radar.svg",
+"SpinControl": "",
+"State": "res://addons/framework/icons/state.svg",
+"StateMachine": "res://addons/framework/icons/state_machine.svg",
+"StateMachineGlobal": "",
+"StatsPanel": "",
+"Subscription": "",
+"TextEditControl": "",
+"TimeLogger": "res://addons/logging/icons/icon.svg",
+"Transition": "res://addons/framework/icons/transition.svg",
+"TransitionDecorator": "res://addons/framework/icons/transition.svg",
+"Types": "",
+"Vector2Control": "",
+"Vector3Control": "",
+"ViewportTransition": "res://addons/framework/icons/fade.svg",
+"WorldLayer": "res://addons/framework/icons/world.svg"
+}
+
+[application]
+
+config/name="Framework Example"
+run/main_scene="res://assets/scenes/Game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+LoggerManager="*res://addons/logging/auto/LoggerManager.gd"
+
+[display]
+
+window/size/width=990
+window/size/height=540
+window/size/test_width=1920
+window/size/test_height=1080
+window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "SIsilicon.vfx.godrays", "cinema", "debugger", "decalco", "framework", "grass", "lod", "logging", "ocean", "skycloud", "vpainter", "zylann.channel_packer", "zylann.hterrain" )
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777222,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+move_forward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_backward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_sprint={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+mouse_input={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
+ ]
+}
+run={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+crouch={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777239,"unicode":0,"echo":false,"script":null)
+ ]
+}
+push={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"unicode":0,"echo":false,"script":null)
+ ]
+}
+interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_render/layer_1="World"
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Interaction"
+3d_render/layer_11="CinemaTarget"
+3d_physics/layer_11="CameraSwitcher"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
+quality/godrays/sample_number=10
+quality/godrays/use_pcf5=false
+quality/godrays/dither_amount=1.0

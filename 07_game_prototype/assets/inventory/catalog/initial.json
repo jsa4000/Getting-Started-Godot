@@ -1,0 +1,38 @@
+{
+    "health": [
+        {
+            "id": "mushroom",
+            "name": "mushroom",
+            "caption": "A wild mushroom from the forest",
+            "type": "POTION",
+            "health": "5"
+        },
+        {
+            "id": "bread_mid",
+            "name": "Medium bread",
+            "caption": "Normal medium bread",
+            "type": "POTION",
+            "health": "10"
+        },
+        {
+            "id": "bread_big",
+            "name": "Big bread",
+            "caption": "Awesome big bread",
+            "type": "POTION",
+            "health": "20"
+        },
+        {
+            "id": "gun",
+            "name": "Small Gun",
+            "caption": "Just a small gun",
+            "type": "AMMO",
+            "strength": "23"
+        },
+        {
+            "id": "intro",
+            "name": "Introduction",
+            "caption": "The introduction with playgame instructions",
+            "type": "DOCUMENT"
+        }
+    ]
+}

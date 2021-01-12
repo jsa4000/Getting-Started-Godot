@@ -1,0 +1,167 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://src/states/npcs/Return.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/state_machine/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://addons/framework/state_machine/decorators/NegateTransitionDecorator.gd" type="Script" id=3]
+[ext_resource path="res://addons/framework/blackboard/BlackboardRepository.gd" type="Script" id=4]
+[ext_resource path="res://src/states/npcs/Idle.gd" type="Script" id=5]
+[ext_resource path="res://addons/framework/common/selections/SelectionByRepository.gd" type="Script" id=6]
+[ext_resource path="res://addons/framework/common/selections/SelectionByNodePath.gd" type="Script" id=7]
+[ext_resource path="res://src/states/npcs/Follow.gd" type="Script" id=8]
+[ext_resource path="res://src/states/npcs/CheckForTarget.gd" type="Script" id=9]
+[ext_resource path="res://addons/framework/interactions/Interactive.gd" type="Script" id=10]
+[ext_resource path="res://src/interactions/InteractionFollow.gd" type="Script" id=11]
+[ext_resource path="res://addons/framework/interactions/policies/InteractionStatePolicy.gd" type="Script" id=12]
+[ext_resource path="res://src/interactions/InteractionIdle.gd" type="Script" id=13]
+[ext_resource path="res://assets/textures/glass-bottle.png" type="Texture" id=14]
+[ext_resource path="res://addons/framework/common/resources/Subscription.gd" type="Script" id=15]
+[ext_resource path="res://addons/framework/catalogue/resources/CatalogueCardItem.gd" type="Script" id=16]
+[ext_resource path="res://addons/framework/catalogue/Catalogue.gd" type="Script" id=17]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.858824, 0.129412, 0.129412, 1 )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 16 )
+id = "potion"
+type = "item"
+name = "Health Potion"
+description = "This is a Health Potion"
+image = ExtResource( 14 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 15 )
+node_path = NodePath("../StateMachine")
+signal_name = "state_changed"
+parameters = [  ]
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 12 )
+subscriptions = [ SubResource( 5 ) ]
+states = {
+"Follow": NodePath("InteractionFollow"),
+"Idle": NodePath("InteractionIdle")
+}
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 6 )
+repository_path = NodePath("../BlackboardRepository")
+key_name = "DialogPlayer"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 6 )
+repository_path = NodePath("../BlackboardRepository")
+key_name = "player"
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 7 )
+node_path = NodePath("../Track/Start")
+sub_path = ""
+
+[node name="Capsule02" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67916, 0 )
+collision_layer = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, -0.4, 0, 0.25, -1.74846e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.285882, -0.192215 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="BlackboardRepository" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Catalogue" type="Node" parent="."]
+script = ExtResource( 17 )
+actor_path = NodePath("..")
+items = [ SubResource( 4 ) ]
+
+[node name="Interactive" type="Node" parent="."]
+script = ExtResource( 10 )
+enabled = true
+actor_path = NodePath("..")
+policy = SubResource( 6 )
+data = {
+"DialogPlayer": SubResource( 7 ),
+"Inventory": NodePath("../Catalogue")
+}
+
+[node name="InteractionIdle" type="Node" parent="Interactive"]
+script = ExtResource( 13 )
+
+[node name="InteractionFollow" type="Node" parent="Interactive"]
+script = ExtResource( 11 )
+item = "potion"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 2 )
+enabled = true
+actor_path = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Capsule02")
+data = {
+"player": SubResource( 8 ),
+"start_point": SubResource( 9 )
+}
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+state_name = "Idle"
+start = true
+end = false
+
+[node name="ToFollow" type="Node" parent="StateMachine/Idle"]
+script = ExtResource( 9 )
+state_path = NodePath("../../Follow")
+distance = 3.0
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+state_name = "Follow"
+offset = Vector3( 0, 1, 0 )
+distance = 1.5
+move_speed = 0.5
+lookat_speed = 2.0
+
+[node name="Negate" type="Node" parent="StateMachine/Follow"]
+script = ExtResource( 3 )
+state_path = NodePath("")
+
+[node name="ToReturn" type="Node" parent="StateMachine/Follow/Negate"]
+script = ExtResource( 9 )
+state_path = NodePath("../../../Return")
+distance = 3.0
+
+[node name="Return" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
+state_name = "Return"
+target = "start_point"
+move_speed = 0.5
+
+[node name="ToFollow" type="Node" parent="StateMachine/Return"]
+script = ExtResource( 9 )
+state_path = NodePath("../../Follow")
+distance = 3.0
+
+[node name="ToIdle" type="Node" parent="StateMachine/Return"]
+script = ExtResource( 9 )
+state_path = NodePath("../../Idle")
+target = "start_point"
+distance = 0.1
+
+[node name="Track" type="Node" parent="."]
+
+[node name="Start" type="Position3D" parent="Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.726, 0.698, -6.73144 )

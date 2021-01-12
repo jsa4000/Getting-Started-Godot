@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/scene_compositor/ui/controls/DropdownControl.gd" type="Script" id=1]
+[ext_resource path="res://addons/scene_compositor/core/base/BaseControl.tscn" type="PackedScene" id=2]
+
+
+
+
+
+[node name="DropdownControl" instance=ExtResource( 2 )]
+margin_right = 122.0
+margin_bottom = 37.0
+script = ExtResource( 1 )
+value = null
+options = null
+
+[node name="List" type="OptionButton" parent="." index="0"]
+margin_right = 122.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 50, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+[connection signal="item_selected" from="List" to="." method="_on_List_item_selected"]

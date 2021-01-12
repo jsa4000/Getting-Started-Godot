@@ -1,0 +1,136 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/ui/InventoryControl.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/ArcaMajora3-Bold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://shaders/GradientTranslucency2D.tres" type="Shader" id=3]
+[ext_resource path="res://scenes/ui/InventoryPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/ui/dialogbox.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/x_scale2 = 1.5
+shader_param/y_scale = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=3]
+outline_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Theme" id=5]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = null
+
+[node name="InventoryControl" type="Control"]
+anchor_right = 0.2
+anchor_bottom = 0.498
+margin_right = -4.79999
+margin_bottom = 201.2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 200, 500 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Background" type="TextureRect" parent="ViewportContainer/Viewport"]
+modulate = Color( 1, 1, 1, 0.0666667 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -2.13629
+margin_bottom = 300.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="VBoxContainer" parent="ViewportContainer/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -7.47705
+margin_bottom = -7.47705
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="ViewportContainer/Viewport/Main"]
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+
+[node name="Background" type="TextureRect" parent="ViewportContainer/Viewport/Main/Control"]
+modulate = Color( 1, 1, 1, 0.486275 )
+material = SubResource( 2 )
+margin_top = 4.0
+margin_right = 3360.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 35 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ViewportContainer/Viewport/Main/Control"]
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 0, 35 )
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_as_outline = 1
+text = "Inventory"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ViewportContainer/Viewport/Main"]
+margin_top = 39.0
+margin_right = 200.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+theme = SubResource( 5 )
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsContainer" type="VBoxContainer" parent="ViewportContainer/Viewport/Main/ScrollContainer"]
+margin_bottom = 461.0
+rect_clip_content = true
+size_flags_vertical = 7
+alignment = 1
+
+[node name="InventoryPanel" parent="." instance=ExtResource( 4 )]

@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=2]
+
+[ext_resource path="res://addons/water/Water.shader" type="Shader" id=1]
+[ext_resource path="res://addons/water/Water_UV.png" type="Texture" id=2]
+[ext_resource path="res://addons/water/Water_N_A.png" type="Texture" id=3]
+[ext_resource path="res://addons/water/Water_N_B.png" type="Texture" id=4]
+[ext_resource path="res://addons/water/foam_noise.tres" type="OpenSimplexNoise" id=5]
+[ext_resource path="res://addons/water/Caustic.png" type="TextureArray" id=6]
+
+[sub_resource type="NoiseTexture" id=1]
+seamless = true
+noise = ExtResource( 5 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/wave_speed = 0.5
+shader_param/wave_a = Plane( 1, 0.4, 0.2, 2 )
+shader_param/wave_b = Plane( 0.4, 1, -0.3, 4 )
+shader_param/wave_c = Plane( -1, -0.8, 0.5, 6 )
+shader_param/sampler_scale = Vector2( 0.2, 0.2 )
+shader_param/sampler_direction = Vector2( 0.05, 0.04 )
+shader_param/uv_sampler_scale = Vector2( 0.1, 0.1 )
+shader_param/uv_sampler_strength = 0.04
+shader_param/foam_level = 0.5
+shader_param/refraction = 0.04
+shader_param/color_deep = Color( 0.709804, 0.815686, 0.866667, 1 )
+shader_param/color_shallow = Color( 1, 1, 1, 1 )
+shader_param/beers_law = 1.5
+shader_param/depth_offset = 0.0
+shader_param/projector = Transform( 0.81, 0.493, -0.317, 0.558, -0.481, 0.676, 0.18, -0.725, -0.665, -0.137, 16.094, 0.317 )
+shader_param/uv_sampler = ExtResource( 2 )
+shader_param/normalmap_a_sampler = ExtResource( 3 )
+shader_param/normalmap_b_sampler = ExtResource( 4 )
+shader_param/foam_sampler = SubResource( 1 )
+shader_param/caustic_sampler = ExtResource( 6 )

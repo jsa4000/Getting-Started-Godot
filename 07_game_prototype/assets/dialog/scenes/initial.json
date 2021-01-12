@@ -1,0 +1,119 @@
+{
+    "ball": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hey, How are you?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "next": "3",
+            "actor": "ball",
+            "text": "I'm fine man, and you?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "3",
+            "next": "4",
+            "actor": "player",
+            "text": "I am thinking on something…",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "4",
+            "next": "5",
+            "actor": "ball",
+            "text": "Oh, that's cool!!",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "5",
+            "actor": "player",
+            "text": "Yeah, it is going to be cool for sure",
+            "status": "happy",
+            "type": "0"
+        }
+    ],
+    "statue": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hey, How are you doing?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "next": "3",
+            "actor": "statue",
+            "text": "Nothing, I am an statue",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "3",
+            "next": "4",
+            "actor": "player",
+            "text": "I see…",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "4",
+            "next": "5",
+            "actor": "statue",
+            "text": "Are you an idiot?",
+            "status": "angry",
+            "type": "0"
+        },
+        {
+            "id": "5",
+            "actor": "player",
+            "text": "Sorry man I have to go",
+            "status": "normal",
+            "type": "0"
+        }
+    ],
+    "tree": [
+        {
+            "id": "1",
+            "actor": "player",
+            "text": "It's just a fucking tree",
+            "status": "normal",
+            "type": "0"
+        }
+    ],
+    "mushroom": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "It seems a healhty mushroom",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "actor": "player",
+            "text": "I`m going to take it, sorry mother nature!",
+            "status": "normal",
+            "type": "0"
+        }
+    ],
+    "bread_big": [
+        {
+            "id": "1",
+            "actor": "player",
+            "text": "Awesome!! A big piece o bread",
+            "status": "happy",
+            "type": "0"
+        }
+    ]
+}

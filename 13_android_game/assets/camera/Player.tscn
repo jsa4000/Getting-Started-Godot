@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/camera/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://assets/camera/motion_blur.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/camera/moblur_shader.tres" type="Material" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 1.5
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 40, 20 )
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 1 )
+head_path = NodePath("Head")
+cam_path = NodePath("Head/Camera")
+
+[node name="Collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+keep_aspect = 0
+current = true
+fov = 80.0
+far = 200.6
+
+[node name="motion_blur" parent="Head/Camera" instance=ExtResource( 2 )]
+visible = false
+
+[node name="post_effect" type="MeshInstance" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+visible = false
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = ExtResource( 3 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="depth_test" type="MeshInstance" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+visible = false
+cast_shadow = 0
+mesh = SubResource( 2 )
+material/0 = ExtResource( 3 )
+__meta__ = {
+"apply_volumetrics": false
+}

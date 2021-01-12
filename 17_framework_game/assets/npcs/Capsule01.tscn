@@ -1,0 +1,258 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://src/btrees/Check on Destination.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/behavior_tree/composites/BehaviorTreeSequenceCompositee.gd" type="Script" id=2]
+[ext_resource path="res://addons/framework/behavior_tree/composites/BehaviorTreeStatesComposite.gd" type="Script" id=3]
+[ext_resource path="res://addons/framework/behavior_tree/BehaviorTree.gd" type="Script" id=4]
+[ext_resource path="res://src/btrees/LookAt Target.gd" type="Script" id=5]
+[ext_resource path="res://src/btrees/Select Next Destination.gd" type="Script" id=6]
+[ext_resource path="res://src/btrees/Check Target on Area.gd" type="Script" id=7]
+[ext_resource path="res://src/btrees/Move to Destination.gd" type="Script" id=8]
+[ext_resource path="res://addons/framework/blackboard/BlackboardRepository.gd" type="Script" id=9]
+[ext_resource path="res://addons/framework/behavior_tree/decorators/BehaviorTreeFetcherDecorator.gd" type="Script" id=10]
+[ext_resource path="res://addons/framework/common/selections/SelectionByRepository.gd" type="Script" id=11]
+[ext_resource path="res://addons/framework/common/selections/SelectionByNodePath.gd" type="Script" id=12]
+[ext_resource path="res://addons/framework/behavior_tree/decorators/BehaviorTreeStateDecorator.gd" type="Script" id=13]
+[ext_resource path="res://src/btrees/Increase Counter.gd" type="Script" id=14]
+[ext_resource path="res://src/btrees/Check Modulus Number.gd" type="Script" id=15]
+[ext_resource path="res://src/btrees/Sleep and Wait.gd" type="Script" id=16]
+[ext_resource path="res://src/btrees/Reset Counter.gd" type="Script" id=17]
+[ext_resource path="res://src/interactions/InteractionSleep.gd" type="Script" id=18]
+[ext_resource path="res://assets/textures/Uppercase_letter_Z.png" type="Texture" id=19]
+[ext_resource path="res://src/btrees/Emit Particles.gd" type="Script" id=20]
+[ext_resource path="res://addons/framework/interactions/Interactive.gd" type="Script" id=21]
+[ext_resource path="res://addons/framework/interactions/policies/InteractionFirstPolicy.gd" type="Script" id=22]
+[ext_resource path="res://addons/framework/catalogue/Catalogue.gd" type="Script" id=23]
+[ext_resource path="res://src/btrees/Check for InventoryItem.gd" type="Script" id=24]
+[ext_resource path="res://addons/framework/behavior_tree/decorators/BehaviorTreeInverterDecorator.gd" type="Script" id=25]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.858824, 0.129412, 0.129412, 1 )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 12 )
+node_path = NodePath("../Track")
+sub_path = ""
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 22 )
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 11 )
+repository_path = NodePath("../BlackboardRepository")
+key_name = "DialogPlayer"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 11 )
+repository_path = NodePath("../BlackboardRepository")
+key_name = "player"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 12 )
+node_path = NodePath("../../Track")
+sub_path = ""
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.00520834, 0.0686818 ), 0.0, 0.0, 0, 0, Vector2( 0.532986, 0.768421 ), 0.0, 0.0, 0, 0, Vector2( 0.993634, 0.38722 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+spread = 59.09
+gravity = Vector3( 0, 0.1, 0 )
+angular_velocity = 7.26
+angular_velocity_random = 0.33
+tangential_accel = 100.0
+tangential_accel_random = 1.0
+angle = 37.6
+angle_random = 1.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.5
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 19 )
+
+[sub_resource type="QuadMesh" id=12]
+material = SubResource( 11 )
+size = Vector2( 0.5, 0.5 )
+
+[node name="Capsule01" type="KinematicBody"]
+collision_layer = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+visible = false
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, -0.4, 0, 0.25, -1.74846e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.285882, -0.192215 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Track" type="Node" parent="."]
+
+[node name="Position01" type="Position3D" parent="Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.744179, -8.47443 )
+
+[node name="Position02" type="Position3D" parent="Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.744179, -8.47443 )
+
+[node name="BlackboardRepository" type="Node" parent="."]
+script = ExtResource( 9 )
+data = {
+"capsule_track": SubResource( 4 )
+}
+
+[node name="Catalogue" type="Node" parent="."]
+script = ExtResource( 23 )
+
+[node name="Interactive" type="Node" parent="."]
+script = ExtResource( 21 )
+actor_path = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Capsule01")
+policy = SubResource( 5 )
+data = {
+"DialogPlayer": SubResource( 13 ),
+"Inventory": NodePath("../Catalogue")
+}
+
+[node name="InteractionSleep" type="Node" parent="Interactive"]
+script = ExtResource( 18 )
+item = "potion"
+
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource( 4 )
+enabled = true
+actor_path = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Capsule01")
+data = {
+"Inventory": NodePath("../Catalogue"),
+"player": SubResource( 6 )
+}
+
+[node name="FetchData" type="Node" parent="BehaviorTree"]
+script = ExtResource( 10 )
+data = {
+"points": SubResource( 7 ),
+"waiting_particles": NodePath("../../WaitingParticles")
+}
+
+[node name="States" type="Node" parent="BehaviorTree/FetchData"]
+script = ExtResource( 3 )
+
+[node name="Alert" type="Node" parent="BehaviorTree/FetchData/States"]
+script = ExtResource( 13 )
+state_name = "Alert"
+start = true
+end = false
+transition_states = [  ]
+
+[node name="Target On View" type="Node" parent="BehaviorTree/FetchData/States/Alert"]
+script = ExtResource( 2 )
+
+[node name="Check Target on Area" type="Node" parent="BehaviorTree/FetchData/States/Alert/Target On View"]
+script = ExtResource( 7 )
+distance = 3.0
+
+[node name="LookAt Target" type="Node" parent="BehaviorTree/FetchData/States/Alert/Target On View"]
+script = ExtResource( 5 )
+offset = Vector3( 0, 1, 0 )
+
+[node name="Searching" type="Node" parent="BehaviorTree/FetchData/States"]
+script = ExtResource( 13 )
+state_name = "Searching"
+start = false
+end = false
+transition_states = [  ]
+
+[node name="On Destination Point" type="Node" parent="BehaviorTree/FetchData/States/Searching"]
+script = ExtResource( 2 )
+
+[node name="Check on Destination" type="Node" parent="BehaviorTree/FetchData/States/Searching/On Destination Point"]
+script = ExtResource( 1 )
+
+[node name="Select Next Destination" type="Node" parent="BehaviorTree/FetchData/States/Searching/On Destination Point"]
+script = ExtResource( 6 )
+
+[node name="Increase Counter" type="Node" parent="BehaviorTree/FetchData/States/Searching/On Destination Point"]
+script = ExtResource( 14 )
+
+[node name="Resting" type="Node" parent="BehaviorTree/FetchData/States"]
+script = ExtResource( 13 )
+state_name = "Searching"
+start = false
+end = false
+transition_states = [ NodePath("../Searching"), NodePath("."), NodePath("../Moving") ]
+
+[node name="Waiting for resting" type="Node" parent="BehaviorTree/FetchData/States/Resting"]
+script = ExtResource( 2 )
+
+[node name="Negate" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 25 )
+
+[node name="Check for InventoryItem" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting/Negate"]
+script = ExtResource( 24 )
+item = "potion"
+
+[node name="Check Modulus Number" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 15 )
+modulus = 5
+
+[node name="Start Emitting Particles" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 20 )
+
+[node name="Sleep and Wait" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 16 )
+milliseconds = 10000
+
+[node name="Stop Emitting Particles" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 20 )
+emitting = false
+
+[node name="Reset Counter" type="Node" parent="BehaviorTree/FetchData/States/Resting/Waiting for resting"]
+script = ExtResource( 17 )
+
+[node name="Moving" type="Node" parent="BehaviorTree/FetchData/States"]
+script = ExtResource( 13 )
+state_name = "Moving"
+start = false
+end = false
+transition_states = [  ]
+
+[node name="Move To Destination" type="Node" parent="BehaviorTree/FetchData/States/Moving"]
+script = ExtResource( 2 )
+
+[node name="LookAt Target" type="Node" parent="BehaviorTree/FetchData/States/Moving/Move To Destination"]
+script = ExtResource( 5 )
+target = "destination"
+wait = true
+
+[node name="Move to Destination" type="Node" parent="BehaviorTree/FetchData/States/Moving/Move To Destination"]
+script = ExtResource( 8 )
+
+[node name="WaitingParticles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.584322, 0 )
+emitting = false
+amount = 3
+lifetime = 4.0
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 12 )

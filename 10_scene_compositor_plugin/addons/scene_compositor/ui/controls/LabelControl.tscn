@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/scene_compositor/core/base/BaseControl.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/scene_compositor/ui/controls/LabelControl.gd" type="Script" id=2]
+
+
+
+
+
+[node name="LabelControl" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+label/show = true
+label/text = ""
+label/align = 0
+
+[node name="Label" type="Label" parent="." index="0"]
+margin_right = 10.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+valign = 1

@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://cloth_material.tres" type="Material" id=1]
+[ext_resource path="res://cloth_mesh.tres" type="PlaneMesh" id=2]
+[ext_resource path="res://Wind.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.472497
+height = 2.48811
+
+[sub_resource type="CapsuleMesh" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Wind"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.632698, -0.618334 ), Vector3( 0, -1.72244, 0.377692 ) ]
+}
+
+[node name="Cloth" type="Spatial"]
+
+[node name="SoftBody" type="SoftBody" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
+collision_mask = 3
+total_mass = 10.0
+linear_stiffness = 0.0
+areaAngular_stiffness = 0.0
+volume_stiffness = 0.0
+damping_coefficient = 0.0
+drag_coefficient = 1.0
+ray_pickable = false
+pinned_points = [ 288, 272 ]
+attachments/0/point_index = 288
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3( 0, 0, 0 )
+attachments/1/point_index = 272
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3( 0, 0, 0 )
+
+[node name="Wind" type="Spatial" parent="."]
+transform = Transform( 0.811023, 0, 0.585014, 0, 1, 0, -0.585014, 0, 0.811023, -0.156561, -9.53674e-07, -0.579836 )
+script = ExtResource( 3 )
+
+[node name="Force" type="KinematicBody" parent="Wind"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.632698, -0.618334 )
+collision_layer = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Wind/Force"]
+transform = Transform( -4.37114e-08, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wind/Force"]
+transform = Transform( -3.74068e-08, 3.74068e-08, 0.855768, -2.21595e-08, 1, -4.37114e-08, -0.506951, -4.37114e-08, -2.21595e-08, 0, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wind/Force"]
+anims/Wind = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="Wind"]
+autostart = true
+[connection signal="timeout" from="Wind/Timer" to="Wind" method="_on_Timer_timeout"]

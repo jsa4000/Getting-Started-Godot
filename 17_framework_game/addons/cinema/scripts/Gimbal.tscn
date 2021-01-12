@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/cinema/scripts/MotionBlur.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/cinema/scripts/Gimbal.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.410612
+height = 1.50281
+
+[node name="Gimbal" type="KinematicBody"]
+script = ExtResource( 4 )
+camera_path = NodePath("Pivot/Camera")
+height = 1.8
+collider_path = NodePath("Collider")
+motion_blur_path = NodePath("Pivot/Camera/MotionBlur")
+
+[node name="Collider" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.16202, 0 )
+visible = false
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+
+[node name="Camera" type="Camera" parent="Pivot"]
+keep_aspect = 0
+cull_mask = 1047551
+current = true
+fov = 80.0
+far = 5000.0
+
+[node name="MotionBlur" parent="Pivot/Camera" instance=ExtResource( 2 )]
+enabled = false

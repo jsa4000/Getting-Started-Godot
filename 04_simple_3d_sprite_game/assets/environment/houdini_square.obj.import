@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/houdini_square.obj-63b8caa2da69c3cc272c7a744aeb89ce.mesh"
+
+[deps]
+
+files=[ "res://.import/houdini_square.obj-63b8caa2da69c3cc272c7a744aeb89ce.mesh" ]
+
+source_file="res://assets/environment/houdini_square.obj"
+dest_files=[ "res://.import/houdini_square.obj-63b8caa2da69c3cc272c7a744aeb89ce.mesh", "res://.import/houdini_square.obj-63b8caa2da69c3cc272c7a744aeb89ce.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

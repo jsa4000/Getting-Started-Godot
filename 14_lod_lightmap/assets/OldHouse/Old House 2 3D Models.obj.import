@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Old House 2 3D Models.obj-1ca5e49a1ff8dfe8f68a981544115a65.mesh"
+
+[deps]
+
+files=[ "res://.import/Old House 2 3D Models.obj-1ca5e49a1ff8dfe8f68a981544115a65.mesh" ]
+
+source_file="res://assets/OldHouse/Old House 2 3D Models.obj"
+dest_files=[ "res://.import/Old House 2 3D Models.obj-1ca5e49a1ff8dfe8f68a981544115a65.mesh", "res://.import/Old House 2 3D Models.obj-1ca5e49a1ff8dfe8f68a981544115a65.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

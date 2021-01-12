@@ -1,0 +1,100 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/characters/original/remy.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/characters/remy.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "jump-running"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "jump-idle"
+
+[sub_resource type="AnimationNodeOneShot" id=3]
+
+[sub_resource type="AnimationNodeTimeScale" id=4]
+
+[sub_resource type="AnimationNodeTransition" id=5]
+input_count = 2
+input_0/name = "jump_idle"
+input_0/auto_advance = false
+input_1/name = "jump_running"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "walking-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "running-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "sneak-walk-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "pushing-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "crouch-idle-loop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+blend_point_0/node = SubResource( 6 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 7 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 8 )
+blend_point_2/pos = Vector2( 2, 0 )
+blend_point_3/node = SubResource( 9 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_point_4/node = SubResource( 10 )
+blend_point_4/pos = Vector2( 0, -1 )
+blend_point_5/node = SubResource( 11 )
+blend_point_5/pos = Vector2( -0.5, 0 )
+min_space = Vector2( -1, -2 )
+max_space = Vector2( 3, 2 )
+
+[sub_resource type="AnimationNodeTimeScale" id=13]
+
+[sub_resource type="AnimationNodeBlendTree" id=14]
+graph_offset = Vector2( -339.583, 47.8671 )
+nodes/Animation/node = SubResource( 2 )
+nodes/Animation/position = Vector2( -240, 182.857 )
+"nodes/Animation 2/node" = SubResource( 1 )
+"nodes/Animation 2/position" = Vector2( -242.314, 347.294 )
+nodes/jump/node = SubResource( 3 )
+nodes/jump/position = Vector2( 457.143, 125.714 )
+nodes/jump_time/node = SubResource( 4 )
+nodes/jump_time/position = Vector2( 205.714, 228.571 )
+nodes/jump_transition/node = SubResource( 5 )
+nodes/jump_transition/position = Vector2( -11.4286, 251.429 )
+nodes/locomotion/node = SubResource( 12 )
+nodes/locomotion/position = Vector2( -160, 0 )
+nodes/locomotion_time/node = SubResource( 13 )
+nodes/locomotion_time/position = Vector2( 137.143, 34.2857 )
+nodes/output/position = Vector2( 765.714, 148.571 )
+node_connections = [ "output", 0, "jump", "jump", 0, "locomotion_time", "jump", 1, "jump_time", "jump_time", 0, "jump_transition", "jump_transition", 0, "Animation", "jump_transition", 1, "Animation 2", "locomotion_time", 0, "locomotion" ]
+
+[sub_resource type="CapsuleShape" id=15]
+radius = 0.708376
+height = 2.46216
+
+[node name="remy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Remy" parent="." index="0"]
+transform = Transform( -1.62921e-09, -0.01, 1.62921e-09, 0, -1.62921e-09, -0.01, 0.01, -1.62921e-09, 2.65431e-16, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 14 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/jump/active = false
+parameters/jump_time/scale = 1.0
+parameters/jump_transition/current = 0
+parameters/locomotion/blend_position = Vector2( 0, 0 )
+parameters/locomotion_time/scale = 1.0
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.93232, 0.0650687 )
+shape = SubResource( 15 )

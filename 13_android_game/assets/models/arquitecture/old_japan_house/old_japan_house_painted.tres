@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=2]
+
+[ext_resource path="res://addons/vpainter/additional_resources/height_blend_4_textures.shader" type="Shader" id=1]
+[ext_resource path="res://assets/models/arquitecture/old_japan_house/textures/lambert1_normal.png" type="Texture" id=2]
+[ext_resource path="res://assets/models/arquitecture/old_japan_house/textures/lambert1_metallicRoughness.png" type="Texture" id=3]
+[ext_resource path="res://assets/models/arquitecture/old_japan_house/textures/lambert1_baseColor.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/samples/texture_terrain_albedo.png" type="Texture" id=5]
+[ext_resource path="res://assets/models/arquitecture/japanese_shrine_stone_floor/udmlcf3qx_1K_Albedo.jpg" type="Texture" id=6]
+[ext_resource path="res://assets/models/arquitecture/japanese_shrine_stone_floor/udmlcf3qx_1K_Normal_LOD0.jpg" type="Texture" id=7]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/uv_scale = 1.0
+shader_param/blend_softness1 = 0.01
+shader_param/blend_softness2 = 0.487
+shader_param/blend_softness3 = 0.252
+shader_param/c1 = ExtResource( 5 )
+shader_param/c2 = ExtResource( 5 )
+shader_param/c3 = ExtResource( 6 )
+shader_param/n3 = ExtResource( 7 )
+shader_param/m4 = ExtResource( 3 )
+shader_param/c4 = ExtResource( 4 )
+shader_param/n4 = ExtResource( 2 )

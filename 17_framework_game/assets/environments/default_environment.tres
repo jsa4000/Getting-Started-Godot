@@ -1,0 +1,21 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[sub_resource type="ViewportTexture" id=1]
+
+[sub_resource type="PanoramaSky" id=2]
+panorama = SubResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 2 )
+background_sky_orientation = Basis( -0.966798, 0, -0.255541, 0, 1, 0, 0.255541, 0, -0.966798 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.75
+fog_color = Color( 1, 1, 1, 1 )
+tonemap_mode = 2
+ssao_radius = 32.53
+ssao_intensity = 5.17
+ssao_bias = 0.001
+ssao_color = Color( 0.137255, 0.137255, 0.156863, 1 )
+glow_enabled = true
+adjustment_saturation = 0.75

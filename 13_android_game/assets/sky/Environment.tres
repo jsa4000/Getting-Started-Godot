@@ -1,0 +1,26 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://assets/sky/table_mountain_2_4k.hdr" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.986412
+fog_color = Color( 1, 1, 1, 1 )
+fog_depth_end = 49.4
+ssao_radius = 3.0
+ssao_intensity = 2.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 18.27
+dof_blur_far_transition = 18.21
+glow_enabled = true
+glow_intensity = 1.21
+glow_strength = 1.22
+glow_hdr_threshold = 0.57
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.1

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/sky/images/Moon_1k.png" type="Texture" id=2]
+[ext_resource path="res://assets/sky/Sky.gd" type="Script" id=4]
+[ext_resource path="res://assets/sky/images/lightning.png" type="Texture" id=5]
+[ext_resource path="res://assets/sky/shaders/Sky.shader" type="Shader" id=6]
+[ext_resource path="res://assets/sky/sky_env.tres" type="Environment" id=7]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.00645161, 0.341935, 1 )
+colors = PoolColorArray( 0.968627, 0.247059, 0.0784314, 1, 0.239216, 0.635294, 0.984314, 1, 0.109804, 0.352941, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="GradientTexture" id=3]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 6 )
+shader_param/SCATERRING = null
+shader_param/SUN_POS = Vector3( 0, 0.967138, -0.25425 )
+shader_param/MOON_POS = Vector3( 0, -0.967138, 0.25425 )
+shader_param/MOON_TEX_POS = Vector3( 0, -0.991751, 0.128183 )
+shader_param/MOON_PHASE = -1.0
+shader_param/moon_radius = 0.05
+shader_param/sun_radius = null
+shader_param/attenuation = 1.0
+shader_param/LIGHTING_STRENGTH = Vector3( 0, 0, 0 )
+shader_param/LIGHTTING_POS = null
+shader_param/sky_tone = null
+shader_param/sky_density = null
+shader_param/sky_rayleig_coeff = null
+shader_param/sky_mie_coeff = null
+shader_param/multiScatterPhase = null
+shader_param/anisotropicIntensity = null
+shader_param/color_sky = Color( 0.156863, 0.392157, 1, 1 )
+shader_param/moon_tint = Color( 1, 0.7, 0.35, 1 )
+shader_param/clouds_tint = null
+shader_param/MOON = ExtResource( 2 )
+shader_param/lighting_texture = ExtResource( 5 )
+shader_param/sky_gradient_texture = SubResource( 3 )
+
+[node name="Sky" type="Spatial"]
+script = ExtResource( 4 )
+sky_gradient_texture = SubResource( 2 )
+color_sky = Color( 0.156863, 0.392157, 1, 1 )
+sky_tone = 3.5
+sky_density = 0.5
+sky_rayleig_coeff = 1.0
+sky_mie_coeff = 0.5
+anisotropicIntensity = 1.5
+hours = 13
+minutes = 1
+seconds = 5
+time_of_day_setup = 0.542419
+sun_radius = 0.04
+moon_radius = 0.05
+moon_phase = -1.0
+night_level_light = 0.1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
+
+[node name="Sun_Moon" type="DirectionalLight" parent="."]
+transform = Transform( -1, -1.46034e-07, 3.83905e-08, 0, 0.254251, 0.967133, -1.50996e-07, 0.96714, -0.254249, 0, 0.967138, -0.25425 )
+shadow_enabled = true
+shadow_color = Color( 0.3, 0.3, 0.3, 1 )
+directional_shadow_mode = 0
+directional_shadow_depth_range = 1
+
+[node name="SkyTexture" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="thunder" type="AudioStreamPlayer" parent="."]
+
+[node name="Camera" type="Camera" parent="."]

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://addons/cinema/shaders/motion_blur.shader" type="Shader" id=1]
+
+[resource]
+render_priority = -1
+shader = ExtResource( 1 )
+shader_param/linear_velocity = Vector3( 0, 0, 0 )
+shader_param/angular_velocity = Vector3( 0, 0, 0 )
+shader_param/iteration_count = 20.0
+shader_param/intensity = 0.3

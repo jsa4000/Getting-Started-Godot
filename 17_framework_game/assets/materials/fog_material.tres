@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://assets/textures/fog_simple.png" type="Texture" id=1]
+[ext_resource path="res://assets/shaders/fog_shader.shader" type="Shader" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 1, 1, 1, 0.0392157 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/proximity_fade_distance = 8.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/speed = 0.005
+shader_param/contrast = 1.5
+shader_param/direction = Vector2( 0.1, 1 )
+shader_param/texture_albedo = ExtResource( 1 )
+shader_param/noise = SubResource( 2 )

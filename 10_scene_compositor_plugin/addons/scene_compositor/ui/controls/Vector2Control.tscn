@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/scene_compositor/ui/controls/Vector2Control.gd" type="Script" id=1]
+[ext_resource path="res://addons/scene_compositor/ui/controls/ScalarControl.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/scene_compositor/core/base/BaseControl.tscn" type="PackedScene" id=3]
+
+
+
+
+
+[node name="Vector2Control" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+value = Vector2( 0, 0 )
+
+[node name="Layout" type="GridContainer" parent="." index="0"]
+margin_right = 198.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 50, 30 )
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScalarX" parent="Layout" index="0" instance=ExtResource( 2 )]
+margin_right = 95.0
+margin_bottom = 45.0
+
+[node name="ScalarY" parent="Layout" index="1" instance=ExtResource( 2 )]
+margin_left = 103.0
+margin_right = 198.0
+margin_bottom = 45.0
+[connection signal="value_changed" from="Layout/ScalarX" to="." method="_on_ScalarX_value_changed"]
+[connection signal="value_changed" from="Layout/ScalarY" to="." method="_on_ScalarY_value_changed"]

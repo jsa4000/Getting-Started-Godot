@@ -1,0 +1,185 @@
+[gd_resource type="VisualShader" load_steps=21 format=2]
+
+[ext_resource path="res://assets/environment/rusty-metal-normal.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/environment/rusty-metal-bump.png" type="Texture" id=2]
+[ext_resource path="res://assets/environment/rusty-metal.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/environment/mask.png" type="Texture" id=4]
+
+[sub_resource type="VisualShaderNodeVec3Uniform" id=1]
+uniform_name = "UV_Scale"
+
+[sub_resource type="VisualShaderNodeColorUniform" id=2]
+uniform_name = "Roughness"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=3]
+
+[sub_resource type="VisualShaderNodeTexture" id=4]
+texture = ExtResource( 4 )
+
+[sub_resource type="VisualShaderNodeColorUniform" id=5]
+uniform_name = "Water_albedo"
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=6]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=7]
+uniform_name = "Water_Roughtness"
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=8]
+
+[sub_resource type="VisualShaderNodeTexture" id=9]
+texture = ExtResource( 2 )
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=10]
+
+[sub_resource type="VisualShaderNodeColorUniform" id=11]
+uniform_name = "Water_normal"
+
+[sub_resource type="VisualShaderNodeColorOp" id=12]
+operator = 3
+
+[sub_resource type="VisualShaderNodeTexture" id=13]
+texture = ExtResource( 1 )
+texture_type = 2
+
+[sub_resource type="VisualShaderNodeTexture" id=14]
+texture = ExtResource( 3 )
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id=15]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=16]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode ensure_correct_normals, shadow_to_opacity;
+
+uniform vec3 UV_Scale;
+uniform sampler2D tex_frg_4 : hint_albedo;
+uniform vec4 Water_albedo : hint_color;
+uniform sampler2D tex_frg_14;
+uniform sampler2D tex_frg_2;
+uniform vec4 Roughness : hint_color;
+uniform vec4 Water_Roughtness : hint_color;
+uniform sampler2D tex_frg_3 : hint_normal;
+uniform vec4 Water_normal : hint_color;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:6
+	vec3 n_out6p0 = vec3(UV, 0.0);
+
+// VectorUniform:10
+	vec3 n_out10p0 = UV_Scale;
+
+// VectorOp:9
+	vec3 n_out9p0 = n_out6p0 * n_out10p0;
+
+// Texture:4
+	vec4 tex_frg_4_read = texture(tex_frg_4, n_out9p0.xy);
+	vec3 n_out4p0 = tex_frg_4_read.rgb;
+	float n_out4p1 = tex_frg_4_read.a;
+
+// ColorUniform:16
+	vec3 n_out16p0 = Water_albedo.rgb;
+	float n_out16p1 = Water_albedo.a;
+
+// Texture:14
+	vec4 tex_frg_14_read = texture(tex_frg_14, n_out6p0.xy);
+	vec3 n_out14p0 = tex_frg_14_read.rgb;
+	float n_out14p1 = tex_frg_14_read.a;
+
+// VectorMix:17
+	vec3 n_in17p0 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out17p0 = mix(n_in17p0, n_out16p0, n_out14p0);
+
+// ColorOp:22
+	vec3 n_out22p0 = max(n_out4p0, n_out17p0);
+
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, n_out9p0.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// ColorUniform:12
+	vec3 n_out12p0 = Roughness.rgb;
+	float n_out12p1 = Roughness.a;
+
+// VectorOp:13
+	vec3 n_out13p0 = n_out2p0 + n_out12p0;
+
+// ColorUniform:18
+	vec3 n_out18p0 = Water_Roughtness.rgb;
+	float n_out18p1 = Water_Roughtness.a;
+
+// VectorMix:20
+	vec3 n_out20p0 = mix(n_out13p0, n_out18p0, n_out14p0);
+
+// Texture:3
+	vec4 tex_frg_3_read = texture(tex_frg_3, n_out9p0.xy);
+	vec3 n_out3p0 = tex_frg_3_read.rgb;
+	float n_out3p1 = tex_frg_3_read.a;
+
+// ColorUniform:21
+	vec3 n_out21p0 = Water_normal.rgb;
+	float n_out21p1 = Water_normal.a;
+
+// VectorMix:19
+	vec3 n_out19p0 = mix(n_out3p0, n_out21p0, n_out14p0);
+
+// Output:0
+	ALBEDO = n_out22p0;
+	ROUGHNESS = dot(n_out20p0, vec3(0.333333, 0.333333, 0.333333));
+	NORMALMAP = n_out19p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 420.205, -144.555 )
+flags/ensure_correct_normals = true
+flags/shadow_to_opacity = true
+nodes/fragment/0/position = Vector2( 1660, -460 )
+nodes/fragment/2/node = SubResource( 9 )
+nodes/fragment/2/position = Vector2( -20, -240 )
+nodes/fragment/3/node = SubResource( 13 )
+nodes/fragment/3/position = Vector2( 340, 700 )
+nodes/fragment/4/node = SubResource( 14 )
+nodes/fragment/4/position = Vector2( 360, -960 )
+nodes/fragment/6/node = SubResource( 15 )
+nodes/fragment/6/position = Vector2( -1140, -20 )
+nodes/fragment/9/node = SubResource( 16 )
+nodes/fragment/9/position = Vector2( -640, 260 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( -1060, 580 )
+nodes/fragment/12/node = SubResource( 2 )
+nodes/fragment/12/position = Vector2( 340, 100 )
+nodes/fragment/13/node = SubResource( 3 )
+nodes/fragment/13/position = Vector2( 560, -220 )
+nodes/fragment/14/node = SubResource( 4 )
+nodes/fragment/14/position = Vector2( -560, -820 )
+nodes/fragment/16/node = SubResource( 5 )
+nodes/fragment/16/position = Vector2( -540, -1380 )
+nodes/fragment/17/node = SubResource( 6 )
+nodes/fragment/17/position = Vector2( -140, -1140 )
+nodes/fragment/18/node = SubResource( 7 )
+nodes/fragment/18/position = Vector2( -20, -460 )
+nodes/fragment/19/node = SubResource( 8 )
+nodes/fragment/19/position = Vector2( 840, 460 )
+nodes/fragment/20/node = SubResource( 10 )
+nodes/fragment/20/position = Vector2( 920, -520 )
+nodes/fragment/21/node = SubResource( 11 )
+nodes/fragment/21/position = Vector2( 80, 460 )
+nodes/fragment/22/node = SubResource( 12 )
+nodes/fragment/22/position = Vector2( 780, -1200 )
+nodes/fragment/connections = PoolIntArray( 9, 0, 4, 0, 9, 0, 2, 0, 9, 0, 3, 0, 2, 0, 13, 0, 12, 0, 13, 1, 6, 0, 9, 0, 10, 0, 9, 1, 6, 0, 14, 0, 14, 0, 20, 2, 14, 0, 19, 2, 18, 0, 20, 1, 13, 0, 20, 0, 3, 0, 19, 0, 21, 0, 19, 1, 20, 0, 0, 3, 14, 0, 17, 2, 16, 0, 17, 1, 22, 0, 0, 0, 4, 0, 22, 0, 17, 0, 22, 1, 19, 0, 0, 8 )

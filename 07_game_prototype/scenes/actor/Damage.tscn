@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/actor/Damage.tres" type="Material" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.311653, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0.0128362, 0.70731 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.472323 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+lifetime_randomness = 0.24
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3( 0, 0.5, 0 )
+angular_velocity = 30.0
+angular_velocity_random = 0.85
+angle = 164.4
+angle_random = 0.36
+scale_curve = SubResource( 15 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=17]
+material = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.533875, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0.0103912, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.560513, 0.429112 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+gravity = Vector3( 0, 3, 0 )
+tangential_accel = 0.2
+tangential_accel_random = 0.1
+damping = 2.74
+angle = 52.6
+angle_random = 0.42
+scale = 0.03
+scale_random = 0.02
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=13]
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 13 )
+
+[node name="Damage" type="Spatial"]
+
+[node name="Particles3" type="Particles" parent="."]
+amount = 10
+lifetime = 1.7
+speed_scale = 5.19
+explosiveness = 0.2
+randomness = 0.31
+process_material = SubResource( 16 )
+draw_pass_1 = SubResource( 17 )
+
+[node name="Particles4" type="Particles" parent="."]
+amount = 60
+lifetime = 2.49
+speed_scale = 5.19
+explosiveness = 0.3
+randomness = 0.31
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 10 )

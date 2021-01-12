@@ -1,0 +1,877 @@
+[gd_scene load_steps=72 format=2]
+
+[ext_resource path="res://assets/models/arquitecture/japanaes_traditional_house/house_traditional_japan.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/sky/Sky.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/decals/blood/sfcsbflp_1K_Albedo_alpha.png" type="Texture" id=3]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=4]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=5]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=6]
+[ext_resource path="res://addons/decalco/src/alpha_mask.png" type="Texture" id=7]
+[ext_resource path="res://addons/decalco/src/Decal.gd" type="Script" id=8]
+[ext_resource path="res://addons/camera/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/decalco/src/Decal.shader" type="Shader" id=10]
+[ext_resource path="res://assets/textures/ground/grass_normal_roughness.png" type="Texture" id=11]
+[ext_resource path="res://assets/models/arquitecture/old_japan_house/old_japan_house.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/decals/blood/sfcsbflp_1K_Roughness.jpg" type="Texture" id=13]
+[ext_resource path="res://assets/models/nature/rock_granite/Rock_Granite.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/textures/ground/sand_normal_roughness.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/ground/tmfgcgkew_1K_Albedo_Bump.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/ground/rocks_normal_roughness.png" type="Texture" id=17]
+[ext_resource path="res://assets/decals/blood_hand/se0wefxp_1K_Normal.jpg" type="Texture" id=18]
+[ext_resource path="res://assets/terrain/blender_gis3/data.hterrain" type="Resource" id=19]
+[ext_resource path="res://assets/decals/blood_hand/se0wefxp_1K_Roughness.jpg" type="Texture" id=20]
+[ext_resource path="res://assets/decals/blood_hand/se0wefxp_1K_Albedo_alpha.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/ground/grass_albedo_bump.png" type="Texture" id=22]
+[ext_resource path="res://assets/models/arquitecture/real_bush/textures/phong3_baseColor.png" type="Texture" id=23]
+[ext_resource path="res://addons/water/water_material.tres" type="Material" id=24]
+[ext_resource path="res://assets/textures/ground/tmfgcgkew_1K_Normal_Roughness.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/ground/rocks_albedo_bump.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/ground/sand_albedo_bump.png" type="Texture" id=27]
+[ext_resource path="res://assets/models/arquitecture/real_bush/Medium_bush_2.tres" type="ArrayMesh" id=28]
+[ext_resource path="res://assets/decals/blood/sfcsbflp_1K_Normal.jpg" type="Texture" id=29]
+[ext_resource path="res://assets/environments/environment_night.tres" type="Environment" id=30]
+[ext_resource path="res://assets/terrain/blender_gis4/data.hterrain" type="Resource" id=31]
+[ext_resource path="res://assets/models/arquitecture/japanese_shrine_stone_floor/japanese_shrine_stone_floor.tscn" type="PackedScene" id=32]
+[ext_resource path="res://assets/models/arquitecture/real_bush/tall_bush_4.tres" type="ArrayMesh" id=33]
+[ext_resource path="res://assets/decals/rock/uc2kdfbfw_1K_Albedo_alpha.png" type="Texture" id=34]
+[ext_resource path="res://assets/decals/rock/uc2kdfbfw_1K_Normal.jpg" type="Texture" id=35]
+[ext_resource path="res://assets/decals/rock/uc2kdfbfw_1K_AO.jpg" type="Texture" id=36]
+[ext_resource path="res://assets/decals/rock/uc2kdfbfw_1K_Specular.jpg" type="Texture" id=37]
+[ext_resource path="res://assets/decals/leakage/tdlodebc_1K_Albedo_alpha.png" type="Texture" id=38]
+[ext_resource path="res://assets/decals/dragon/ug3iaitdy_1K_Albedo_Alpha.png" type="Texture" id=39]
+[ext_resource path="res://assets/decals/dragon/ug3iaitdy_1K_Normal.jpg" type="Texture" id=40]
+[ext_resource path="res://assets/decals/dragon/ug3iaitdy_1K_Specular.jpg" type="Texture" id=41]
+[ext_resource path="res://assets/decals/dragon/ug3iaitdy_1K_AO.jpg" type="Texture" id=42]
+[ext_resource path="res://assets/materials/dragon_stone.tres" type="Material" id=43]
+[ext_resource path="res://addons/camera/post_process.shader" type="Shader" id=44]
+[ext_resource path="res://assets/models/nature/oak_trees/Treesmall.tscn" type="PackedScene" id=45]
+[ext_resource path="res://assets/models/nature/oak_trees/treelarge.tscn" type="PackedScene" id=46]
+[ext_resource path="res://assets/models/nature/oak_trees/Treemedium.tscn" type="PackedScene" id=47]
+[ext_resource path="res://addons/fog/Fog.tscn" type="PackedScene" id=48]
+[ext_resource path="res://assets/particles/Mosquitoes.tscn" type="PackedScene" id=49]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 0.920698 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 43 )
+subdivide_width = 10
+subdivide_height = 10
+subdivide_depth = 10
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.552941, 0.552941, 0.552941, 1 )
+metallic = 1.0
+metallic_specular = 0.56
+roughness = 0.0
+
+[sub_resource type="PlaneMesh" id=6]
+material = ExtResource( 24 )
+size = Vector2( 1000, 1000 )
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="BakedLightmapData" id=7]
+bounds = AABB( -103.517, -62.0347, -85.5756, 207.034, 124.069, 171.151 )
+cell_space_transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 414.068, 248.139, 342.302 )
+cell_subdiv = 11
+octree = PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255 )
+
+[sub_resource type="CubeMesh" id=8]
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.023
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -11.5216, 2.7941, -81.4221 )
+shader_param/decal_right = Vector3( 1, 0, 0 )
+shader_param/decal_up = Vector3( 0, 0, 1 )
+shader_param/decal_forward = Vector3( 0, 1, 0 )
+shader_param/decal_half_scale = Vector3( 0.5, 0.5, 0.0649945 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 21 )
+shader_param/specular = ExtResource( 20 )
+shader_param/normal_map = ExtResource( 18 )
+
+[sub_resource type="CubeMesh" id=10]
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.024
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -7.84878, 0.362105, -78.2714 )
+shader_param/decal_right = Vector3( 0.147568, 0.0657546, 0.986864 )
+shader_param/decal_up = Vector3( -1.00386e-08, 0.997788, -0.0664825 )
+shader_param/decal_forward = Vector3( 0.989052, -0.00981063, -0.147241 )
+shader_param/decal_half_scale = Vector3( 0.849925, 0.84993, 0.079099 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 34 )
+shader_param/occlusion = ExtResource( 36 )
+shader_param/specular = ExtResource( 37 )
+shader_param/normal_map = ExtResource( 35 )
+
+[sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.023
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = false
+shader_param/decal_position = Vector3( -1.24657, 4.14375, -96.5038 )
+shader_param/decal_right = Vector3( 0.993736, 0, 0.111757 )
+shader_param/decal_up = Vector3( -0.160992, -0.0537292, 0.985492 )
+shader_param/decal_forward = Vector3( -0.0115547, 0.997428, 0.0707308 )
+shader_param/decal_half_scale = Vector3( 0.734697, 0.737246, 0.121634 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 38 )
+
+[sub_resource type="CubeMesh" id=14]
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.023
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -2.89131, 2.08979, -92.6177 )
+shader_param/decal_right = Vector3( 0.993736, 0, 0.111757 )
+shader_param/decal_up = Vector3( -0.11147, -0.0715795, 0.991187 )
+shader_param/decal_forward = Vector3( -0.00799949, 0.997435, 0.0711311 )
+shader_param/decal_half_scale = Vector3( 1.99472, 0.469953, 0.121634 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 39 )
+shader_param/occlusion = ExtResource( 42 )
+shader_param/specular = ExtResource( 41 )
+shader_param/normal_map = ExtResource( 40 )
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.023
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -10.153, 1.37025, -81.4251 )
+shader_param/decal_right = Vector3( 0.459905, -0.887968, 0 )
+shader_param/decal_up = Vector3( 0, 0, 1 )
+shader_param/decal_forward = Vector3( 0.887968, 0.459905, 0 )
+shader_param/decal_half_scale = Vector3( 0.5, 0.5, 0.0500305 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 21 )
+shader_param/specular = ExtResource( 20 )
+shader_param/normal_map = ExtResource( 18 )
+
+[sub_resource type="CubeMesh" id=18]
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.0
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -14.1399, 0.831222, -81.1889 )
+shader_param/decal_right = Vector3( 0.946846, 0.321688, 2.98024e-08 )
+shader_param/decal_up = Vector3( -0.169839, 0.4999, 0.849267 )
+shader_param/decal_forward = Vector3( -0.273198, 0.804125, -0.527964 )
+shader_param/decal_half_scale = Vector3( 0.676298, 0.6763, 0.633964 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 3 )
+shader_param/specular = ExtResource( 13 )
+shader_param/normal_map = ExtResource( 29 )
+
+[sub_resource type="CubeMesh" id=20]
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 10 )
+shader_param/albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+shader_param/emission_tint = Color( 0, 0, 0, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.0
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -12.9146, 0.62973, -79.2754 )
+shader_param/decal_right = Vector3( 0.687173, 0.363471, 0.629032 )
+shader_param/decal_up = Vector3( -0.726482, 0.339075, 0.597705 )
+shader_param/decal_forward = Vector3( -0.00395926, 0.867708, -0.497059 )
+shader_param/decal_half_scale = Vector3( 0.587506, 0.811321, 0.703403 )
+shader_param/border_mask = ExtResource( 7 )
+shader_param/albedo = ExtResource( 3 )
+shader_param/specular = ExtResource( 13 )
+shader_param/normal_map = ExtResource( 29 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 44 )
+shader_param/light = 0.391
+shader_param/extend = 0.285
+shader_param/offset = 2.728
+
+[node name="MountainNight" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.170541, 1.85531, -68.9442 )
+head_path = NodePath("../Player/Head")
+cam_path = NodePath("../Player/Head/Camera")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform( 0.999692, -0.0247986, 0, 0.0247986, 0.999692, 0, 0, 0, 1, -1.19812, 0, 0 )
+visible = false
+extents = Vector3( 52.5999, 13.1333, 36.2326 )
+origin_offset = Vector3( 2.58789, 2.90234, -0.506836 )
+enable_shadows = true
+
+[node name="Sky" parent="." instance=ExtResource( 2 )]
+clouds_resolution = 1024
+environment = ExtResource( 30 )
+SCATERRING = false
+sky_density = 0.8954
+sky_mie_coeff = 0.6521
+multiScatterPhase = 0.1369
+hours = 7
+minutes = 10
+seconds = 39
+time_of_day_setup = 0.299074
+clouds_coverage = 0.5951
+clouds_size = 1.2776
+clouds_softness = 1.0
+clouds_dens = 0.2128
+clouds_quality = 25
+moon_light = Color( 0.403922, 0.427451, 0.462745, 0.345098 )
+sunset_light = Color( 1, 0.7, 0.55, 1 )
+sunset_offset = -0.127644
+sunset_range = 0.058556
+day_light = Color( 1, 1, 1, 1 )
+moon_tint = Color( 1, 0.701961, 0.34902, 1 )
+clouds_tint = Color( 0.403922, 0.427451, 0.462745, 0.345098 )
+sun_radius = 0.0247
+moon_radius = 0.0481
+moon_phase = -0.27
+wind_dir = Vector2( -0.816538, 0.577292 )
+wind_strength = 0.05
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="Environment"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8419, 2.02167, -82.4113 )
+shape = SubResource( 1 )
+
+[node name="house_traditiona_japan" parent="Environment" instance=ExtResource( 1 )]
+transform = Transform( 0.00193274, 0, -0.000514312, 0, 0.002, 0, 0.000514312, 0, 0.00193274, -10.0929, 7.03969, -84.5223 )
+
+[node name="house_traditiona_japan2" parent="Environment" instance=ExtResource( 1 )]
+transform = Transform( 0.00113516, 0, -0.00164664, 0, 0.002, 0, 0.00164664, 0, 0.00113516, 12.9242, 6.05825, -77.3326 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD4" parent="Environment" instance=ExtResource( 14 )]
+transform = Transform( 3.02547, 0.00320033, -0.131733, -0.0232868, 4.72362, -0.420065, 0.168655, 0.346041, 3.88186, -13.2288, 0.532074, -80.5111 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD5" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 3.78933, 0, -0.718959, 0, 5.20936, 0, 0.92608, 0, 2.94183, -3.19519, 0.546782, -81.9977 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD10" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 5.87297, 0, 0.220525, 0, 7.99073, 0, -0.344453, 0, 3.75997, -7.85373, 0.344395, -80.7777 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD11" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( -4.97811, 0.391899, -0.299632, 0.245992, 7.98132, -1.24688e-09, -0.39733, 0.0312795, 3.75406, -7.79829, 0.658205, -81.0584 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD12" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 4.79735, -0.294009, 0.491072, 0.203285, 6.86531, 0.0337925, -0.63281, -0.0234664, 3.73369, -7.92559, 0.900377, -81.6657 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD9" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( -1.55666, 0.355288, -2.77182, 0.0213907, 6.44489, 0.17455, 3.57673, 0.116085, -1.2074, -3.1227, 0.753722, -82.3373 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD13" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 0.329964, 0.0364437, -2.25653, 0.0541333, 1.35357, 0.06628, 2.90716, -0.0293407, 0.254883, -2.9738, 0.99704, -81.9795 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD6" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 3.02562, 0, -0.128292, 0, 4.74232, 0, 0.165258, 0, 3.8974, -11.6411, 0.510739, -80.6741 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD7" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 0.050526, 0, 3.02792, 0, 4.74232, 0, -3.90036, 0, 0.0650842, -15.3139, 0.510739, -80.6741 )
+
+[node name="Aset_antique_architecture_M_udmlcf3qx_LOD8" parent="Environment" instance=ExtResource( 32 )]
+transform = Transform( 0.0983973, 0, -3.02674, 0, 4.74232, 0, 3.89884, 0, 0.126749, -17.3359, 0.501238, -80.6708 )
+
+[node name="old_japan_house" parent="Environment" instance=ExtResource( 12 )]
+transform = Transform( 0.0296114, 0, -0.00481298, 0, 0.025, 0, 0.00481298, 0, 0.0296114, 6.29063, 1.82033, -101.159 )
+
+[node name="DragoStone" type="MeshInstance" parent="Environment"]
+transform = Transform( 3.16286, 0, -0.166063, 0, 1, 0, 0.53263, 0, 0.986115, -2.81245, 1.8564, -93.6068 )
+use_in_baked_light = true
+mesh = SubResource( 2 )
+material/0 = null
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="Helpers" type="Spatial" parent="."]
+
+[node name="BlackBall" type="MeshInstance" parent="Helpers"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 2, -53.0797 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+__meta__ = {
+"_vol_id": 422,
+"apply_volumetrics": false
+}
+
+[node name="MetalBall" type="MeshInstance" parent="Helpers"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.38419e-06, 2, -53.0797 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+__meta__ = {
+"_vol_id": 423,
+"apply_volumetrics": false
+}
+
+[node name="Trees" type="Spatial" parent="."]
+
+[node name="treelarge" parent="Trees" instance=ExtResource( 46 )]
+transform = Transform( 1.21135, 0, 0, 0, 1.21135, 0, 0, 0, 1.21135, 5.64606, 0.908231, -84.6972 )
+
+[node name="treelarge3" parent="Trees" instance=ExtResource( 46 )]
+transform = Transform( 1.60357, 0, 0, 0, 1.60357, 0, 0, 0, 1.60357, -9.09306, 0.908231, -94.3488 )
+
+[node name="treelarge2" parent="Trees" instance=ExtResource( 46 )]
+transform = Transform( 1.64958, 0, 0, 0, 1.64958, 0, 0, 0, 1.64958, -25.4138, 1.1838, -84.587 )
+
+[node name="treelarge4" parent="Trees" instance=ExtResource( 46 )]
+transform = Transform( 1.64958, 0, 0, 0, 1.64958, 0, 0, 0, 1.64958, 11.1228, 0.679185, -68.6833 )
+
+[node name="Treesmall" parent="Trees" instance=ExtResource( 45 )]
+transform = Transform( 1.26962, 0, 0, 0, 1.26962, 0, 0, 0, 1.26962, -4.85514, 0.497032, -78.0958 )
+
+[node name="Treesmall2" parent="Trees" instance=ExtResource( 45 )]
+transform = Transform( 1.26962, 0, 0, 0, 1.26962, 0, 0, 0, 1.26962, -17.0225, 0.497032, -67.7985 )
+
+[node name="Treemedium" parent="Trees" instance=ExtResource( 47 )]
+transform = Transform( 0.389099, 0, -0.921196, 0, 1, 0, 0.921196, 0, 0.389099, -20.3119, 0.860762, -78.6761 )
+
+[node name="Terrain" type="Spatial" parent="."]
+
+[node name="HTerrain" type="Spatial" parent="Terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -500, -100, -1200 )
+script = ExtResource( 5 )
+collision_enabled = true
+ambient_wind = 0.0
+lod_scale = 2.0
+custom_globalmap_shader = null
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 19 )
+chunk_size = 32
+shader_type = "Classic4Lite"
+custom_shader = null
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 5, 0.5, 0.5, 0 )
+ground/albedo_bump_0 = ExtResource( 22 )
+ground/normal_roughness_0 = ExtResource( 11 )
+ground/albedo_bump_1 = null
+ground/normal_roughness_1 = null
+ground/albedo_bump_2 = null
+ground/normal_roughness_2 = null
+ground/albedo_bump_3 = null
+ground/normal_roughness_3 = null
+
+[node name="HTerrain2" type="Spatial" parent="Terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250 )
+script = ExtResource( 5 )
+collision_enabled = true
+ambient_wind = 0.01
+lod_scale = 2.0
+custom_globalmap_shader = null
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 31 )
+chunk_size = 32
+shader_type = "Classic4Lite"
+custom_shader = null
+shader_params/u_ground_uv_scale = 10.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 0.5, 0.5, 0.5, 0 )
+ground/albedo_bump_0 = ExtResource( 16 )
+ground/normal_roughness_0 = ExtResource( 25 )
+ground/albedo_bump_1 = ExtResource( 26 )
+ground/normal_roughness_1 = ExtResource( 17 )
+ground/albedo_bump_2 = ExtResource( 22 )
+ground/normal_roughness_2 = ExtResource( 11 )
+ground/albedo_bump_3 = ExtResource( 27 )
+ground/normal_roughness_3 = ExtResource( 15 )
+
+[node name="HTerrainDetailLayer" type="Spatial" parent="Terrain/HTerrain2"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+layer_index = 0
+texture = ExtResource( 23 )
+view_distance = 100.0
+custom_shader = null
+density = 4.0
+instance_mesh = ExtResource( 28 )
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = 0.0
+shader_params/u_instance_scale = Vector3( 0.03, 0.03, 0.03 )
+
+[node name="HTerrainDetailLayer2" type="Spatial" parent="Terrain/HTerrain2"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_icon": ExtResource( 4 )
+}
+layer_index = 1
+texture = ExtResource( 23 )
+view_distance = 151.748
+custom_shader = null
+density = 4.0
+instance_mesh = ExtResource( 33 )
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = Vector3( 0.03, 0.03, 0.03 )
+
+[node name="Water" type="MeshInstance" parent="Terrain"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.22147, -0.987788, -75.8244 )
+mesh = SubResource( 6 )
+material/0 = null
+__meta__ = {
+"_vol_id": 424,
+"apply_volumetrics": false
+}
+
+[node name="Lights" type="Spatial" parent="."]
+
+[node name="OmniLight" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4057, 3.87286, -80.7142 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.109804, 0.121569, 1 )
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight5" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.21863, 3.87286, -80.7142 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.109804, 0.121569, 1 )
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight2" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41989, 3.87286, -80.7142 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.109804, 0.121569, 1 )
+omni_range = 5.3
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight8" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19552, 5.23452, -95.6025 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight13" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36154, 3.58191, -88.2346 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight9" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1754, 5.23452, -94.0443 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+
+[node name="OmniLight12" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.10598, 5.23452, -94.2047 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+
+[node name="OmniLight10" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4184, 7.48978, -104.056 )
+visible = false
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+
+[node name="OmniLight11" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03246, 5.98481, -104.518 )
+visible = false
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 5.3
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight7" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68522, 4.13792, -65.2327 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 0.6
+light_indirect_energy = 1.48
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 11.6
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight3" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77024, 4.58786, -77.7555 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight6" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.897, 4.58786, -72.7285 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+omni_range = 4.8
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="OmniLight4" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6905, 4.97163, -69.3479 )
+light_color = Color( 0.976471, 1, 0.85098, 1 )
+light_energy = 1.53
+shadow_enabled = true
+shadow_color = Color( 0.141176, 0.141176, 0.207843, 1 )
+__meta__ = {
+"volumetric": 1.0
+}
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0455799, 0, -78.6495 )
+bake_hdr = true
+bake_extents = Vector3( 103.517, 62.0347, 85.5756 )
+light_data = SubResource( 7 )
+
+[node name="Decals" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Decals"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.129989, -11.5216, 2.7941, -81.4221 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 437,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 21 )
+albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = null
+occlusion_strength = 1.0
+specular = ExtResource( 20 )
+specular_strength = 0.023
+normal_map = ExtResource( 18 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance5" type="MeshInstance" parent="Decals"]
+transform = Transform( 0.250844, 1.68125, -1.58808e-09, 0.111773, -0.0166767, 0.157848, 1.67752, -0.250289, -0.0105174, -7.84878, 0.362105, -78.2714 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 437,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 34 )
+albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = ExtResource( 36 )
+occlusion_strength = 1.0
+specular = ExtResource( 37 )
+specular_strength = 0.024
+normal_map = ExtResource( 35 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance6" type="MeshInstance" parent="Decals"]
+transform = Transform( 1.46019, -0.0170373, -0.0391642, 0, 1.4707, -0.0130706, 0.164215, 0.104292, 0.239739, -1.24657, 4.14375, -96.5038 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 437,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 38 )
+albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = null
+occlusion_strength = 1.0
+specular = null
+specular_strength = 0.023
+normal_map = null
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance7" type="MeshInstance" parent="Decals"]
+transform = Transform( 3.96445, -0.00751878, -0.0271171, 0, 0.937496, -0.017413, 0.445847, 0.0668566, 0.241124, -2.89131, 2.08979, -92.6177 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 14 )
+material/0 = SubResource( 15 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 437,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 39 )
+albedo_tint = Color( 0.831373, 0.831373, 0.831373, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = ExtResource( 42 )
+occlusion_strength = 1.0
+specular = ExtResource( 41 )
+specular_strength = 0.023
+normal_map = ExtResource( 40 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance2" type="MeshInstance" parent="Decals"]
+transform = Transform( 0.459905, 0.887968, 0, -0.887968, 0.459905, 0, 0, 0, 0.100061, -10.153, 1.37025, -81.4251 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 16 )
+material/0 = SubResource( 17 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 438,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 21 )
+albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = null
+occlusion_strength = 1.0
+specular = ExtResource( 20 )
+specular_strength = 0.023
+normal_map = ExtResource( 18 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance3" type="MeshInstance" parent="Decals"]
+transform = Transform( 1.2807, -0.369528, -0.215344, 0.435114, 1.08766, 0.633838, 4.03106e-08, -0.714124, 1.07681, -14.1399, 0.831222, -81.1889 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 18 )
+material/0 = SubResource( 19 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 439
+}
+albedo = ExtResource( 3 )
+albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = null
+occlusion_strength = 1.0
+specular = ExtResource( 13 )
+specular_strength = 0.0
+normal_map = ExtResource( 29 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="MeshInstance4" type="MeshInstance" parent="Decals"]
+transform = Transform( 0.807436, -0.00642446, -1.02202, 0.427083, 1.40798, 0.477013, 0.73912, -0.806549, 0.840855, -12.9146, 0.62973, -79.2754 )
+cast_shadow = 0
+use_in_baked_light = true
+mesh = SubResource( 20 )
+material/0 = SubResource( 21 )
+script = ExtResource( 8 )
+__meta__ = {
+"_vol_id": 440,
+"apply_volumetrics": false
+}
+albedo = ExtResource( 3 )
+albedo_tint = Color( 0.509804, 0.509804, 0.509804, 1 )
+emission = null
+emission_tint = Color( 0, 0, 0, 1 )
+emission_strength = 0.0
+occlusion = null
+occlusion_strength = 1.0
+specular = ExtResource( 13 )
+specular_strength = 0.0
+normal_map = ExtResource( 29 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="Scatter" type="Spatial" parent="."]
+
+[node name="Aset_rock_granite_L_rcCwC_LOD4" parent="Scatter" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1.19752, 0, 0, 0, 1, -17.9541, 0.439955, -78.4579 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD5" parent="Scatter" instance=ExtResource( 14 )]
+transform = Transform( 1.68822, 0, 0, 0, 2.02167, 0, 0, 0, 1.68822, -8.86466, 0.383549, -74.3858 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD6" parent="Scatter" instance=ExtResource( 14 )]
+transform = Transform( 1.68822, 0, 0, 0, 3.26388, 0, 0, 0, 1.68822, 6.21626, 0.663247, -61.4392 )
+
+[node name="Volumetrics" type="Spatial" parent="."]
+
+[node name="fog" parent="Volumetrics" instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.45473, -81.9997 )
+amount = 20
+visibility_aabb = AABB( -4.75995, -5.55468, -3.3145, 9.5199, 11.1094, 6.629 )
+
+[node name="fog2" parent="Volumetrics" instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.1984, 1.45473, -77.0386 )
+amount = 20
+visibility_aabb = AABB( -4.75995, -5.55468, -3.3145, 9.5199, 11.1094, 6.629 )
+
+[node name="fog3" parent="Volumetrics" instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6.21758, 1.45473, -73.4277 )
+amount = 20
+visibility_aabb = AABB( -4.75995, -5.55468, -3.3145, 9.5199, 11.1094, 6.629 )
+
+[node name="fog4" parent="Volumetrics" instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.63203, 1.45473, -90.1084 )
+amount = 20
+visibility_aabb = AABB( -4.75995, -5.55468, -3.3145, 9.5199, 11.1094, 6.629 )
+
+[node name="fog5" parent="Volumetrics" instance=ExtResource( 48 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.4313, 1.45474, -75.7865 )
+visibility_aabb = AABB( -4.75995, -5.55468, -3.3145, 9.5199, 11.1094, 6.629 )
+
+[node name="Mosquitoes" parent="Volumetrics" instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21716, 5.41875, -80.9754 )
+
+[node name="Mosquitoes2" parent="Volumetrics" instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63471, 5.41875, -93.3483 )
+
+[node name="Mosquitoes3" parent="Volumetrics" instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.82483, 4.27313, -78.4477 )
+
+[node name="PostProcess" type="ColorRect" parent="."]
+material = SubResource( 22 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

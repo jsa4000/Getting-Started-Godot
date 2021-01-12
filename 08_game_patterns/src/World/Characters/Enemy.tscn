@@ -1,0 +1,119 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/spritesheets/enemy.png" type="Texture" id=1]
+[ext_resource path="res://src/Components/Repository.gd" type="Script" id=2]
+[ext_resource path="res://src/Components/Controller.gd" type="Script" id=3]
+[ext_resource path="res://src/Actors/Character/Actions/MoveAction.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Character/States/IdleState.gd" type="Script" id=5]
+[ext_resource path="res://src/Core/Actor.gd" type="Script" id=6]
+[ext_resource path="res://src/Components/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://src/Actors/Character/States/WalkState.gd" type="Script" id=8]
+[ext_resource path="res://src/World/Characters/Enemy.gd" type="Script" id=9]
+[ext_resource path="res://src/World/Characters/EnemyArea.gd" type="Script" id=10]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 45.1173, 25.8851 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 236.052, 101.605 )
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 3, 3 )
+frames = SubResource( 9 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.61554, 0 )
+shape = SubResource( 10 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 11 )
+
+[node name="Actor" type="Node" parent="."]
+script = ExtResource( 6 )
+id = "2598caf1-1994-4d35-b67a-ec55a5713718"
+alias = "crab"
+
+[node name="Repository" type="Node" parent="Actor"]
+script = ExtResource( 2 )
+_component_group = "repositories"
+_component_name = "repository"
+
+[node name="StateMachine" type="Node" parent="Actor"]
+script = ExtResource( 7 )
+_component_group = "state_machines"
+_component_name = "state_machine"
+initial_state = "IdleState"
+
+[node name="IdleState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 5 )
+
+[node name="WalkState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Controller" type="Node" parent="Actor"]
+script = ExtResource( 3 )
+_component_group = "controllers"
+_component_name = "controller"
+
+[node name="MoveAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 4 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]

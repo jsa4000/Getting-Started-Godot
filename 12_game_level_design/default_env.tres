@@ -1,0 +1,7 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[ext_resource path="res://assets/environments/panorama_level.tres" type="PanoramaSky" id=1]
+
+[resource]
+background_mode = 2
+background_sky = ExtResource( 1 )

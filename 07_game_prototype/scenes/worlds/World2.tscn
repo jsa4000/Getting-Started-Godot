@@ -1,0 +1,358 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://scenes/resources/dialog/DialogScene.gd" type="Script" id=1]
+[ext_resource path="res://scenes/resources/inventory/InventoryItem.gd" type="Script" id=2]
+[ext_resource path="res://scenes/actor/Statue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/actor/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/actor/Tree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/DialogControl.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/actor/Mushroom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/camera/Camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/actor/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/portal/PortalManager.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/camera/CameraSlider.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/portal/Portal.tscn" type="PackedScene" id=12]
+[ext_resource path="res://shaders/gradient_map.shader" type="Shader" id=13]
+[ext_resource path="res://assets/background/Brooklyn_Bridge_Planks_2k.hdr" type="Texture" id=14]
+[ext_resource path="res://scenes/environment/Environment.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/resources/nodes/NodeResourceInteractive.gd" type="Script" id=16]
+[ext_resource path="res://scenes/resources/actions/ActionItem.gd" type="Script" id=17]
+[ext_resource path="res://scenes/resources/actions/ActionDialog.gd" type="Script" id=18]
+[ext_resource path="res://scenes/ui/Menu.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.251163, 0.651163, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.460938, 0.117035, 0.423323, 1, 0.369141, 0.738281, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 256
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 13 )
+shader_param/mix_amount = 0.1
+shader_param/gradient = SubResource( 2 )
+
+[sub_resource type="GIProbeData" id=4]
+bounds = AABB( -28.81, -10, -10, 57.62, 20, 20 )
+cell_size = 0.450156
+to_cell_xform = Transform( 2.22145, 0, 0, 0, 2.22145, 0, 0, 0, 2.22145, 64, 22.2145, 22.2145 )
+dynamic_data = PoolIntArray( 0, 8, 128, 64, 64, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1065353216, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+energy = 0.6
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[sub_resource type="PanoramaSky" id=5]
+panorama = ExtResource( 14 )
+
+[sub_resource type="Environment" id=6]
+background_mode = 3
+background_sky = SubResource( 5 )
+background_color = Color( 0.141176, 0.0901961, 0.219608, 1 )
+background_energy = 0.12
+ambient_light_color = Color( 0.25098, 0.172549, 0.352941, 1 )
+ambient_light_sky_contribution = 0.73
+fog_enabled = true
+fog_color = Color( 0.501961, 0.6, 0.701961, 1 )
+fog_sun_color = Color( 0.403922, 0.403922, 0.541176, 1 )
+fog_depth_begin = 1.0
+fog_transmit_enabled = true
+tonemap_mode = 2
+tonemap_exposure = 0.88
+tonemap_white = 3.86
+ss_reflections_enabled = true
+ssao_enabled = true
+ssao_color = Color( 0.133333, 0.0941176, 0.294118, 1 )
+glow_enabled = true
+glow_hdr_threshold = 0.46
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 1 )
+id = ""
+current = ""
+default = ""
+items = {
+
+}
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 18 )
+id = "ball"
+target_group = "Player"
+type = 0
+parameters = {
+
+}
+scene = SubResource( 7 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 16 )
+id = ""
+name = ""
+description = ""
+type = ""
+position = Vector3( 0, 0, 0 )
+actions = [ SubResource( 8 ) ]
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 2 )
+id = ""
+name = ""
+caption = ""
+type = ""
+parameters = {
+
+}
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 1 )
+id = ""
+current = ""
+default = ""
+items = {
+
+}
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 17 )
+id = "bread_big"
+target_group = "Player"
+type = 1
+parameters = {
+
+}
+scene = SubResource( 11 )
+item = SubResource( 10 )
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 16 )
+id = "bread_big"
+name = ""
+description = ""
+type = ""
+position = Vector3( 0, 0, 0 )
+actions = [ SubResource( 12 ) ]
+
+[sub_resource type="Curve3D" id=14]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -20.2325, 2.1275, 3.8675, 0, 0, 0, 0, 0, 0, 8.145, 1.91, 3.775 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=15]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 8.2075, 2.0375, 4.0825, 0.6025, -2.485, 0, -0.6025, 2.485, 0, 1.9075, 3.615, 5.4725, 0, 0, 0, 0, 0, 0, 4.615, 5.8725, 4.0825 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=16]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -6.955, 5.94, 3.99, 0, 0, 0, 0, 0, 0, 4.09, 5.9125, 3.97 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Curve3D" id=17]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -7.7475, 4.285, 3.935, 6.3095, -0.0365, 0, -6.3095, 0.0365, 0, -18.8975, 0.38, 4.0075, 0, 0, 0, 0, 0, 0, -27.0596, 2.476, 4.00751 ),
+"tilts": PoolRealArray( 0, 0, 0 )
+}
+
+[sub_resource type="GDScript" id=18]
+script/source = "extends PortalTransition
+
+export(float,0,100) var duration = 6.0
+
+onready var camera : Camera
+onready var player : KinematicBody
+onready var slider : CameraSlider
+
+var animation1 : Tween
+var animation2 : Tween
+
+func play():
+	var duration_per_tween = duration / 2.0
+	animation1 = Tween.new()
+	add_child(animation1)
+	animation1.interpolate_property(
+		slider, \"unit_offset\", 
+		1, 0.5, duration_per_tween,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	animation1.interpolate_property(
+		player, \"global_transform:origin\", 
+		player.global_transform.origin, $Middle.global_transform.origin, duration_per_tween,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	animation1.start()
+	yield(animation1, \"tween_completed\")
+	
+	animation2 = Tween.new()
+	add_child(animation2)
+	animation2.interpolate_property(
+		slider, \"unit_offset\", 
+		0.5, 0, duration_per_tween,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	animation2.interpolate_property(
+		player, \"global_transform:origin\", 
+		$Middle.global_transform.origin, $End.global_transform.origin, duration_per_tween,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	animation2.connect(\"tween_completed\", self, \"_on_animation_completed\")
+	animation2.start()
+	
+func _on_animation_completed(obj, key):
+	remove_child(animation1)
+	remove_child(animation2)
+	animation1.queue_free()
+	animation2.queue_free()
+	emit_signal(\"transition_completed\", obj, key)
+"
+
+[node name="World2" type="Spatial"]
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+arvr = true
+size = Vector2( 1024, 600 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="GIProbe" type="GIProbe" parent="."]
+visible = false
+extents = Vector3( 28.81, 10, 10 )
+energy = 0.6
+data = SubResource( 4 )
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77441, -2.10805 )
+visible = false
+extents = Vector3( 25.75, 6, 7.5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="Environment" parent="." instance=ExtResource( 15 )]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( -0.992943, -0.115308, 0.0277205, -0.0868231, 0.866026, 0.492404, -0.080785, 0.486522, -0.869925, -17.12, 6.135, -9.07 )
+light_energy = 5.2
+light_indirect_energy = 6.71
+light_cull_mask = 2147483647
+shadow_enabled = true
+shadow_color = Color( 0.0823529, 0.0666667, 0.184314, 1 )
+shadow_bias = 0.04
+shadow_contact = 0.15
+spot_range = 15.3
+spot_angle = 44.2
+
+[node name="Camera" parent="." instance=ExtResource( 8 )]
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -20, 0.585731, 1.34987 )
+collision_layer = 2
+collision_mask = 15
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Statue" parent="Items" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.275, 0.82, 0.5075 )
+
+[node name="Ball" parent="Items" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9705, 4.07021, 0.900713 )
+collision_mask = 11
+resource = SubResource( 9 )
+
+[node name="Mushroom" parent="Items" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.175, 0.085, 0 )
+
+[node name="Bread" parent="Items" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9, 0.085, 1.1775 )
+resource = SubResource( 13 )
+
+[node name="Tree" parent="Items" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.215, 1.3425, 0 )
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="Portal01" parent="Portals" instance=ExtResource( 12 )]
+curve = SubResource( 14 )
+
+[node name="Area" parent="Portals/Portal01" index="0"]
+visible = false
+disabled = true
+
+[node name="PlayerPosition" parent="Portals/Portal01/Transition" index="0"]
+visible = false
+
+[node name="Portal02" parent="Portals" instance=ExtResource( 12 )]
+curve = SubResource( 15 )
+transition_enabled = true
+
+[node name="Area" parent="Portals/Portal02" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, 8.165, 1.0175, -0.105 )
+direction = Vector3( 0, 0, -1 )
+
+[node name="Transition" parent="Portals/Portal02" index="1"]
+duration = 2.0
+
+[node name="PlayerPosition" parent="Portals/Portal02/Transition" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.77, 4.1575, 0 )
+
+[node name="Portal03" parent="Portals" instance=ExtResource( 12 )]
+curve = SubResource( 16 )
+direction = 1
+
+[node name="Area" parent="Portals/Portal03" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, 4.18, 4.48, 0 )
+direction = Vector3( -1, 0, 0 )
+
+[node name="Portal04" parent="Portals" instance=ExtResource( 12 )]
+curve = SubResource( 17 )
+transition_enabled = true
+chain_scene_end = ExtResource( 19 )
+
+[node name="Area" parent="Portals/Portal04" index="0"]
+transform = Transform( 1, 0, 0, 0, 1.62522e-06, -1, 0, 1, 1.62522e-06, -6.81, 4.48, 0 )
+direction = Vector3( -1, 0, 0 )
+
+[node name="PlayerPosition" parent="Portals/Portal04/Transition" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.845, 2.0125, 0 )
+visible = false
+
+[node name="Transition2" type="Node" parent="Portals/Portal04"]
+script = SubResource( 18 )
+duration = 2.0
+
+[node name="Middle" type="Position3D" parent="Portals/Portal04/Transition2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1425, 2.395, 0 )
+
+[node name="End" type="Position3D" parent="Portals/Portal04/Transition2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8325, 1.0425, 0 )
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="PortalManager" parent="Managers" instance=ExtResource( 10 )]
+portal_paths = [ NodePath("../../Portals/Portal01"), NodePath("../../Portals/Portal02"), NodePath("../../Portals/Portal03"), NodePath("../../Portals/Portal04") ]
+
+[node name="CameraSlider" parent="Managers/PortalManager" instance=ExtResource( 11 )]
+
+[node name="Controls" type="Node" parent="."]
+
+[node name="DialogControl" parent="Controls" instance=ExtResource( 6 )]
+visible = false
+
+[editable path="Portals/Portal01"]
+
+[editable path="Portals/Portal02"]
+
+[editable path="Portals/Portal03"]
+
+[editable path="Portals/Portal04"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://addons/camera/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/sky/Sky.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/environments/environment_custom_sky.tres" type="Environment" id=3]
+[ext_resource path="res://addons/water/water_material.tres" type="Material" id=4]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.552941, 0.552941, 0.552941, 1 )
+metallic = 1.0
+metallic_specular = 0.56
+roughness = 0.0
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.52549, 0.52549, 0.52549, 1 )
+metallic = 0.31
+roughness = 0.12
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="PlaneMesh" id=7]
+material = ExtResource( 4 )
+size = Vector2( 100, 100 )
+subdivide_width = 50
+subdivide_depth = 50
+
+[node name="SkyNight" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54031, 4.22876, 5.15229 )
+head_path = NodePath("../../SkyNight/Player/Head")
+cam_path = NodePath("../../SkyNight/Player/Head/Camera")
+
+[node name="BlackBall" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="MetalBall" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 3 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="Floor" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 28.8597, 0, 0, 0, 0.4958, 0, 0, 0, 33.3198, 0, 0, 24.0788 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 28.8597, 0, 0, 0, 0.4958, 0, 0, 0, 33.3198, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform( 0.999692, -0.0247986, 0, 0.0247986, 0.999692, 0, 0, 0, 1, -1.19812, 0, 0 )
+visible = false
+extents = Vector3( 52.5999, 13.1333, 36.2326 )
+origin_offset = Vector3( 2.58789, 2.90234, -0.506836 )
+enable_shadows = true
+
+[node name="Sky" parent="." instance=ExtResource( 2 )]
+environment = ExtResource( 3 )
+sky_tone = 0.0
+sky_density = 0.6749
+sky_rayleig_coeff = 1.7985
+sky_mie_coeff = 0.6521
+hours = 8
+minutes = 5
+seconds = 25
+time_of_day_setup = 0.337096
+clouds_coverage = 0.5951
+clouds_size = 1.2776
+clouds_dens = 0.2128
+clouds_tint = Color( 0.847279, 0.66182, 0.645451, 1 )
+sun_radius = 0.1084
+wind_dir = Vector2( -0.816538, 0.577292 )
+wind_strength = 0.05
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.182997, -58.232 )
+mesh = SubResource( 7 )
+material/0 = null

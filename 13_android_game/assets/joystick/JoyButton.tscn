@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/joystick/button_joystick_simple.png" type="Texture" id=1]
+[ext_resource path="res://assets/joystick/button_joystick_simple_pressed.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[node name="JoyButton" type="TouchScreenButton"]
+position = Vector2( -31.1567, 70.415 )
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+normal = ExtResource( 1 )
+pressed = ExtResource( 2 )
+shape = SubResource( 1 )
+shape_visible = false

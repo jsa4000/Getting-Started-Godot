@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/grass_quad_x4.obj-6885808af8897623bb689c91cbbc4cbd.mesh"
+
+[deps]
+
+files=[ "res://.import/grass_quad_x4.obj-6885808af8897623bb689c91cbbc4cbd.mesh" ]
+
+source_file="res://assets/models/nature/grass/grass_quad_x4.obj"
+dest_files=[ "res://.import/grass_quad_x4.obj-6885808af8897623bb689c91cbbc4cbd.mesh", "res://.import/grass_quad_x4.obj-6885808af8897623bb689c91cbbc4cbd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

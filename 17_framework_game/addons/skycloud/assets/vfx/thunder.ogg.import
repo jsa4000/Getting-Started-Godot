@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thunder.ogg-80b6bde3efa3f306caf31557104416ce.oggstr"
+
+[deps]
+
+source_file="res://addons/skycloud/assets/vfx/thunder.ogg"
+dest_files=[ "res://.import/thunder.ogg-80b6bde3efa3f306caf31557104416ce.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,1056 @@
+[gd_scene load_steps=81 format=2]
+
+[ext_resource path="res://assets/textures/checkers/checkerboard.png" type="Texture" id=1]
+[ext_resource path="res://addons/skycloud/scripts/SkyCloud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/cinema/scripts/Cinema.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/characters/Female.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/environments/scene01_environment.tres" type="Environment" id=5]
+[ext_resource path="res://src/controls/debug/EnvironmentPanel.gd" type="Script" id=6]
+[ext_resource path="res://src/controls/debug/CameraPanel.gd" type="Script" id=7]
+[ext_resource path="res://src/controls/debug/SkyPanel.gd" type="Script" id=8]
+[ext_resource path="res://src/controls/debug/CloudPanel.gd" type="Script" id=9]
+[ext_resource path="res://addons/cinema/scripts/CameraProxy.gd" type="Script" id=10]
+[ext_resource path="res://assets/particles/Smoke01.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFollowType.gd" type="Script" id=12]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFlyType.gd" type="Script" id=13]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFpsType.gd" type="Script" id=14]
+[ext_resource path="res://addons/cinema/scripts/transitions/CameraTransition.gd" type="Script" id=15]
+[ext_resource path="res://addons/cinema/scripts/CameraSwitch.gd" type="Script" id=16]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=17]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=18]
+[ext_resource path="res://assets/terrain/default_scene/data.hterrain" type="Resource" id=19]
+[ext_resource path="res://addons/cinema/scripts/types/CameraDollyType.gd" type="Script" id=20]
+[ext_resource path="res://addons/cinema/scripts/CameraTarget.gd" type="Script" id=21]
+[ext_resource path="res://addons/cinema/assets/materials/camera_target.material" type="Material" id=22]
+[ext_resource path="res://src/scenes/AnimationPlayer.gd" type="Script" id=23]
+[ext_resource path="res://addons/cinema/scripts/helpers/CameraCallback.gd" type="Script" id=24]
+[ext_resource path="res://assets/npcs/Capsule01.tscn" type="PackedScene" id=25]
+[ext_resource path="res://addons/framework/blackboard/Blackboard.gd" type="Script" id=26]
+[ext_resource path="res://assets/prefabs/Ball.tscn" type="PackedScene" id=27]
+[ext_resource path="res://addons/framework/common/layers/WorldLayer.gd" type="Script" id=28]
+[ext_resource path="res://addons/framework/common/selections/SelectionByNodePath.gd" type="Script" id=29]
+[ext_resource path="res://assets/npcs/Capsule02.tscn" type="PackedScene" id=30]
+[ext_resource path="res://addons/decalco/scripts/alpha_mask.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_normal.png" type="Texture" id=32]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_emission.png" type="Texture" id=33]
+[ext_resource path="res://addons/decalco/scripts/Decal.gd" type="Script" id=34]
+[ext_resource path="res://addons/decalco/scripts/Decal.shader" type="Shader" id=35]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_albedo.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_occlusion.png" type="Texture" id=37]
+[ext_resource path="res://assets/textures/hex_pattern/hex_pattern_specular.png" type="Texture" id=38]
+[ext_resource path="res://addons/ocean/assets/material/water_material.tres" type="Material" id=39]
+[ext_resource path="res://addons/ocean/scripts/Ocean.gd" type="Script" id=40]
+[ext_resource path="res://addons/framework/common/layers/DebugLayer.gd" type="Script" id=41]
+[ext_resource path="res://addons/framework/game_manager/GameScene.gd" type="Script" id=42]
+[ext_resource path="res://addons/framework/common/layers/ControlsLayer.gd" type="Script" id=43]
+[ext_resource path="res://addons/framework/common/delegates/game_delegate.tres" type="Resource" id=44]
+[ext_resource path="res://addons/framework/game_manager/PauseControl.tscn" type="PackedScene" id=45]
+[ext_resource path="res://addons/framework/dialogue/DialogPlayer.tscn" type="PackedScene" id=46]
+[ext_resource path="res://addons/framework/dialogue/loaders/DialogFileLoader.gd" type="Script" id=47]
+[ext_resource path="res://assets/characters/Male.tscn" type="PackedScene" id=48]
+[ext_resource path="res://assets/characters/Master.tscn" type="PackedScene" id=49]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 15 )
+from_camera = NodePath("")
+to_camera = NodePath("")
+transition_type = 0
+ease_type = 2
+duration = 2.0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 15 )
+from_camera = NodePath("../Cameras/CameraFollow")
+to_camera = NodePath("../Cameras/CameraLocked")
+transition_type = 0
+ease_type = 2
+duration = 1.0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 15 )
+from_camera = NodePath("../Cameras/CameraLocked")
+to_camera = NodePath("../Cameras/CameraFollow")
+transition_type = 1
+ease_type = 3
+duration = 2.0
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 3, 2, 5.1533 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 24 )
+node_path = NodePath("../../Targets/CameraTarget/AnimationPlayer")
+callback = "start"
+parameters = [ "DollyMove" ]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 3.37247, 2, 3.47508 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 24.1626, 7.27986, 11.0499 )
+
+[sub_resource type="BoxShape" id=8]
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 12 )
+offset = Vector3( 0, 2, 4 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.02
+noise_rotation_amount = 0.02
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.75
+lookat_dead_zone_speed = 0.75
+lookat_offset = Vector3( 0, 1, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.3, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = true
+prediction_scale = 1.25
+prediction_scale_speed = 0.1
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 12 )
+offset = Vector3( 4, 2, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = true
+noise_translation_amount = 0.02
+noise_rotation_amount = 0.02
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 0.75
+lookat_dead_zone_speed = 0.75
+lookat_offset = Vector3( 0, 1, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.3, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = true
+prediction_scale = 1.25
+prediction_scale_speed = 0.1
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 12 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 120.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = true
+lookat_smooth_zone_speed = 5.0
+lookat_dead_zone_speed = 2.0
+lookat_offset = Vector3( 0, 1, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.3, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 14 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+height = 1.7
+mouse_sensitivity = 12.0
+gravity = 30.0
+walk_speed = 10
+sprint_speed = 16
+acceleration = 8
+deacceleration = 10
+air_control = 0.3
+jump_height = 10
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 13 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.2
+noise_rotation_amount = 0.2
+height = 1.7
+mouse_sensitivity = 12.0
+fly_speed = 10
+fly_accel = 4
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 20 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 0.5
+noise_enabled = true
+noise_translation_amount = 0.1
+noise_rotation_amount = 0.1
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 0.4
+lookat_offset = Vector3( 0, 1, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.2, 0.3, 0.4, 0.4 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = true
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+guide_path = NodePath("../../Paths/CameraDollyPath")
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 20 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 0.5
+noise_enabled = true
+noise_translation_amount = 0.1
+noise_rotation_amount = 0.1
+target_path = NodePath("../../Targets/CameraTarget")
+lookat_path = NodePath("../../Targets/CameraTarget")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 0.4
+lookat_offset = Vector3( 0, 1, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.2, 0.3, 0.4, 0.4 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = true
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+guide_path = NodePath("../../Paths/CameraDollyPath")
+
+[sub_resource type="Curve3D" id=16]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 21.2622, 4.73242, 2.04892, -2.93706, -1.19268, 0.290833, 2.93706, 1.19268, -0.290833, 29.7311, 5.79883, 3.87018, -2.84963, -1.17285, 0.959283, 2.84963, 1.17285, -0.959283, 39.0132, 10.084, 1.39827, -3.41391, -0.0474138, -0.2541, 3.41391, 0.0474138, 0.2541, 49.4525, 12.6821, -0.125295, 0, 0, 0, 0, 0, 0, 55.8247, 11.1289, 1.98961 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+up_vector_enabled = false
+
+[sub_resource type="CubeMesh" id=17]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="Animation" id=18]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 19.0819, 0, -17.2039 ), Vector3( 68.0627, 13.3111, -17.2039 ) ]
+}
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 29 )
+node_path = NodePath("../Cinema")
+sub_path = "Gimbal"
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 29 )
+node_path = NodePath("../Character")
+sub_path = ""
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 47 )
+textures_path = "res://assets/dialogs/textures"
+scripts_path = "res://assets/dialogs/scripts"
+
+[sub_resource type="CubeMesh" id=22]
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 35 )
+shader_param/albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+shader_param/emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+shader_param/emission_strength = 1.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 1.0
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -8.80659, 3.2099, 2.40439 )
+shader_param/decal_right = Vector3( 1, 0, 0 )
+shader_param/decal_up = Vector3( 0, 0, 1 )
+shader_param/decal_forward = Vector3( 0, 1, 0 )
+shader_param/decal_half_scale = Vector3( 0.25, 0.25, 0.1 )
+shader_param/border_mask = ExtResource( 31 )
+shader_param/albedo = ExtResource( 36 )
+shader_param/emission = ExtResource( 33 )
+shader_param/occlusion = ExtResource( 37 )
+shader_param/specular = ExtResource( 38 )
+shader_param/normal_map = ExtResource( 32 )
+
+[sub_resource type="CubeMesh" id=24]
+
+[sub_resource type="ShaderMaterial" id=25]
+shader = ExtResource( 35 )
+shader_param/albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+shader_param/emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+shader_param/emission_strength = 1.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 1.0
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( -13.8435, 2.69637, 2.40439 )
+shader_param/decal_right = Vector3( 1, 0, 0 )
+shader_param/decal_up = Vector3( 0, 0, 1 )
+shader_param/decal_forward = Vector3( 0, 1, 0 )
+shader_param/decal_half_scale = Vector3( 0.25, 0.25, 0.1 )
+shader_param/border_mask = ExtResource( 31 )
+shader_param/albedo = ExtResource( 36 )
+shader_param/emission = ExtResource( 33 )
+shader_param/occlusion = ExtResource( 37 )
+shader_param/specular = ExtResource( 38 )
+shader_param/normal_map = ExtResource( 32 )
+
+[sub_resource type="CubeMesh" id=26]
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = ExtResource( 35 )
+shader_param/albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+shader_param/emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+shader_param/emission_strength = 0.0
+shader_param/occlusion_strength = 1.0
+shader_param/specular_strength = 0.016
+shader_param/metallic_strength = 1.0
+shader_param/current_frame = 0
+shader_param/flipbook_columns_count = 1
+shader_param/current_frame_blend = 0.0
+shader_param/use_normal_map = true
+shader_param/decal_position = Vector3( 18.9744, -0.198624, -18.2122 )
+shader_param/decal_right = Vector3( 1, 0, 0 )
+shader_param/decal_up = Vector3( 0, 1, -4.37114e-08 )
+shader_param/decal_forward = Vector3( 0, -4.37114e-08, -1 )
+shader_param/decal_half_scale = Vector3( 2.5, 2.5, 0.1 )
+shader_param/border_mask = ExtResource( 31 )
+shader_param/albedo = ExtResource( 36 )
+shader_param/occlusion = ExtResource( 37 )
+shader_param/specular = ExtResource( 38 )
+shader_param/normal_map = ExtResource( 32 )
+
+[sub_resource type="SpatialMaterial" id=28]
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+uv1_triplanar = true
+
+[sub_resource type="SpatialMaterial" id=29]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+uv1_triplanar = true
+uv1_triplanar_sharpness = 84.4485
+
+[sub_resource type="Resource" id=30]
+script = ExtResource( 17 )
+mode = 0
+textures = [ [ ExtResource( 1 ) ], [ null ] ]
+
+[sub_resource type="PlaneMesh" id=31]
+size = Vector2( 20, 20 )
+
+[node name="Scene" type="Spatial"]
+script = ExtResource( 42 )
+
+[node name="Sky" parent="." instance=ExtResource( 2 )]
+enabled = true
+clouds_resolution = 512
+sky_resolution = 512
+environment = ExtResource( 5 )
+enable_god_rays = false
+sky_rotation = Vector3( 0, -0.1, 0 )
+SCATERRING = false
+multiScatterPhase = 0.0
+hours = 17
+minutes = 44
+seconds = 36
+time_of_day_setup = 0.739316
+clouds_coverage = 0.5
+clouds_size = 2.0
+clouds_softness = 1.0
+clouds_height = 0.35
+clouds_quality = 20
+moon_light = Color( 0.6, 0.6, 0.8, 1 )
+sunset_light = Color( 1, 0.7, 0.55, 1 )
+sunset_offset = -0.1
+sunset_range = 0.2
+day_light = Color( 1, 1, 1, 1 )
+moon_tint = Color( 1, 0.7, 0.35, 1 )
+clouds_tint = Color( 1, 1, 1, 1 )
+sun_radius = 0.04
+wind_dir = Vector2( 0.620381, 0.7843 )
+wind_strength = 0.1
+
+[node name="Cinema" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98667, 2.00288 )
+enabled = true
+camera_id = ""
+default_transition = SubResource( 1 )
+transitions = [ SubResource( 2 ), SubResource( 3 ) ]
+motion_blur_enabled = false
+post_process_enabled = false
+
+[node name="Areas" type="Node" parent="Cinema"]
+
+[node name="CameraSwitchLocked" type="Area" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 16 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraLocked")
+camera_exited = NodePath("../../Cameras/CameraFollow")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Cinema/Areas/CameraSwitchLocked"]
+shape = SubResource( 4 )
+
+[node name="CameraSwitchDollyAmim" type="Area" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1583, 2, -17.1947 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 16 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraDollyAnim")
+camera_exited = NodePath("")
+callback_entered = SubResource( 5 )
+callback_exited = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Cinema/Areas/CameraSwitchDollyAmim"]
+transform = Transform( 0.999935, 0, 0.0114142, 0, 1, 0, -0.0114142, 0, 0.999935, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="CameraSwitchDolly" type="Area" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.1667, 6.60028, 0 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 16 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraDolly")
+camera_exited = NodePath("../../Cameras/CameraFollow")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Cinema/Areas/CameraSwitchDolly"]
+shape = SubResource( 7 )
+
+[node name="CameraSwitchFps" type="Area" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, 2 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 16 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraFps")
+camera_exited = NodePath("")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Cinema/Areas/CameraSwitchFps"]
+shape = SubResource( 8 )
+
+[node name="Cameras" type="Node" parent="Cinema"]
+
+[node name="CameraFollow" type="Camera" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 2.66385 )
+script = ExtResource( 10 )
+id = "CameraFollow"
+enabled = false
+priority = 10
+use_gimbal_position = true
+type = SubResource( 9 )
+
+[node name="CameraFollow2" type="Camera" parent="Cinema/Cameras"]
+transform = Transform( -4.37114e-08, -0.258819, 0.965926, 0, 0.965926, 0.258819, -1, 1.13133e-08, -4.2222e-08, 4.29703, 2, -0.0617007 )
+script = ExtResource( 10 )
+id = "CameraFollow2"
+enabled = false
+priority = 9
+use_gimbal_position = true
+type = SubResource( 10 )
+
+[node name="CameraLocked" type="Camera" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 6, 2, 2 )
+script = ExtResource( 10 )
+id = "CameraLocked"
+enabled = false
+priority = 1
+use_gimbal_position = false
+type = SubResource( 11 )
+
+[node name="CameraFps" type="Camera" parent="Cinema/Cameras"]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.59911, 2.01418, 2 )
+script = ExtResource( 10 )
+id = "CameraFps"
+enabled = false
+priority = 0
+use_gimbal_position = true
+type = SubResource( 12 )
+
+[node name="CameraFly" type="Camera" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.971587, 1.97326, 1.9593 )
+script = ExtResource( 10 )
+id = "CameraFly"
+enabled = false
+priority = 0
+use_gimbal_position = true
+type = SubResource( 13 )
+
+[node name="CameraDolly" type="Camera" parent="Cinema/Cameras"]
+script = ExtResource( 10 )
+id = "CameraDolly"
+enabled = false
+priority = 0
+use_gimbal_position = true
+type = SubResource( 14 )
+
+[node name="CameraDollyAnim" type="Camera" parent="Cinema/Cameras"]
+script = ExtResource( 10 )
+id = "CameraDollyAnim"
+enabled = false
+priority = 0
+use_gimbal_position = true
+type = SubResource( 15 )
+
+[node name="Paths" type="Node" parent="Cinema"]
+
+[node name="CameraDollyPath" type="Path" parent="Cinema/Paths"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.71754, 0, 0 )
+curve = SubResource( 16 )
+
+[node name="Targets" type="Node" parent="Cinema"]
+
+[node name="CameraTarget" type="MeshInstance" parent="Cinema/Targets"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0819, 0, -17.2039 )
+layers = 1024
+material_override = ExtResource( 22 )
+cast_shadow = 0
+mesh = SubResource( 17 )
+material/0 = null
+script = ExtResource( 21 )
+visual_layer = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cinema/Targets/CameraTarget"]
+anims/DollyMove = SubResource( 18 )
+script = ExtResource( 23 )
+next_camera = NodePath("../../../Cameras/CameraFollow")
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 26 )
+data = {
+"DialogPlayer": NodePath("../Controls/DialogPlayer"),
+"any_value": 1000.0,
+"gimbal": SubResource( 19 ),
+"player": SubResource( 20 ),
+"sky": NodePath("../Sky")
+}
+
+[node name="Character" parent="." instance=ExtResource( 48 )]
+collision_layer = 1025
+collision_mask = 0
+use_camera_view = true
+camera_path = NodePath("../Cinema")
+inverted = true
+
+[node name="CharacterFemale" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
+visible = false
+active = false
+use_camera_view = true
+camera_path = NodePath("../Cinema")
+inverted = true
+
+[node name="CharacterMaster" parent="." instance=ExtResource( 49 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
+visible = false
+active = false
+use_camera_view = true
+camera_path = NodePath("../Cinema")
+inverted = true
+
+[node name="Controls" type="Node" parent="."]
+script = ExtResource( 43 )
+
+[node name="DialogPlayer" parent="Controls" instance=ExtResource( 46 )]
+dialog_loader = SubResource( 21 )
+
+[node name="PauseControl" parent="Controls" instance=ExtResource( 45 )]
+visible = false
+game_delegate = ExtResource( 44 )
+transition_speed = 4.0
+
+[node name="World" type="Node" parent="."]
+script = ExtResource( 28 )
+
+[node name="Particles" type="Node" parent="World"]
+
+[node name="Smoke01" parent="World/Particles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.95786, 2, -28.8961 )
+visible = false
+cast_shadow = 0
+amount = 12
+visibility_aabb = AABB( -13, -2, -9, 26, 4, 18 )
+draw_order = 2
+
+[node name="NPCs" type="Node" parent="World"]
+
+[node name="Capsule01" parent="World/NPCs" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57295, 0.740526, -8.49722 )
+
+[node name="Capsule02" parent="World/NPCs" instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.70479, 0.846418, -5.62069 )
+
+[node name="Objects" type="Node" parent="World"]
+
+[node name="Ball" parent="World/Objects" instance=ExtResource( 27 )]
+
+[node name="Ball2" parent="World/Objects" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41417, 0.2, 0.82153 )
+
+[node name="Ball3" parent="World/Objects" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10474, 0.2, 1.97884 )
+
+[node name="Decals" type="Node" parent="World"]
+
+[node name="Decal" type="MeshInstance" parent="World/Decals"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.2, -8.80659, 3.2099, 2.40439 )
+cast_shadow = 0
+mesh = SubResource( 22 )
+material/0 = SubResource( 23 )
+script = ExtResource( 34 )
+albedo = ExtResource( 36 )
+albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+emission = ExtResource( 33 )
+emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+emission_strength = 1.0
+occlusion = ExtResource( 37 )
+occlusion_strength = 1.0
+specular = ExtResource( 38 )
+specular_strength = 1.0
+normal_map = ExtResource( 32 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="Decal2" type="MeshInstance" parent="World/Decals"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.2, -13.8435, 2.69637, 2.40439 )
+cast_shadow = 0
+mesh = SubResource( 24 )
+material/0 = SubResource( 25 )
+script = ExtResource( 34 )
+albedo = ExtResource( 36 )
+albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+emission = ExtResource( 33 )
+emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+emission_strength = 1.0
+occlusion = ExtResource( 37 )
+occlusion_strength = 1.0
+specular = ExtResource( 38 )
+specular_strength = 1.0
+normal_map = ExtResource( 32 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="Decal3" type="MeshInstance" parent="World/Decals"]
+transform = Transform( 5, 0, 0, 0, -2.18557e-07, 0.2, 0, -5, -8.74228e-09, 18.9744, -0.198624, -18.2122 )
+cast_shadow = 0
+mesh = SubResource( 26 )
+material/0 = SubResource( 27 )
+script = ExtResource( 34 )
+albedo = ExtResource( 36 )
+albedo_tint = Color( 0.545098, 0.545098, 0.545098, 1 )
+emission = null
+emission_tint = Color( 0.839216, 0.819608, 0.615686, 1 )
+emission_strength = 0.0
+occlusion = ExtResource( 37 )
+occlusion_strength = 1.0
+specular = ExtResource( 38 )
+specular_strength = 0.016
+normal_map = ExtResource( 32 )
+flipbook_playback_type = 0
+flipbook_current_frame = 0
+flipbook_columns_count = 1
+flipbook_fps = 1
+flipbook_play = false
+
+[node name="Environment" type="Node" parent="World"]
+
+[node name="Floor" type="CSGBox" parent="World/Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0 )
+visible = false
+width = 100.0
+height = 0.02
+depth = 100.0
+material = SubResource( 28 )
+
+[node name="Zones" type="Spatial" parent="World/Environment"]
+
+[node name="DoorWalls" type="Spatial" parent="World/Environment/Zones"]
+
+[node name="Wall" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.96652, 2 )
+use_collision = true
+width = 5.0
+height = 4.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Wall2" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.96652, 2 )
+use_collision = true
+width = 5.0
+height = 4.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.96652, 2 )
+use_collision = true
+
+[node name="Wall2" type="CSGBox" parent="World/Environment/Zones/DoorWalls/CSGCombiner"]
+use_collision = true
+width = 5.0
+height = 4.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Door" type="CSGBox" parent="World/Environment/Zones/DoorWalls/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183001, -1, 0.464 )
+operation = 2
+use_collision = true
+width = 1.0
+height = 3.0
+depth = 4.0
+material = SubResource( 28 )
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1.96652, 2 )
+use_collision = true
+
+[node name="Wall2" type="CSGBox" parent="World/Environment/Zones/DoorWalls/CSGCombiner2"]
+use_collision = true
+width = 5.0
+height = 4.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Door" type="CSGBox" parent="World/Environment/Zones/DoorWalls/CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183001, -1, 0.464 )
+operation = 2
+use_collision = true
+width = 1.0
+depth = 4.0
+material = SubResource( 28 )
+
+[node name="Box" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.817, 0.5, -2.536 )
+use_collision = true
+width = 1.0
+height = 1.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Box2" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.89766, 0.5, 1.91448 )
+use_collision = true
+width = 1.0
+height = 1.0
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Box3" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7785, 0.155995, -9.22174 )
+use_collision = true
+width = 0.358828
+height = 0.312504
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Box4" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4456, 0.221228, -9.22174 )
+use_collision = true
+width = 0.358828
+height = 0.463323
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="Box5" type="CSGBox" parent="World/Environment/Zones/DoorWalls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1633, 0.117476, -9.22174 )
+use_collision = true
+width = 1.09207
+height = 0.23918
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="PlayZone" type="Spatial" parent="World/Environment/Zones"]
+
+[node name="Box4" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.817, 2.2, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="Box10" type="CSGPolygon" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.517, 1, -13.536 )
+use_collision = true
+polygon = PoolVector2Array( -4.6, -1, 0, 1, 1, 1, 1.1, -1 )
+depth = 3.2
+material = SubResource( 29 )
+
+[node name="Box9" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.817, 2, -15.536 )
+use_collision = true
+width = 5.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Box5" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.817, 2, -11.536 )
+use_collision = true
+width = 5.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Box6" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.817, 2, -13.536 )
+use_collision = true
+width = 5.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Box7" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.183, 3, -11.536 )
+use_collision = true
+width = 5.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Box8" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.183, 3, -13.536 )
+use_collision = true
+width = 5.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Box11" type="CSGBox" parent="World/Environment/Zones/PlayZone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.783, 3, -13.536 )
+use_collision = true
+width = 3.0
+height = 1.0
+material = SubResource( 28 )
+
+[node name="Stairs" type="Spatial" parent="World/Environment/Zones/PlayZone"]
+
+[node name="Box10" type="CSGBox" parent="World/Environment/Zones/PlayZone/Stairs"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.817, 0.2, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="Box11" type="CSGBox" parent="World/Environment/Zones/PlayZone/Stairs"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.417, 0.6, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="Box12" type="CSGBox" parent="World/Environment/Zones/PlayZone/Stairs"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.917, 1, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="Box13" type="CSGBox" parent="World/Environment/Zones/PlayZone/Stairs"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.417, 1.4, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="Box14" type="CSGBox" parent="World/Environment/Zones/PlayZone/Stairs"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.917, 1.8, -15.536 )
+use_collision = true
+width = 5.0
+height = 0.4
+material = SubResource( 28 )
+
+[node name="ThePillar" type="Spatial" parent="World/Environment/Zones"]
+
+[node name="Box3" type="CSGBox" parent="World/Environment/Zones/ThePillar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0323, 9.2, -18.2896 )
+use_collision = true
+width = 1.0
+height = 18.4
+depth = 1.0
+material = SubResource( 28 )
+
+[node name="HTerrain" type="Spatial" parent="World/Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 25, -125 )
+script = ExtResource( 18 )
+ambient_wind = 0.0
+lod_scale = 2.0
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 19 )
+chunk_size = 16
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 30 )
+shader_params/u_ground_uv_scale = 1.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="Ocean" type="MeshInstance" parent="World/Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1116, -0.631543, -6.60618 )
+material_override = ExtResource( 39 )
+mesh = SubResource( 31 )
+material/0 = null
+script = ExtResource( 40 )
+
+[node name="Debug" type="Node" parent="."]
+script = ExtResource( 41 )
+
+[node name="CinemaPanel" type="PanelContainer" parent="Debug"]
+visible = false
+margin_right = 175.0
+margin_bottom = 480.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "Cinema"
+target = NodePath("../../Cinema")
+
+[node name="SkyPanel" type="PanelContainer" parent="Debug"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "Sky"
+target = NodePath("../../../Scene/Sky")
+
+[node name="CloudPanel" type="PanelContainer" parent="Debug"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "Clouds"
+target = NodePath("../../../Scene/Sky")
+
+[node name="EnvironmentPanel" type="PanelContainer" parent="Debug"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "Environment"
+target = NodePath("../../../Scene/Sky")

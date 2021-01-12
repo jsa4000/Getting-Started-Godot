@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/debugger/styles/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://addons/debugger/panels/DebugPanel.gd" type="Script" id=2]
+
+
+[node name="DebugPanel" type="PanelContainer"]
+margin_right = 330.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

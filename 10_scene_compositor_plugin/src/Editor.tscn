@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Editor.gd" type="Script" id=1]
+[ext_resource path="res://addons/scene_compositor/ui/panels/SceneCompositorEditor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/scene_compositor/core/types/SceneCompositor.gd" type="Script" id=3]
+[ext_resource path="res://addons/scene_compositor/ui/panels/SceneCompositorViewport.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/scene_compositor/ui/panels/SceneCompositorProperties.tscn" type="PackedScene" id=5]
+
+[node name="SceneCompositor" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+margin_right = 1920.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SceneCompositorViewport" parent="VSplit/HSplit" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 948.0
+margin_bottom = 500.0
+
+[node name="SceneCompositorProperties" parent="VSplit/HSplit" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 972.0
+margin_right = 1920.0
+margin_bottom = 500.0
+
+[node name="SceneCompositorEditor" parent="VSplit" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 524.0
+margin_right = 1920.0
+margin_bottom = 1024.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SceneCompositor" type="Spatial" parent="."]
+script = ExtResource( 3 )
+[connection signal="graph_updated" from="VSplit/SceneCompositorEditor" to="." method="_on_SceneCompositorEditor_graph_updated"]
+[connection signal="node_selected" from="VSplit/SceneCompositorEditor" to="." method="_on_SceneCompositorEditor_node_selected"]

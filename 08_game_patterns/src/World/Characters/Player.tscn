@@ -1,0 +1,202 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://assets/spritesheets/player-crouch.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Character/Actions/BorrowAction.gd" type="Script" id=2]
+[ext_resource path="res://assets/spritesheets/player-jump.png" type="Texture" id=3]
+[ext_resource path="res://assets/spritesheets/player-idle.png" type="Texture" id=4]
+[ext_resource path="res://src/Actors/Character/States/IdleState.gd" type="Script" id=5]
+[ext_resource path="res://src/Actors/Character/States/JumpState.gd" type="Script" id=6]
+[ext_resource path="res://src/Components/Repository.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Core/Actor.gd" type="Script" id=8]
+[ext_resource path="res://src/Actors/Character/Actions/UseAction.gd" type="Script" id=9]
+[ext_resource path="res://src/Components/Controller.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Actors/Character/Actions/HideAction.gd" type="Script" id=11]
+[ext_resource path="res://src/Actors/Character/Actions/RemoveAction.gd" type="Script" id=12]
+[ext_resource path="res://src/Components/StateMachine.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Actors/Character/Actions/MoveAction.gd" type="Script" id=14]
+[ext_resource path="res://src/Actors/Character/States/CrouchState.gd" type="Script" id=15]
+[ext_resource path="res://src/World/Characters/Player.gd" type="Script" id=16]
+[ext_resource path="res://src/Actors/Character/States/RunState.gd" type="Script" id=17]
+[ext_resource path="res://src/Actors/Character/Actions/TalkAction.gd" type="Script" id=18]
+[ext_resource path="res://assets/spritesheets/payer-run.png" type="Texture" id=20]
+[ext_resource path="res://src/Actors/Character/States/WalkState.gd" type="Script" id=21]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.3438, 38.9025 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 66, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 99, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 20 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 20 )
+region = Rect2( 66, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 20 )
+region = Rect2( 99, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 20 )
+region = Rect2( 132, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 20 )
+region = Rect2( 165, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 20 )
+region = Rect2( 33, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 20 )
+region = Rect2( 66, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 20 )
+region = Rect2( 99, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 20 )
+region = Rect2( 132, 0, 33, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 20 )
+region = Rect2( 165, 0, 33, 32 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "crouch",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4.1683, 24.4852 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 4, 4 )
+frames = SubResource( 22 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="Actor" type="Node" parent="."]
+script = ExtResource( 8 )
+id = "e9420329-ca99-4949-814a-cdd8af59d572"
+alias = "Player"
+
+[node name="Repository" parent="Actor" instance=ExtResource( 7 )]
+_component_group = "repositories"
+_component_name = "repository"
+
+[node name="StateMachine" parent="Actor" instance=ExtResource( 13 )]
+_component_group = "state_machines"
+initial_state = "IdleState"
+
+[node name="IdleState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 5 )
+
+[node name="WalkState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 21 )
+
+[node name="JumpState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 6 )
+
+[node name="CrouchState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 15 )
+
+[node name="RunState" type="Node" parent="Actor/StateMachine"]
+script = ExtResource( 17 )
+
+[node name="Controller" parent="Actor" instance=ExtResource( 10 )]
+_component_group = "controllers"
+
+[node name="BorrowAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 2 )
+
+[node name="HideAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 11 )
+
+[node name="MoveAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 14 )
+
+[node name="RemoveAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 12 )
+
+[node name="TalkAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 18 )
+dialogue = null
+
+[node name="UseAction" type="Node" parent="Actor/Controller"]
+script = ExtResource( 9 )

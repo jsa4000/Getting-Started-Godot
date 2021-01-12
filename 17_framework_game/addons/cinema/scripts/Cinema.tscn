@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/cinema/scripts/Cinema.gd" type="Script" id=1]
+[ext_resource path="res://addons/cinema/scripts/Gimbal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/cinema/scripts/PostProcess.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/cinema/scripts/transitions/default_transition.tres" type="Resource" id=4]
+[ext_resource path="res://addons/cinema/scripts/Composition.tscn" type="PackedScene" id=5]
+
+[node name="Cinema" type="Spatial"]
+script = ExtResource( 1 )
+gimbal_path = NodePath("Gimbal")
+default_transition = ExtResource( 4 )
+
+[node name="Gimbal" parent="." instance=ExtResource( 2 )]
+height = 0.0
+
+[node name="PostProcess" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Composition" parent="." instance=ExtResource( 5 )]
+type = "None"
+transparency = 0.5
+flip_h = false
+flip_v = false

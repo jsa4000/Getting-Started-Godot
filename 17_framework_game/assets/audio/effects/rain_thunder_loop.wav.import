@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rain_thunder_loop.wav-667234fdc6bbdf9a578a2654c1c57c66.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/rain_thunder_loop.wav"
+dest_files=[ "res://.import/rain_thunder_loop.wav-667234fdc6bbdf9a578a2654c1c57c66.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

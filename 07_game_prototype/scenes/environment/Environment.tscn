@@ -1,0 +1,839 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/environment/05x05.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/environment/3x3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/environment/1x1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/environment/2x2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/environment/1x1_mod.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/environment/Box.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/environment/floor_material.tres" type="Material" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.5, 5.25, 11 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 27.5, 6, 1 )
+
+[node name="Environment" type="Spatial"]
+
+[node name="_Assets_" type="Spatial" parent="."]
+visible = false
+
+[node name="1x1" parent="_Assets_" instance=ExtResource( 6 )]
+
+[node name="2x2" parent="_Assets_" instance=ExtResource( 4 )]
+
+[node name="1x2" parent="_Assets_" instance=ExtResource( 3 )]
+
+[node name="3x3" parent="_Assets_" instance=ExtResource( 2 )]
+
+[node name="05x05" parent="_Assets_" instance=ExtResource( 1 )]
+
+[node name="Box" parent="_Assets_" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.02894 )
+
+[node name="Static" type="Spatial" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00461841, 0, -0.00146222 )
+
+[node name="Floor" type="Spatial" parent="Static"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="3x4" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x5" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x6" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x7" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 1.49012e-08, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x8" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x9" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x10" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x11" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x12" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x13" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x14" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x15" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x16" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x17" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x18" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x19" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 1.49012e-08, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x20" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x21" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x22" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x23" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x24" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x25" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x26" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x27" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x28" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x29" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x30" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x31" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 1.49012e-08, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x32" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x33" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x34" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x35" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x36" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x37" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x38" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x39" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x40" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x41" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x42" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x43" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 1.49012e-08, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x44" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x45" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x46" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x47" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x48" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x49" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x50" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x51" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x52" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x53" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x54" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x55" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 1.49012e-08, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x56" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x57" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x58" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x59" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x60" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x61" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x62" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x63" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x64" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x65" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x66" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x67" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 1.49012e-08, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x68" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x69" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x70" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x71" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x72" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -4.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x73" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x74" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x75" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -7.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x76" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x77" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x78" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x79" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 1.49012e-08, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x80" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x81" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x82" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x83" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x84" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x85" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x86" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x87" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x88" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x89" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x90" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x91" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 1.49012e-08, 0 )
+material/0 = ExtResource( 9 )
+
+[node name="3x92" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x93" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x94" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x95" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x96" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x97" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x98" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x99" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x100" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x101" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x102" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x103" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 1.49012e-08, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x104" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x105" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x106" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x107" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x108" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x109" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x110" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x111" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x112" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x113" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x114" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x115" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 1.49012e-08, -18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x116" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x117" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x118" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x119" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x120" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x121" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x122" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x123" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x124" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x125" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x126" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x127" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 1.49012e-08, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x128" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x129" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x130" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x131" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x132" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 13.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x133" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x134" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x135" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 10.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x136" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x137" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x138" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x139" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 1.49012e-08, 18 )
+material/0 = ExtResource( 9 )
+
+[node name="3x140" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x141" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x142" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="3x143" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x144" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x145" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 27 )
+material/0 = ExtResource( 9 )
+
+[node name="3x146" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 24 )
+material/0 = ExtResource( 9 )
+
+[node name="3x147" parent="Static/Floor" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 4.5, 0, 21 )
+material/0 = ExtResource( 9 )
+
+[node name="Floor2" type="Spatial" parent="Static"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73227e-07, 5, 6.25 )
+
+[node name="3x4" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x5" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -6 )
+material/0 = ExtResource( 9 )
+
+[node name="3x6" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x7" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -3 )
+material/0 = ExtResource( 9 )
+
+[node name="3x8" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x9" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -9 )
+material/0 = ExtResource( 9 )
+
+[node name="3x12" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x13" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -12 )
+material/0 = ExtResource( 9 )
+
+[node name="3x14" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x15" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -15 )
+material/0 = ExtResource( 9 )
+
+[node name="3x10" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, -1.75, -1.5, -1.58325e-07 )
+material/0 = ExtResource( 9 )
+
+[node name="3x11" parent="Static/Floor2" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 1.25, -1.5, -2.89176e-07 )
+material/0 = ExtResource( 9 )
+
+[node name="Stack" type="Spatial" parent="Static"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 19.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Stack3" type="Spatial" parent="Static"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6175, 0, 1.91 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack3" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack3" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack3" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack3" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Stack4" type="Spatial" parent="Static"]
+transform = Transform( -0.939692, 0, 0.342023, 0, 1, 0, -0.342023, 0, -0.939692, -1.85, 0, 2.6275 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack4" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack4" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack4" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack4" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Stack5" type="Spatial" parent="Static"]
+transform = Transform( 0.286804, 0, -0.957989, 0, 1, 0, 0.957989, 0, 0.286804, -1.60013, 0, -6.42177 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack5" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack5" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack5" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack5" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Stack6" type="Spatial" parent="Static"]
+transform = Transform( 0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, -2.58237, 0, -6.55573 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack6" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack6" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack6" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack6" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Stack2" type="Spatial" parent="Static"]
+transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 2.25, 0, 24.75 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Box2" parent="Static/Stack2" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0.25, 0 )
+collision_mask = 11
+
+[node name="Box5" parent="Static/Stack2" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.25, 0.25, 1.25 )
+collision_mask = 11
+
+[node name="Box3" parent="Static/Stack2" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0.75, 0 )
+collision_mask = 11
+
+[node name="Box4" parent="Static/Stack2" instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1.25, 0 )
+collision_mask = 11
+
+[node name="Bound" type="Spatial" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="Bound"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Bound/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.5, 3.5 )
+shape = SubResource( 1 )
+
+[node name="StaticBody4" type="StaticBody" parent="Bound"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.75, 0, 0 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Bound/StaticBody4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1.5, 3.5 )
+shape = SubResource( 1 )
+
+[node name="StaticBody3" type="StaticBody" parent="Bound"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Bound/StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2" type="StaticBody" parent="Bound"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.25 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Bound/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75 )
+shape = SubResource( 2 )

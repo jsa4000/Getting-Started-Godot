@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/area/AreaDirectional.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/portal/Transition.gd" type="Script" id=2]
+[ext_resource path="res://scenes/portal/Portal.gd" type="Script" id=3]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 4.88758e-06, -0.715001, -0.53071, 0.1375, 1.145, -3.045, -0.1375, -1.145, 3.045, 0, 1.4225, 6.23, 0, 1.5875, 1.875, 0, -1.5875, -1.875, -1.0825, -4.2025, 8.8875, 0, -0.625, 3.125, 0, 0.625, -3.125, -0.425, -4.02, 0.6325, 0, 0, 0, 0, 0, 0, 0, -3.915, -5.745 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[node name="Portal" type="Path"]
+curve = SubResource( 1 )
+script = ExtResource( 3 )
+transition_path = NodePath("Transition")
+chain_scene_start = ""
+chain_scene_end = ""
+
+[node name="Area" parent="." instance=ExtResource( 1 )]
+direction = Vector3( 0, 0, 0 )
+threshold_degrees = 60.0
+disabled = false
+arrow_modulate = Color( 1, 1, 1, 1 )
+
+[node name="Transition" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="PlayerPosition" type="Position3D" parent="Transition"]

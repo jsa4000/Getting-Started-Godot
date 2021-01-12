@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/scene_compositor/ui/controls/ScalarControl.gd" type="Script" id=1]
+[ext_resource path="res://addons/scene_compositor/core/base/BaseControl.tscn" type="PackedScene" id=2]
+
+
+
+
+
+[node name="ScalarControl" instance=ExtResource( 2 )]
+margin_right = 89.0
+margin_bottom = 24.0
+script = ExtResource( 1 )
+label/show = true
+label/text = "x"
+value = 0.0
+
+[node name="Label" type="Label" parent="." index="0"]
+margin_top = 10.0
+margin_right = 12.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 10, 0 )
+text = "x"
+align = 1
+valign = 1
+
+[node name="Text" type="LineEdit" parent="." index="1"]
+margin_left = 20.0
+margin_right = 104.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 3
+custom_constants/minimum_spaces = -1
+text = "0.0"
+align = 1
+expand_to_text_length = true
+context_menu_enabled = false
+caret_blink_speed = 0.5
+[connection signal="focus_exited" from="Text" to="." method="_on_Text_focus_exited"]
+[connection signal="text_changed" from="Text" to="." method="_on_Text_text_changed"]

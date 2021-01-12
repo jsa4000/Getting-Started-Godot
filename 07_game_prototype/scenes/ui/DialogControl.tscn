@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/ui/dialogbox.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/ArcaMajora3-Heavy.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/ui/DialogControl.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/dialog_actor.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/dialog_arrow.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "next"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arrow:anchor_left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.925, 0.93, 0.925 ]
+}
+
+[node name="DialogControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actor" type="TextureRect" parent="."]
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.9
+margin_right = -580.2
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="Control" parent="."]
+anchor_left = 0.05
+anchor_top = 0.65
+anchor_right = 0.95
+anchor_bottom = 0.95
+margin_left = -0.400002
+margin_right = -0.599976
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Background" type="TextureRect" parent="Dialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.199951
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Dialog"]
+anchor_left = 0.925
+anchor_top = 0.77133
+anchor_right = 0.978673
+anchor_bottom = 0.92133
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="Text" type="RichTextLabel" parent="Dialog"]
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 1.0
+margin_top = 0.830566
+margin_bottom = 0.830566
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "Hello, how are you?"
+text = "Hello, how are you?"
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextAnimation" type="Tween" parent="Dialog"]
+
+[node name="ArrowAnimation" type="AnimationPlayer" parent="Dialog"]
+anims/next = SubResource( 2 )

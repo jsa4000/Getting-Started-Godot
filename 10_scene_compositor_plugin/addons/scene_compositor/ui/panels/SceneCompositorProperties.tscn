@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/scene_compositor/ui/panels/SceneCompositorProperties.gd" type="Script" id=1]
+
+
+[node name="SceneCompositorProperties" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Layout"]
+margin_top = -1.0
+margin_right = 1860.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 500, 50 )
+size_flags_horizontal = 3
+align = 1
+valign = 1
+
+[node name="Slots" type="VBoxContainer" parent="Layout"]
+margin_top = 58.0
+margin_right = 1860.0
+margin_bottom = 964.0
+rect_min_size = Vector2( 500, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/scene_compositor/ui/panels/SceneCompositorGraphHeader.gd" type="Script" id=1]
+
+[node name="SceneCompositorGraphHeader" type="HBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 300, 30 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NodeList" type="OptionButton" parent="."]
+margin_right = 200.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 200, 30 )
+toggle_mode = false
+text = "Nodes"
+expand_icon = true
+items = [ "Nodes", null, false, 0, null, "CommentNode", null, false, 1, null, "BoolNode", null, false, 2, null, "Vector2Node", null, false, 3, null, "BrightnessAndContrastNode", null, false, 4, null, "SceneNode", null, false, 5, null, "ScalarNode", null, false, 6, null, "ImageToGeometryNode", null, false, 7, null, "Vector3Node", null, false, 8, null, "TestNode", null, false, 9, null, "ImageNode", null, false, 10, null, "CameraNode", null, false, 11, null ]
+selected = 0
+
+[node name="Run" type="Button" parent="."]
+margin_left = 208.0
+margin_right = 274.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 30 )
+text = "Run"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="."]
+margin_left = 282.0
+margin_right = 357.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 30 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="."]
+margin_left = 365.0
+margin_right = 442.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 30 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]

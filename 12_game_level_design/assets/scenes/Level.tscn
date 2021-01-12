@@ -1,0 +1,262 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/ground/grass_albedo_bump.png" type="Texture" id=2]
+[ext_resource path="res://assets/terrain/data.hterrain" type="Resource" id=3]
+[ext_resource path="res://assets/textures/ground/rocks_albedo_bump.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/ground/rocks_normal_roughness.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/ground/grass_normal_roughness.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/ground/sand_normal_roughness.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/ground/sand_albedo_bump.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/ground/leaves_normal_roughness.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/ground/leaves_albedo_bump.png" type="Texture" id=10]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" type="Script" id=11]
+[ext_resource path="res://assets/textures/grass/grass_billboard.png" type="Texture" id=12]
+[ext_resource path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" type="Texture" id=13]
+[ext_resource path="res://assets/environments/environrment_level.tres" type="Environment" id=14]
+[ext_resource path="res://assets/materials/column_material.tres" type="Material" id=15]
+[ext_resource path="res://assets/models/nature/rock_granite/Rock_Granite.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/models/nature/rock_granite/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg" type="Texture" id=17]
+[ext_resource path="res://assets/models/nature/rock_granite/Aset_rock_granite_L_rcCwC_8K_Albedo_1k.jpg" type="Texture" id=18]
+[ext_resource path="res://assets/models/nature/rock_granite/Aset_rock_granite_L_rcCwC_8K_Roughness_1k.jpg" type="Texture" id=19]
+
+
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode cull_disabled;
+
+uniform sampler2D u_terrain_heightmap;
+uniform sampler2D u_terrain_detailmap;
+uniform sampler2D u_terrain_normalmap;
+uniform sampler2D u_terrain_globalmap : hint_albedo;
+uniform mat4 u_terrain_inverse_transform;
+uniform mat3 u_terrain_normal_basis;
+
+uniform sampler2D u_albedo_alpha : hint_albedo;
+uniform float u_view_distance = 100.0;
+uniform float u_globalmap_tint_bottom : hint_range(0.0, 1.0);
+uniform float u_globalmap_tint_top : hint_range(0.0, 1.0);
+uniform float u_bottom_ao : hint_range(0.0, 1.0);
+uniform vec2 u_ambient_wind; // x: amplitude, y: time
+
+varying vec3 v_normal;
+varying vec2 v_map_uv;
+
+float get_hash(vec2 c) {
+	return fract(sin(dot(c.xy, vec2(12.9898,78.233))) * 43758.5453);
+}
+
+vec3 unpack_normal(vec4 rgba) {
+	return rgba.xzy * 2.0 - vec3(1.0);
+}
+
+vec3 get_ambient_wind_displacement(vec2 uv, float hash) {
+	// TODO This is an initial basic implementation. It may be improved in the future, especially for strong wind.
+	float t = u_ambient_wind.y;
+	float amp = u_ambient_wind.x * (1.0 - uv.y);
+	// Main displacement
+	vec3 disp = amp * vec3(cos(t), 0, sin(t * 1.2));
+	// Fine displacement
+	float fine_disp_frequency = 2.0;
+	disp += 0.2 * amp * vec3(cos(t * (fine_disp_frequency + hash)), 0, sin(t * (fine_disp_frequency + hash) * 1.2));
+	return disp;
+}
+
+void vertex() {
+	vec4 obj_pos = WORLD_MATRIX * vec4(0, 1, 0, 1);
+	vec3 cell_coords = (u_terrain_inverse_transform * obj_pos).xyz;
+	// Must add a half-offset so that we sample the center of pixels,
+	// otherwise bilinear filtering of the textures will give us mixed results (#183)
+	cell_coords.xz += vec2(0.5);
+	
+	vec2 map_uv = cell_coords.xz / vec2(textureSize(u_terrain_heightmap, 0));
+	v_map_uv = map_uv;
+
+	//float density = 0.5 + 0.5 * sin(4.0*TIME); // test
+	float density = texture(u_terrain_detailmap, map_uv).r;
+	float hash = get_hash(obj_pos.xz);
+	
+	if (density > hash) {
+		// Snap model to the terrain
+		float height = texture(u_terrain_heightmap, map_uv).r / cell_coords.y;
+		VERTEX.y += height;
+		
+		VERTEX += get_ambient_wind_displacement(UV, hash);
+		
+		// Fade alpha with distance
+		vec3 wpos = (WORLD_MATRIX * vec4(VERTEX, 1)).xyz;
+		float dr = distance(wpos, CAMERA_MATRIX[3].xyz) / u_view_distance;
+		COLOR.a = clamp(1.0 - dr * dr * dr, 0.0, 1.0);
+
+		// When using billboards, the normal is the same as the terrain regardless of face orientation
+		v_normal = normalize(u_terrain_normal_basis * (unpack_normal(texture(u_terrain_normalmap, map_uv)) * vec3(1, 1, -1)));
+
+	} else {
+		// Discard, output degenerate triangles
+		VERTEX = vec3(0, 0, 0);
+	}
+}
+
+void fragment() {
+	NORMAL = (INV_CAMERA_MATRIX * (WORLD_MATRIX * vec4(v_normal, 0.0))).xyz;
+	ALPHA_SCISSOR = 0.5;
+	ROUGHNESS = 1.0;
+
+	vec4 col = texture(u_albedo_alpha, UV);
+	ALPHA = col.a * COLOR.a;// - clamp(1.4 - UV.y, 0.0, 1.0);//* 0.5 + 0.5*cos(2.0*TIME);
+	
+	ALBEDO = COLOR.rgb * col.rgb;
+
+	// Blend with ground color
+	float nh = sqrt(1.0 - UV.y);
+	ALBEDO = mix(ALBEDO, texture(u_terrain_globalmap, v_map_uv).rgb, mix(u_globalmap_tint_bottom, u_globalmap_tint_top, nh));
+	
+	// Fake bottom AO
+	ALBEDO = ALBEDO * mix(1.0, 1.0 - u_bottom_ao, UV.y * UV.y);
+}
+"
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 18 )
+roughness_texture = ExtResource( 19 )
+normal_enabled = true
+normal_scale = 4.47
+normal_texture = ExtResource( 17 )
+
+[node name="Level" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 1 )
+ambient_wind = 0.087
+_terrain_data = ExtResource( 3 )
+chunk_size = 32
+shader_type = "Classic4Lite"
+custom_shader = null
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+ground/albedo_bump_0 = ExtResource( 2 )
+ground/normal_roughness_0 = ExtResource( 6 )
+ground/albedo_bump_1 = ExtResource( 8 )
+ground/normal_roughness_1 = ExtResource( 7 )
+ground/albedo_bump_2 = ExtResource( 10 )
+ground/normal_roughness_2 = ExtResource( 9 )
+ground/albedo_bump_3 = ExtResource( 4 )
+ground/normal_roughness_3 = ExtResource( 5 )
+
+[node name="Grass" type="Spatial" parent="HTerrain"]
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_icon": ExtResource( 13 )
+}
+layer_index = 0
+texture = ExtResource( 12 )
+view_distance = 100.0
+custom_shader = SubResource( 1 )
+density = 4.0
+instance_mesh = null
+shader_params/u_globalmap_tint_bottom = 0.0
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = 0.433
+
+[node name="Rocks" type="Spatial" parent="HTerrain"]
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_icon": ExtResource( 13 )
+}
+layer_index = 1
+texture = null
+view_distance = 100.0
+custom_shader = null
+density = 4.0
+instance_mesh = null
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = null
+shader_params/u_bottom_ao = null
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 144.183, 16.7825, 476.289 )
+height = 36.5331
+material = ExtResource( 15 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 170.123, 14.2391, 459.337 )
+height = 33.0475
+material = ExtResource( 15 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="CSGCylinder3" type="CSGCylinder" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 124.724, 25.6406, 459.918 )
+height = 52.6354
+material = ExtResource( 15 )
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="Aset_rock_granite_L_rcCwC_LOD4" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 3.43194, -2.52537, 3.76544, 0.851735, 10.1756, 0.934504, -3.87967, 0, 3.53605, 144.186, 2.34853, 477.933 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD5" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 5.11656, -0.969826, 1.06796, 0.779177, 14.4497, -0.443506, -2.14871, 1.77198, 10.6978, 147.891, 2.76216, 477.083 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD6" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 5.11656, -0.969826, 1.06796, 0.834414, 14.3991, -0.719658, -1.14361, 1.1526, 5.74138, 124.34, 3.94349, 461.405 )
+material/0 = SubResource( 2 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD7" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 9.60431, -1.82046, 2.00468, 1.56628, 27.0287, -1.35087, -2.14668, 2.16355, 10.7772, 127.273, 5.72251, 455.672 )
+material/0 = SubResource( 2 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD8" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 9.60431, -1.82046, 2.00468, 1.56628, 27.0287, -1.35087, -2.14668, 2.16355, 10.7772, 130.572, 3.89672, 457.735 )
+material/0 = SubResource( 2 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD9" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( 9.60431, -1.82046, 2.00468, 1.56628, 27.0287, -1.35087, -2.14668, 2.16355, 10.7772, 140.989, 3.89672, 480.891 )
+material/0 = SubResource( 2 )
+
+[node name="Aset_rock_granite_L_rcCwC_LOD10" parent="Spatial" instance=ExtResource( 16 )]
+transform = Transform( -8.52322, 1.09035, -5.13508, -0.429076, 25.9798, 2.44597, 5.14537, 7.89959, -9.46779, 153.773, 2.34352, 470.81 )
+material/0 = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="Spatial"]
+transform = Transform( -0.241463, -0.817674, 0.522595, 0.658941, -0.533494, -0.530266, 0.712385, 0.216319, 0.667617, 65.4453, 84.4156, 550.683 )
+width = 124.985
+height = 11.4389
+depth = 110.801
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="CSGBox2" type="CSGBox" parent="Spatial"]
+transform = Transform( -0.562598, -0.826683, -0.00884828, -0.189658, 0.118639, 0.974656, -0.804682, 0.550019, -0.223533, -62.7123, 84.4156, 463.004 )
+width = 124.985
+height = 11.4389
+depth = 110.801
+__meta__ = {
+"apply_volumetrics": false
+}
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.610642, 0.158026, -0.77598, -0.0142626, 0.981923, 0.188742, 0.791778, -0.104186, 0.601857, 158.745, 29.0666, 467.706 )
+light_energy = 1.5
+shadow_enabled = true
+shadow_contact = 0.74
+directional_shadow_mode = 1
+__meta__ = {
+"volumetric": 1.07
+}
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.987145, 0, -0.15983, 0, 1, 0, 0.15983, 0, 0.987145, 146.868, 12.0326, 492.865 )
+environment = ExtResource( 14 )
+far = 458.2

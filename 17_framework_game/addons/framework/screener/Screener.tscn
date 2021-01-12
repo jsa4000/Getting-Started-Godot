@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/framework/screener/LoadingScene.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/framework/screener/transitions/ViewportTransition.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/framework/screener/screener.gd" type="Script" id=3]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("FrontViewport/Viewport")
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("BackViewport/Viewport")
+
+[node name="Screener" type="Spatial"]
+script = ExtResource( 3 )
+loading_scene = ExtResource( 1 )
+
+[node name="BackViewport" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="BackViewport"]
+size = Vector2( 960, 540 )
+own_world = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_3d = true
+shadow_atlas_size = 4096
+
+[node name="FrontViewport" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="FrontViewport"]
+size = Vector2( 960, 540 )
+own_world = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_3d = true
+shadow_atlas_size = 2048
+
+[node name="ColorRect" type="ColorRect" parent="FrontViewport/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportTransition" parent="." instance=ExtResource( 2 )]
+duration = 5000
+hideOnCompleted = true
+frontTexture = SubResource( 1 )
+backTexture = SubResource( 2 )

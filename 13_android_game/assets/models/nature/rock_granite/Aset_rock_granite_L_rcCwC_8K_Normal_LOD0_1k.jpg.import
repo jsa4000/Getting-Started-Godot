@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg-9416041e44bd15acccefb1a8634632f8.s3tc.stex"
+path.etc="res://.import/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg-9416041e44bd15acccefb1a8634632f8.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://assets/models/nature/rock_granite/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg"
+dest_files=[ "res://.import/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg-9416041e44bd15acccefb1a8634632f8.s3tc.stex", "res://.import/Aset_rock_granite_L_rcCwC_8K_Normal_LOD0_1k.jpg-9416041e44bd15acccefb1a8634632f8.etc.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=1
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/controls/CameraTrackTo.gd" type="Script" id=1]
+
+[node name="CameraTrackTo" type="Camera"]
+transform = Transform( 1, 0, 0, 0, 0.998402, 0.0565147, 0, -0.0565147, 0.998402, 0, 18.406, 32.7738 )
+current = true
+fov = 35.0
+far = 300.0
+script = ExtResource( 1 )
+position3D = NodePath("../Position3D")

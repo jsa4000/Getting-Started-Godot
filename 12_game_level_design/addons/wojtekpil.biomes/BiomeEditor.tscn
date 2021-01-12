@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/wojtekpil.biomes/BiomeEditor.gd" type="Script" id=1]
+
+[node name="BiomeEditor" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddMeshNodeButton" type="Button" parent="HBoxContainer"]
+margin_right = 76.0
+margin_bottom = 20.0
+text = "Add Mesh"
+
+[node name="AddCollisionShapeNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 80.0
+margin_right = 218.0
+margin_bottom = 20.0
+text = "Add Collision Shape"
+
+[node name="AddTextureNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 222.0
+margin_right = 311.0
+margin_bottom = 20.0
+text = "Add Texture"
+
+[node name="AddZylannTextureNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 315.0
+margin_right = 450.0
+margin_bottom = 20.0
+text = "Add Zylann Texture"
+
+[node name="AddSubsetNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 454.0
+margin_right = 538.0
+margin_bottom = 20.0
+text = "Add Subset"
+
+[node name="AddTransformNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 542.0
+margin_right = 647.0
+margin_bottom = 20.0
+text = "Add Transform"
+
+[node name="AddRendererNodeButton" type="Button" parent="HBoxContainer"]
+margin_left = 651.0
+margin_right = 750.0
+margin_bottom = 20.0
+text = "Add Renderer"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+margin_left = 754.0
+margin_right = 1105.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="SaveButton" type="Button" parent="HBoxContainer"]
+margin_left = 1109.0
+margin_right = 1192.0
+margin_bottom = 20.0
+text = "Save Graph"
+
+[node name="LoadButton" type="Button" parent="HBoxContainer"]
+margin_left = 1196.0
+margin_right = 1280.0
+margin_bottom = 20.0
+text = "Load Graph"
+
+[node name="BiomeGraphEdit" type="GraphEdit" parent="."]
+margin_top = 24.0
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 300, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_offset = Vector2( -300, -300 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="HBoxContainer/AddMeshNodeButton" to="." method="_on_AddMeshNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddCollisionShapeNodeButton" to="." method="_on_AddCollisionShapeNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddTextureNodeButton" to="." method="_on_AddTextureNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddZylannTextureNodeButton" to="." method="_on_AddZylannTextureNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddSubsetNodeButton" to="." method="_on_AddSubsetNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddTransformNodeButton" to="." method="_on_AddTransformNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddRendererNodeButton" to="." method="_on_AddRendererNodeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="connection_request" from="BiomeGraphEdit" to="." method="_on_BiomeGraphEdit_connection_request"]

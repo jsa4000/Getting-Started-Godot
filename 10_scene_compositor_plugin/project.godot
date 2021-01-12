@@ -1,0 +1,377 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "HBoxContainer",
+"class": "BaseControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/base/BaseControl.gd"
+}, {
+"base": "GraphNode",
+"class": "BaseNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/base/BaseNode.gd"
+}, {
+"base": "BaseControl",
+"class": "BoolControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/BoolControl.gd"
+}, {
+"base": "BaseNode",
+"class": "BoolNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/BoolNode.gd"
+}, {
+"base": "BaseNode",
+"class": "BrightnessAndContrastNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/BrightnessAndContrastNode.gd"
+}, {
+"base": "Spatial",
+"class": "CameraGimbal",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/assets/camera/CameraGimbal.gd"
+}, {
+"base": "BaseNode",
+"class": "CameraNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/CameraNode.gd"
+}, {
+"base": "Reference",
+"class": "CollectionUtils",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/utils/CollectionUtils.gd"
+}, {
+"base": "BaseNode",
+"class": "CommentNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scenes/CommentNode.gd"
+}, {
+"base": "Loader",
+"class": "ControlLoader",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/loaders/ControlLoader.gd"
+}, {
+"base": "BaseNode",
+"class": "DisplacementNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/DisplacementNode.gd"
+}, {
+"base": "BaseControl",
+"class": "DropdownControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/DropdownControl.gd"
+}, {
+"base": "Reference",
+"class": "FileUtils",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/utils/FileUtils.gd"
+}, {
+"base": "Reference",
+"class": "Global",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/Global.gd"
+}, {
+"base": "BaseNode",
+"class": "ImageNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/ImageNode.gd"
+}, {
+"base": "BaseNode",
+"class": "ImageRectToPosition3DNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/ImageRectToPosition3DNode.gd"
+}, {
+"base": "BaseNode",
+"class": "ImageToGeometryNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/ImageToGeometryNode.gd"
+}, {
+"base": "BaseControl",
+"class": "LabelControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/LabelControl.gd"
+}, {
+"base": "Popup",
+"class": "LabelDialog",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/dialogs/LabelDialog.gd"
+}, {
+"base": "Reference",
+"class": "Loader",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/loaders/Loader.gd"
+}, {
+"base": "BaseNode",
+"class": "MaterialNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/MaterialNode.gd"
+}, {
+"base": "Reference",
+"class": "MeshDisplacement",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/operations/MeshDisplacement.gd"
+}, {
+"base": "Reference",
+"class": "MeshNormals",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/operations/MeshNormals.gd"
+}, {
+"base": "Reference",
+"class": "MeshSubdivision",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/operations/MeshSubdivision.gd"
+}, {
+"base": "Reference",
+"class": "MeshUtils",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/operations/MeshUtils.gd"
+}, {
+"base": "Reference",
+"class": "NodeBuilder",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/builders/NodeBuilder.gd"
+}, {
+"base": "Loader",
+"class": "NodeLoader",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/loaders/NodeLoader.gd"
+}, {
+"base": "BaseControl",
+"class": "OpenFileControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/OpenFileControl.gd"
+}, {
+"base": "BaseNode",
+"class": "PrimitiveMeshNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/PrimitiveNode.gd"
+}, {
+"base": "BaseControl",
+"class": "ScalarControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/ScalarControl.gd"
+}, {
+"base": "BaseNode",
+"class": "ScalarNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/ScalarNode.gd"
+}, {
+"base": "Reference",
+"class": "SceneBuilder",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/builders/SceneBuilder.gd"
+}, {
+"base": "Control",
+"class": "SceneCompositorEditor",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/panels/SceneCompositorEditor.gd"
+}, {
+"base": "GraphEdit",
+"class": "SceneCompositorGraph",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/panels/SceneCompositorGraph.gd"
+}, {
+"base": "HBoxContainer",
+"class": "SceneCompositorGraphHeader",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/panels/SceneCompositorGraphHeader.gd"
+}, {
+"base": "Panel",
+"class": "SceneCompositorProperties",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/panels/SceneCompositorProperties.gd"
+}, {
+"base": "ViewportContainer",
+"class": "SceneCompositorViewport",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/panels/SceneCompositorViewport.gd"
+}, {
+"base": "BaseNode",
+"class": "SceneNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/SceneNode.gd"
+}, {
+"base": "Node",
+"class": "Serializer",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/utils/Serializer.gd"
+}, {
+"base": "BaseControl",
+"class": "SliderControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/SliderControl.gd"
+}, {
+"base": "BaseControl",
+"class": "SlotControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/core/base/SlotControl.gd"
+}, {
+"base": "BaseControl",
+"class": "SpinControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/SpinControl.gd"
+}, {
+"base": "BaseNode",
+"class": "SubdivisionNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/SubdivisionNode.gd"
+}, {
+"base": "BaseControl",
+"class": "TestControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/TestControl.gd"
+}, {
+"base": "BaseNode",
+"class": "TestNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/TestNode.gd"
+}, {
+"base": "BaseControl",
+"class": "TextEditControl",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/TextEditControl.gd"
+}, {
+"base": "BaseNode",
+"class": "TransformNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/TransformNode.gd"
+}, {
+"base": "BaseControl",
+"class": "Vector2Control",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/Vector2Control.gd"
+}, {
+"base": "BaseNode",
+"class": "Vector2Node",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/Vector2Node.gd"
+}, {
+"base": "BaseControl",
+"class": "Vector3Control",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/ui/controls/Vector3Control.gd"
+}, {
+"base": "BaseNode",
+"class": "Vector3Node",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/Vector3Node.gd"
+}, {
+"base": "BaseNode",
+"class": "WireframeNode",
+"language": "GDScript",
+"path": "res://addons/scene_compositor/nodes/scripts/WireframeNode.gd"
+} ]
+_global_script_class_icons={
+"BaseControl": "",
+"BaseNode": "",
+"BoolControl": "",
+"BoolNode": "",
+"BrightnessAndContrastNode": "",
+"CameraGimbal": "",
+"CameraNode": "",
+"CollectionUtils": "",
+"CommentNode": "",
+"ControlLoader": "",
+"DisplacementNode": "",
+"DropdownControl": "",
+"FileUtils": "",
+"Global": "",
+"ImageNode": "",
+"ImageRectToPosition3DNode": "",
+"ImageToGeometryNode": "",
+"LabelControl": "",
+"LabelDialog": "",
+"Loader": "",
+"MaterialNode": "",
+"MeshDisplacement": "",
+"MeshNormals": "",
+"MeshSubdivision": "",
+"MeshUtils": "",
+"NodeBuilder": "",
+"NodeLoader": "",
+"OpenFileControl": "",
+"PrimitiveMeshNode": "",
+"ScalarControl": "",
+"ScalarNode": "",
+"SceneBuilder": "",
+"SceneCompositorEditor": "",
+"SceneCompositorGraph": "",
+"SceneCompositorGraphHeader": "",
+"SceneCompositorProperties": "",
+"SceneCompositorViewport": "",
+"SceneNode": "",
+"Serializer": "",
+"SliderControl": "",
+"SlotControl": "",
+"SpinControl": "",
+"SubdivisionNode": "",
+"TestControl": "",
+"TestNode": "",
+"TextEditControl": "",
+"TransformNode": "",
+"Vector2Control": "",
+"Vector2Node": "",
+"Vector3Control": "",
+"Vector3Node": "",
+"WireframeNode": ""
+}
+
+[application]
+
+config/name="10 Scene Compositor"
+run/main_scene="res://src/Editor.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1024
+window/dpi/allow_hidpi=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "scene_compositor" )
+
+[gui]
+
+theme/use_hidpi=true
+
+[input]
+
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.49,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_render/layer_1="World"
+3d_render/layer_2="Pages"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
