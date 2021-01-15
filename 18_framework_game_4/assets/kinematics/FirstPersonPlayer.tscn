@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/framework/interactions/Interactor.gd" type="Script" id=1]
+[ext_resource path="res://src/kinematics/FirstPersonPlayer.gd" type="Script" id=2]
+[ext_resource path="res://addons/framework/interactions/Sonar.gd" type="Script" id=4]
+[ext_resource path="res://addons/framework/catalogue/Catalogue.gd" type="Script" id=5]
+[ext_resource path="res://addons/framework/catalogue/CatalogueControl.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/framework/interactions/helpers/FieldOfViewShape.gd" type="Script" id=7]
+[ext_resource path="res://addons/framework/common/delegates/game_delegate.tres" type="Resource" id=8]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.362556
+height = 1.4084
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 0, -2, 0, 7.07107, -2, 7.07107, -7.07107, -2, 7.07107, -7.07107, 2, 7.07107, 7.07107, 2, 7.07107, 0, 2, 0 )
+script = ExtResource( 7 )
+radius = 10.0
+angle = 90.0
+size = 2.0
+
+[node name="FpsPlayer" type="KinematicBody"]
+script = ExtResource( 2 )
+camera_path = NodePath("Head/Camera")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.07539, 1.75204e-07 )
+shape = SubResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+keep_aspect = 0
+cull_mask = 1047551
+current = true
+fov = 80.0
+far = 5000.0
+
+[node name="Sonar" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Sonar"]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 1.6, 0 )
+shape = SubResource( 2 )
+
+[node name="Interactor" type="Node" parent="."]
+script = ExtResource( 1 )
+sonar = NodePath("../Sonar")
+
+[node name="Catalogue" type="Node" parent="."]
+script = ExtResource( 5 )
+actor_path = NodePath("..")
+
+[node name="CatalogueControl" parent="Catalogue" instance=ExtResource( 6 )]
+game_delegate = ExtResource( 8 )
+inventory = NodePath("..")
+
+[connection signal="item_selected" from="Catalogue/CatalogueControl" to="." method="_on_CatalogueControl_item_selected"]

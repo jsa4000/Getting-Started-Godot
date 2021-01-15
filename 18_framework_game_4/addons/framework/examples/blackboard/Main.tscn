@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/framework/examples/blackboard/BlackbardServer.tscn" type="PackedScene" id=1]
+
+[node name="Main" type="Node"]
+script = null
+
+[node name="BlackboardServer" parent="." instance=ExtResource( 1 )]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/particles/smoke_particles_01.material" type="Material" id=1]
+[ext_resource path="res://assets/particles/smoke_01.material" type="Material" id=2]
+
+[sub_resource type="QuadMesh" id=1]
+material = ExtResource( 2 )
+size = Vector2( 3, 3 )
+
+[node name="Smoke01" type="GPUParticles3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+amount = 5
+lifetime = 10.0
+preprocess = 2.0
+visibility_aabb = AABB( -4, -2, -4, 8, 4, 8 )
+process_material = ExtResource( 1 )
+draw_pass_1 = SubResource( 1 )
+script = null

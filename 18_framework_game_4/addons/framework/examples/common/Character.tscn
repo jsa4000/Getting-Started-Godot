@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CapsuleShape3D" id=1]
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id=2]
+mid_height = 1.8
+
+[sub_resource type="SphereMesh" id=3]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id=4]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="Character" type="KinematicBody3D"]
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80441, 0 )
+shape = SubResource( 1 )
+script = null
+
+[node name="Body" type="Node3D" parent="."]
+script = null
+
+[node name="Body" type="MeshInstance3D" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+script = null
+
+[node name="RightEye" type="MeshInstance3D" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38, 2.6, -0.78 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+script = null
+
+[node name="LeftEye" type="MeshInstance3D" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 2.6, -0.78 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+script = null

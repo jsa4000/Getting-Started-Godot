@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/framework/screener/shaders/viewport_transition.shader" type="Shader" id=1]
+[ext_resource path="res://addons/framework/screener/transitions/CanvasTransition.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/framework/screener/transitions/ViewportTransition.gd" type="Script" id=3]
+[ext_resource path="res://addons/framework/screener/masks/curtain.png" type="Texture2D" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/cutoff = null
+shader_param/blur = 0.4
+shader_param/mask = ExtResource( 4 )
+
+[node name="ViewportTransition" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="Screen" parent="CanvasLayer" index="0"]
+material = SubResource( 1 )

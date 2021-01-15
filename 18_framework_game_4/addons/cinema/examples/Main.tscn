@@ -1,0 +1,482 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://addons/framework/assets/materials/checker_material.tres" type="Material" id=1]
+[ext_resource path="res://addons/cinema/examples/Character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/cinema/examples/Character.gd" type="Script" id=3]
+[ext_resource path="res://addons/cinema/scripts/Cinema.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/cinema/scripts/CameraProxy.gd" type="Script" id=5]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFpsType.gd" type="Script" id=6]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFlyType.gd" type="Script" id=7]
+[ext_resource path="res://addons/cinema/examples/Main.gd" type="Script" id=8]
+[ext_resource path="res://addons/cinema/scripts/types/CameraFollowType.gd" type="Script" id=9]
+[ext_resource path="res://addons/cinema/scripts/types/CameraExternalType.gd" type="Script" id=10]
+[ext_resource path="res://addons/cinema/scripts/CameraSwitch.gd" type="Script" id=11]
+[ext_resource path="res://addons/cinema/examples/Bootstrap.gd" type="Script" id=12]
+[ext_resource path="res://addons/cinema/scripts/transitions/CameraTransition.gd" type="Script" id=13]
+[ext_resource path="res://addons/cinema/scripts/CameraTarget.gd" type="Script" id=14]
+[ext_resource path="res://addons/cinema/assets/materials/camera_target.material" type="Material" id=15]
+[ext_resource path="res://addons/cinema/scripts/types/CameraDollyType.gd" type="Script" id=16]
+[ext_resource path="res://addons/cinema/examples/dolly_guide.tres" type="Curve3D" id=17]
+
+[sub_resource type="ProceduralSkyMaterial" id=1]
+
+[sub_resource type="Sky" id=2]
+sky_material = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+sky = SubResource( 2 )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 13 )
+from_camera = NodePath("../Cinema/Cameras/CameraFollowBack")
+to_camera = NodePath("../Cinema/Cameras/CameraWall01")
+transition_type = 0
+ease_type = 2
+duration = 2.0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 13 )
+from_camera = NodePath("../Cinema/Cameras/CameraFollowBack")
+to_camera = NodePath("../Cinema/Cameras/CameraFollowBack")
+transition_type = 2
+ease_type = 2
+duration = 2.0
+
+[sub_resource type="BoxShape3D" id=6]
+size = Vector3( 28.9276, 19.7296, 35.8804 )
+
+[sub_resource type="BoxShape3D" id=7]
+size = Vector3( 107.986, 19.7296, 63.3455 )
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 6 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+height = 3.0
+mouse_sensitivity = 12.0
+gravity = 30.0
+walk_speed = 10.0
+sprint_speed = 16.0
+acceleration = 8.0
+deacceleration = 10.0
+air_control = 0.3
+jump_height = 10.0
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 7 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+height = 3.0
+mouse_sensitivity = 12.0
+fly_speed = 10
+fly_accel = 4
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 9 )
+offset = Vector3( 0, 8, 12 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 2.0
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 2.0
+lookat_offset = Vector3( 0, 2, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.25, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = true
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 9 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = true
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 2.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.25, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 9 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../../Character")
+show_dead_zone = false
+follow_enabled = false
+smooth_zone_speed = 0.8
+dead_zone_speed = 0.4
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 2.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.25, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = false
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 10 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 80.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+camera_path = NodePath("../../../CameraAdditional")
+sub_path = ""
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 16 )
+offset = Vector3( 0, 0, 0 )
+camera_fov = 100.0
+camera_fov_speed = 1.0
+noise_enabled = false
+noise_translation_amount = 0.05
+noise_rotation_amount = 0.05
+target_path = NodePath("../../../Character")
+lookat_path = NodePath("../../Targets/CameraTargetLookAt")
+show_dead_zone = false
+follow_enabled = true
+smooth_zone_speed = 4.0
+dead_zone_speed = 3.0
+lookat_enabled = true
+lookat_at_beginning = false
+lookat_smooth_zone_speed = 4.0
+lookat_dead_zone_speed = 3.0
+lookat_offset = Vector3( 0, 0, 0 )
+smooth_zone = Rect2( 0.05, 0.05, 0.9, 0.9 )
+dead_zone = Rect2( 0.3, 0.25, 0.4, 0.5 )
+zone_offset = Vector2( 0, 0 )
+transition_zone_speed = 0.1
+collision_enabled = false
+collision_slope_speed = 30.0
+collision_angle_threshold = 0.7
+collision_offset_position = 0.5
+prediction_enabled = true
+prediction_scale = 1.25
+prediction_scale_speed = 0.2
+prediction_threshold = 0.01
+debug_enabled = false
+guide_path = NodePath("../../Paths/CameraDollyGuide")
+
+[sub_resource type="BoxMesh" id=15]
+
+[sub_resource type="SphereMesh" id=16]
+
+[sub_resource type="StandardMaterial3D" id=17]
+
+[sub_resource type="BoxMesh" id=18]
+
+[sub_resource type="StandardMaterial3D" id=19]
+albedo_color = Color( 0.411765, 0.223529, 0.580392, 1 )
+metallic = 1.0
+roughness = 0.5
+
+[node name="Main" type="Node3D"]
+script = ExtResource( 8 )
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform( 0.745488, 0.41787, 0.519262, -0.666519, 0.467379, 0.580783, 0, -0.779065, 0.626944, 0, 7.04207, 0 )
+light_color = Color( 1, 0.882353, 0.776471, 1 )
+light_energy = 1.1
+shadow_enabled = true
+shadow_bias = 0.005
+script = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+script = null
+
+[node name="Bootstrap" type="Node" parent="."]
+script = ExtResource( 12 )
+transition_01 = SubResource( 4 )
+transition_02 = SubResource( 5 )
+cinema = NodePath("../Cinema")
+
+[node name="Cinema" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 6 )
+transitions = [ SubResource( 4 ), SubResource( 5 ) ]
+motion_blur_enabled = true
+post_process_enabled = true
+
+[node name="Areas" type="Node" parent="Cinema"]
+script = null
+
+[node name="CameraSwitch01" type="Area3D" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6664, 9.0647, 0 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 11 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraWall01")
+camera_exited = NodePath("../../Cameras/CameraFollowBack")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinema/Areas/CameraSwitch01"]
+shape = SubResource( 6 )
+script = null
+
+[node name="CameraSwitch02" type="Area3D" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8296, 9.0647, 0 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 11 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraWall02")
+camera_exited = NodePath("../../Cameras/CameraFollowBack")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinema/Areas/CameraSwitch02"]
+shape = SubResource( 6 )
+script = null
+
+[node name="CameraSwitch03" type="Area3D" parent="Cinema/Areas"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.8296, 9.0647, -63.5092 )
+collision_layer = 0
+collision_mask = 1024
+script = ExtResource( 11 )
+enabled = true
+layer_mask = 10
+camera_entered = NodePath("../../Cameras/CameraDolly")
+camera_exited = NodePath("../../Cameras/CameraFollowBack")
+callback_entered = null
+callback_exited = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cinema/Areas/CameraSwitch03"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5708, 0, -7.76532 )
+shape = SubResource( 7 )
+script = null
+
+[node name="Cameras" type="Node" parent="Cinema"]
+script = null
+
+[node name="CameraFps" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31461, 4.90286 )
+script = ExtResource( 5 )
+id = "CameraFps"
+priority = 1
+use_gimbal_position = true
+type = SubResource( 8 )
+
+[node name="CameraFly" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31461, 4.90286 )
+script = ExtResource( 5 )
+id = "CameraFly"
+priority = 0
+use_gimbal_position = true
+type = SubResource( 9 )
+
+[node name="CameraFollowBack" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 6 )
+script = ExtResource( 5 )
+id = "CameraFollowBack"
+priority = 10
+use_gimbal_position = true
+type = SubResource( 10 )
+
+[node name="CameraWall01" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 12, 0 )
+script = ExtResource( 5 )
+id = "CameraWall01"
+priority = 0
+use_gimbal_position = false
+type = SubResource( 11 )
+
+[node name="CameraWall02" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 12, 0 )
+script = ExtResource( 5 )
+id = "CameraWall02"
+priority = 0
+use_gimbal_position = false
+type = SubResource( 12 )
+
+[node name="CameraExternal" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 12, 0 )
+script = ExtResource( 5 )
+id = "CameraExternal"
+priority = 0
+use_gimbal_position = false
+type = SubResource( 13 )
+
+[node name="CameraDolly" type="Camera3D" parent="Cinema/Cameras"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 12, 0 )
+script = ExtResource( 5 )
+id = "CameraExternal"
+priority = 0
+use_gimbal_position = true
+type = SubResource( 14 )
+
+[node name="Targets" type="Node" parent="Cinema"]
+script = null
+
+[node name="CameraTargetLookAt" type="MeshInstance3D" parent="Cinema/Targets"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8729, -79.0301 )
+layers = 1024
+cast_shadow = 0
+mesh = SubResource( 15 )
+material/0 = ExtResource( 15 )
+script = ExtResource( 14 )
+visual_layer = 10
+
+[node name="Paths" type="Node" parent="Cinema"]
+script = null
+
+[node name="CameraDollyGuide" type="Path3D" parent="Cinema/Paths"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.9008, 0, -51.881 )
+curve = ExtResource( 17 )
+script = null
+
+[node name="Controls" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Label" parent="Controls"]
+offset_right = 960.0
+offset_bottom = 268.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+valign = 1
+autowrap = true
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selection" type="Label" parent="Controls"]
+offset_top = 272.0
+offset_right = 960.0
+offset_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+valign = 1
+autowrap = true
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Environment" type="Node" parent="."]
+script = null
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16024, 1.03694, -23.4428 )
+mesh = SubResource( 16 )
+material/0 = SubResource( 17 )
+script = null
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06823, 1.03694, -23.4428 )
+mesh = SubResource( 18 )
+material/0 = SubResource( 19 )
+script = null
+
+[node name="Floor" type="CSGBox3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+use_collision = true
+size = Vector3( 200, 0.5, 200 )
+material = ExtResource( 1 )
+script = null
+
+[node name="Wall01" type="CSGBox3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, 0 )
+use_collision = true
+size = Vector3( 2, 10, 2 )
+material = ExtResource( 1 )
+script = null
+
+[node name="Wall03" type="CSGBox3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8745, 5, 28.0403 )
+use_collision = true
+size = Vector3( 47.9725, 10, 2 )
+material = ExtResource( 1 )
+script = null
+
+[node name="Wall02" type="CSGBox3D" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 5, 0 )
+use_collision = true
+size = Vector3( 2, 10, 2 )
+material = ExtResource( 1 )
+script = null
+
+[node name="Character" parent="." instance=ExtResource( 2 )]
+collision_layer = 1025
+script = ExtResource( 3 )
+
+[node name="CameraAdditional" type="Camera3D" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 65.8857, 0 )
+script = null

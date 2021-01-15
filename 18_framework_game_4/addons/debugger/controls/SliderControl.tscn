@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/debugger/controls/SliderControl.gd" type="Script" id=1]
+[ext_resource path="res://addons/debugger/controls/BaseControl.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/debugger/controls/ScalarControl.tscn" type="PackedScene" id=3]
+
+
+[node name="SliderControl" instance=ExtResource( 2 )]
+margin_right = 79.0
+margin_bottom = 36.0
+script = ExtResource( 1 )
+text_label = "x"
+
+[node name="Label" parent="." index="0"]
+margin_top = 11.0
+margin_right = 7.0
+margin_bottom = 25.0
+text = "x"
+
+[node name="Layout" type="VBoxContainer" parent="." index="1"]
+margin_left = 11.0
+margin_right = 86.0
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( 593.705, 228.083 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = -4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scalar" parent="Layout" index="0" instance=ExtResource( 3 )]
+margin_right = 75.0
+hide_label = true
+
+[node name="Slider" type="HSlider" parent="Layout" index="1"]
+margin_top = 20.0
+margin_right = 75.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="Layout/Scalar" to="." method="_on_Scalar_value_changed"]
+[connection signal="value_changed" from="Layout/Slider" to="." method="_on_Slider_value_changed"]

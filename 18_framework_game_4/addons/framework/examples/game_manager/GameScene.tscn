@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/framework/examples/game_manager/GameScene.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/common/delegates/game_delegate.tres" type="Resource" id=2]
+[ext_resource path="res://addons/framework/game_manager/PauseControl.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/framework/examples/common/Character.gd" type="Script" id=4]
+[ext_resource path="res://addons/framework/examples/common/Character.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/framework/assets/materials/checker_material.tres" type="Material" id=6]
+
+[sub_resource type="ProceduralSkyMaterial" id=1]
+
+[sub_resource type="Sky" id=2]
+sky_material = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+sky = SubResource( 2 )
+
+[node name="GameScene" type="Node"]
+script = ExtResource( 1 )
+game_delegate = ExtResource( 2 )
+
+[node name="PauseControl" parent="." instance=ExtResource( 3 )]
+enabled = true
+game_delegate = ExtResource( 2 )
+transition_speed = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+script = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform( 0.745488, 0.41787, 0.519262, -0.666519, 0.467379, 0.580783, 0, -0.779065, 0.626944, 0, 7.04207, 0 )
+shadow_enabled = true
+script = null
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+use_collision = true
+size = Vector3( 200, 0.5, 200 )
+material = ExtResource( 6 )
+script = null
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 4 )
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, 4 )
+script = null

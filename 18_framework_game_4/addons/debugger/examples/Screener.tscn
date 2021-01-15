@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/debugger/examples/Screener.gd" type="Script" id=1]
+
+[node name="Screener" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intro" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -59.5
+margin_bottom = 59.5
+size_flags_horizontal = 3
+text = "Debugger
+
+With the debugger add-on it can be created controls to dynamically change some properties of the game in real-time. Simiilar to how it works the Remote Server in Godot but in this case it is directly integrated into the game. This allows to easily  change parameters on the fly. The way the controls are created is by using dictionaries (json) so it can be quickly created.
+
+Go to Panels, select Screener and disable the first option to visualize the background. Also play with the other settings."
+align = 1
+valign = 1
+autowrap = true
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Advanced" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -59.5
+margin_bottom = 59.5
+size_flags_horizontal = 3
+text = "Debugger
+
+This is an advanced configuration for the debugger"
+align = 1
+valign = 1
+autowrap = true
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Other" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -59.5
+margin_bottom = 59.5
+size_flags_horizontal = 3
+text = "Debugger
+
+Finally, other things to consider are..."
+align = 1
+valign = 1
+autowrap = true
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,85 @@
+{
+    "needful": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hi, How are you?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "next": "3",
+            "actor": "statue",
+            "text": "I am sleeping so I can barely walk.",
+            "status": "angry",
+            "type": "0"
+        },
+        {
+            "id": "3",
+            "next": "4",
+            "actor": "player",
+            "text": "I am going to look for a potion",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "4",
+            "actor": "statue",
+            "text": "That would be great, I would thank you so much!",
+            "status": "happy",
+            "type": "0"
+        }
+    ],
+    "greeting": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hey man, take this potion",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "next": "3",
+            "actor": "statue",
+            "text": "Woah, that's amazing. So quick!",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "3",
+            "next": "4",
+            "actor": "player",
+            "text": "You are welcome",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "4",
+            "actor": "statue",
+            "text": "Now I feel a lot better. Thanks you so much!!",
+            "status": "happy",
+            "type": "0"
+        }
+    ],
+    "done": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Are you feeling better?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "actor": "statue",
+            "text": "Yes, thanks to you!",
+            "status": "happy",
+            "type": "0"
+        }
+    ]
+}

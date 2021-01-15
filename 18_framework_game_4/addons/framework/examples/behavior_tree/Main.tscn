@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/framework/blackboard/Blackboard.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/examples/common/Character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/framework/examples/behavior_tree/AI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/framework/examples/common/Character.gd" type="Script" id=4]
+[ext_resource path="res://addons/framework/assets/materials/checker_material.tres" type="Material" id=5]
+
+[sub_resource type="ProceduralSkyMaterial" id=1]
+
+[sub_resource type="Sky" id=2]
+sky_material = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+sky = SubResource( 2 )
+
+[node name="Main" type="Node3D"]
+script = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+script = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform( 0.745488, 0.41787, 0.519262, -0.666519, 0.467379, 0.580783, 0, -0.779065, 0.626944, 0, 7.04207, 0 )
+shadow_enabled = true
+shadow_bias = 0.005
+script = null
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 1 )
+data = {
+"player": NodePath("../Player"),
+"track": NodePath("../NPCs/Track")
+}
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+use_collision = true
+size = Vector3( 200, 0.5, 200 )
+material = ExtResource( 5 )
+script = null
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, 4 )
+fov = 90.0
+script = null
+
+[node name="NPCs" type="Node3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16 )
+script = null
+
+[node name="Track" type="Node3D" parent="NPCs"]
+script = null
+
+[node name="StartPosition" type="Position3D" parent="NPCs/Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
+script = null
+
+[node name="EndPosition" type="Position3D" parent="NPCs/Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
+script = null
+
+[node name="AI" parent="NPCs" instance=ExtResource( 3 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+text = "Approach to the subject"
+align = 1
+valign = 1
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}

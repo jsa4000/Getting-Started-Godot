@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/cinema/assets/images/rule_of_thrids.svg" type="Texture2D" id=1]
+[ext_resource path="res://addons/cinema/assets/images/fibonacci_spiral.svg" type="Texture2D" id=2]
+[ext_resource path="res://addons/cinema/scripts/Composition.gd" type="Script" id=3]
+[ext_resource path="res://addons/cinema/assets/images/golden_ratio.svg" type="Texture2D" id=4]
+
+[node name="Composition" type="ColorRect"]
+modulate = Color( 1, 1, 1, 0.5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FibonacciSpiral" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoldenRatio" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+expand = true
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RuleOfThirds" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}

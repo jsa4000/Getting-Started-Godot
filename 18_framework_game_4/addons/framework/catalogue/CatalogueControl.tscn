@@ -1,0 +1,193 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/framework/assets/themes/default_font.tres" type="Font" id=1]
+[ext_resource path="res://addons/framework/catalogue/CatalogueControl.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Close"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="CatalogueControl" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+custom_font = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = null
+
+[node name="Container" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.505882 )
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginTop" type="MarginContainer" parent="CanvasLayer/Container/VBoxContainer"]
+margin_right = 960.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+script = null
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Container/VBoxContainer"]
+margin_top = 54.0
+margin_right = 960.0
+margin_bottom = 434.0
+size_flags_vertical = 3
+script = null
+
+[node name="MarginLeft" type="MarginContainer" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_vertical = 3
+script = null
+
+[node name="Panel" type="VBoxContainer" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 906.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = null
+
+[node name="SeparatorTop" type="ColorRect" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer/Panel"]
+margin_right = 852.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 0, 2 )
+script = null
+
+[node name="Title" type="Label" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer/Panel"]
+margin_top = 6.0
+margin_right = 852.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+custom_font_sizes/font_size = 25
+text = "Inventory"
+align = 1
+valign = 1
+structured_text_bidi_override_options = [  ]
+script = null
+
+[node name="SeparatorMid" type="ColorRect" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer/Panel"]
+margin_top = 41.0
+margin_right = 852.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 0, 2 )
+script = null
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer/Panel"]
+margin_top = 47.0
+margin_right = 852.0
+margin_bottom = 374.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+custom_font_sizes/font_size = 25
+items = [  ]
+script = null
+
+[node name="SeparatorBottom" type="ColorRect" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer/Panel"]
+margin_top = 378.0
+margin_right = 852.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 0, 2 )
+script = null
+
+[node name="MarginRight" type="MarginContainer" parent="CanvasLayer/Container/VBoxContainer/HBoxContainer"]
+margin_left = 910.0
+margin_right = 960.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 50, 0 )
+script = null
+
+[node name="Options" type="HBoxContainer" parent="CanvasLayer/Container/VBoxContainer"]
+margin_top = 438.0
+margin_right = 960.0
+margin_bottom = 486.0
+script = null
+
+[node name="Accept" type="Label" parent="CanvasLayer/Container/VBoxContainer/Options"]
+margin_right = 478.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_font_sizes/font_size = 40
+custom_constants/outline_size = 1
+text = "Accept"
+align = 1
+valign = 1
+structured_text_bidi_override_options = [  ]
+script = null
+
+[node name="Exit" type="Label" parent="CanvasLayer/Container/VBoxContainer/Options"]
+margin_left = 482.0
+margin_top = 8.0
+margin_right = 960.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_font_sizes/font_size = 25
+text = "Exit"
+align = 1
+valign = 1
+structured_text_bidi_override_options = [  ]
+script = null
+
+[node name="MarginBottom" type="MarginContainer" parent="CanvasLayer/Container/VBoxContainer"]
+margin_top = 490.0
+margin_right = 960.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+script = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 1 )
+anims/Open = SubResource( 2 )
+blend_times = [  ]
+script = null

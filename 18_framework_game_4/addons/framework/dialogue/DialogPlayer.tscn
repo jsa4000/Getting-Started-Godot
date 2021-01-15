@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/framework/assets/textures/dialogbox.png" type="Texture2D" id=1]
+[ext_resource path="res://addons/framework/assets/themes/default_font.tres" type="Font" id=2]
+[ext_resource path="res://addons/framework/dialogue/DialogPlayer.gd" type="Script" id=3]
+[ext_resource path="res://addons/framework/assets/textures/dialog_actor.png" type="Texture2D" id=4]
+[ext_resource path="res://addons/framework/assets/textures/dialog_arrow.png" type="Texture2D" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "next"
+length = 2.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ContainerForeground/Background/Arrow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1, 2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="DialogPlayer" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContainerBackground" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="Control" parent="ContainerBackground"]
+margin_right = 300.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 3
+script = null
+
+[node name="Actor" type="TextureRect" parent="ContainerBackground/CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 97.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerBackground"]
+margin_left = 304.0
+margin_right = 960.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = null
+
+[node name="ContainerForeground" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = null
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerForeground"]
+margin_right = 960.0
+margin_bottom = 336.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = null
+
+[node name="Background" type="TextureRect" parent="ContainerForeground"]
+modulate = Color( 1, 1, 1, 0.776471 )
+margin_top = 340.0
+margin_right = 960.0
+margin_bottom = 540.0
+rect_min_size = Vector2( 0, 200 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="ContainerForeground/Background"]
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.9
+custom_fonts/normal_font = ExtResource( 2 )
+custom_font_sizes/normal_font_size = 25
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "This is an example"
+visible_characters = 0
+percent_visible = 0.0
+text = "This is an example"
+custom_effects = [  ]
+structured_text_bidi_override_options = [  ]
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="ContainerForeground/Background"]
+modulate = Color( 1, 1, 1, 0.583965 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -39.0
+margin_top = -34.0
+rect_rotation = 90.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextAnimation" type="Tween" parent="."]
+script = null
+
+[node name="ArrowAnimation" type="AnimationPlayer" parent="."]
+anims/next = SubResource( 1 )
+blend_times = [  ]
+script = null

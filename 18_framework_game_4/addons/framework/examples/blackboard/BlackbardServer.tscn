@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/framework/blackboard/Blackboard.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/examples/blackboard/BlackbardClient.tscn" type="PackedScene" id=2]
+
+[node name="BlackboardServer" type="Node"]
+script = null
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 1 )
+data = {
+"Health": 100,
+"Player": NodePath("../Player"),
+"ServerName": "BlackboardServer",
+"Status": "Active"
+}
+
+[node name="BlackboardClient" parent="." instance=ExtResource( 2 )]
+
+[node name="Player" type="Node" parent="."]
+script = null

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/ocean/assets/material/water_material.tres" type="Material" id=1]
+[ext_resource path="res://addons/ocean/scripts/Ocean.gd" type="Script" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 30, 30 )
+subdivide_width = 30
+subdivide_depth = 30
+
+[sub_resource type="PhysicalSkyMaterial" id=2]
+
+[sub_resource type="Sky" id=3]
+sky_material = SubResource( 2 )
+
+[sub_resource type="Environment" id=4]
+background_mode = 2
+sky = SubResource( 3 )
+
+[sub_resource type="BoxMesh" id=5]
+size = Vector3( 4, 4, 4 )
+
+[sub_resource type="StandardMaterial3D" id=6]
+metallic = 1.0
+roughness = 0.2
+
+[node name="Ocean" type="Node3D"]
+script = null
+
+[node name="Ocean" type="MeshInstance3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388986, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 4 )
+script = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform( 0.738526, 0.383397, -0.554605, 0, 0.822581, 0.568648, 0.674225, -0.419961, 0.607497, 0, 14.8745, 0 )
+script = null
+
+[node name="Cube01" type="MeshInstance3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.524937, 1.53845, 0.0617582 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+script = null
+
+[node name="Cube02" type="MeshInstance3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43752, 2.01075, 6.97665 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+script = null
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform( -0.766045, -0.168261, 0.620373, 0, 0.965131, 0.261768, -0.642787, 0.200526, -0.739334, 9.05802, 7.06162, -9.28928 )
+script = null

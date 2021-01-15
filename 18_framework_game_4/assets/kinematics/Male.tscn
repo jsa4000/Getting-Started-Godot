@@ -1,0 +1,571 @@
+[gd_scene load_steps=48 format=2]
+
+[ext_resource path="res://assets/kinematics/exported/male-character.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/kinematics/master/basic-walking-loop.anim" type="Animation" id=2]
+[ext_resource path="res://assets/kinematics/master/T-Pose.anim" type="Animation" id=3]
+[ext_resource path="res://addons/framework/interactions/Interactor.gd" type="Script" id=4]
+[ext_resource path="res://assets/prefabs/Torch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/kinematics/master/generic-climbing-01-loop.anim" type="Animation" id=6]
+[ext_resource path="res://assets/kinematics/master/basic-idle-loop.anim" type="Animation" id=7]
+[ext_resource path="res://addons/framework/interactions/Sonar.gd" type="Script" id=8]
+[ext_resource path="res://assets/kinematics/master/basic-jump.anim" type="Animation" id=9]
+[ext_resource path="res://assets/kinematics/master/generic-climbing-02-loop.anim" type="Animation" id=10]
+[ext_resource path="res://assets/kinematics/master/generic-jump-running-01.anim" type="Animation" id=11]
+[ext_resource path="res://assets/kinematics/master/generic-picking-door-01.anim" type="Animation" id=12]
+[ext_resource path="res://assets/kinematics/master/generic-sneaking-idle-01-loop.anim" type="Animation" id=13]
+[ext_resource path="res://assets/kinematics/master/generic-walking-03-loop.anim" type="Animation" id=14]
+[ext_resource path="res://assets/kinematics/master/generic-idle-01-loop.anim" type="Animation" id=15]
+[ext_resource path="res://assets/kinematics/master/generic-idle-02-loop.anim" type="Animation" id=16]
+[ext_resource path="res://assets/kinematics/master/generic-jump-idle-01.anim" type="Animation" id=17]
+[ext_resource path="res://assets/kinematics/master/generic-jump-running-down.anim" type="Animation" id=18]
+[ext_resource path="res://assets/kinematics/master/generic-sneaking-walking-02-loop.anim" type="Animation" id=19]
+[ext_resource path="res://assets/kinematics/master/generic-picking-item-01.anim" type="Animation" id=20]
+[ext_resource path="res://assets/kinematics/master/generic-pushing-01-loop.anim" type="Animation" id=21]
+[ext_resource path="res://assets/kinematics/master/generic-running-01-loop.anim" type="Animation" id=22]
+[ext_resource path="res://assets/kinematics/master/generic-running-02-loop.anim" type="Animation" id=23]
+[ext_resource path="res://assets/kinematics/master/generic-running-03-loop.anim" type="Animation" id=24]
+[ext_resource path="res://assets/kinematics/master/generic-sneaking-walking-01-loop.anim" type="Animation" id=25]
+[ext_resource path="res://assets/kinematics/master/generic-walking-01-loop.anim" type="Animation" id=26]
+[ext_resource path="res://assets/kinematics/master/generic-walking-02-loop.anim" type="Animation" id=27]
+[ext_resource path="res://assets/kinematics/ThirdPersonPlayer.gd" type="Script" id=28]
+
+[sub_resource type="SphereShape3D" id=1]
+radius = 3.0
+
+[sub_resource type="CapsuleShape3D" id=2]
+radius = 0.417935
+height = 0.956268
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+filters = [  ]
+animation = @"generic-jump-running-01"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+filters = [  ]
+animation = @"generic-jump-idle-01"
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+filters = [  ]
+
+[sub_resource type="AnimationNodeTimeScale" id=6]
+
+[sub_resource type="AnimationNodeTransition" id=7]
+input_count = 2
+input_0/name = "jump_idle"
+input_0/auto_advance = false
+input_1/name = "jump_running"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+filters = [  ]
+animation = @"generic-idle-02-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+filters = [  ]
+animation = @"generic-walking-01-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+filters = [  ]
+animation = @"generic-running-03-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+filters = [  ]
+animation = @"generic-sneaking-walking-01-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+filters = [  ]
+animation = @"generic-pushing-01-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+filters = [  ]
+animation = @"generic-sneaking-idle-01-loop"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=14]
+blend_point_0/node = SubResource( 8 )
+blend_point_0/pos = Vector2( 0, 0 )
+blend_point_1/node = SubResource( 9 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 10 )
+blend_point_2/pos = Vector2( 2, 0 )
+blend_point_3/node = SubResource( 11 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_point_4/node = SubResource( 12 )
+blend_point_4/pos = Vector2( 0, -1 )
+blend_point_5/node = SubResource( 13 )
+blend_point_5/pos = Vector2( -0.5, 0 )
+min_space = Vector2( -1, -2 )
+max_space = Vector2( 3, 2 )
+
+[sub_resource type="AnimationNodeTimeScale" id=15]
+
+[sub_resource type="AnimationNodeBlendTree" id=16]
+graph_offset = Vector2( -355.359, -37.5386 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( -342.857, 182.857 )
+"nodes/Animation 2/node" = SubResource( 3 )
+"nodes/Animation 2/position" = Vector2( -342.857, 342.857 )
+nodes/jump/node = SubResource( 5 )
+nodes/jump/position = Vector2( 457.143, 125.714 )
+nodes/jump_time/node = SubResource( 6 )
+nodes/jump_time/position = Vector2( 205.714, 228.571 )
+nodes/jump_transition/node = SubResource( 7 )
+nodes/jump_transition/position = Vector2( -11.4286, 251.429 )
+nodes/locomotion/node = SubResource( 14 )
+nodes/locomotion/position = Vector2( -160, 0 )
+nodes/locomotion_time/node = SubResource( 15 )
+nodes/locomotion_time/position = Vector2( 137.143, 34.2857 )
+nodes/output/position = Vector2( 765.714, 148.571 )
+node_connections = [ @"jump", 0, @"locomotion_time", @"jump", 1, @"jump_time", @"jump_time", 0, @"jump_transition", @"jump_transition", 0, @"Animation", @"jump_transition", 1, @"Animation 2", @"locomotion_time", 0, @"locomotion", @"output", 0, @"jump" ]
+
+[sub_resource type="Animation" id=17]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CollisionShape:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 0.412125, 0.566097 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape:shape:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 1.00611, 0.002 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionShape:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.38419e-07, 0.910257, 0 ), Vector3( -2.38419e-07, 0.563208, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CollisionShape:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 0.412125, 0.819279 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape:shape:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 1.00611, 0.002 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionShape:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.38419e-07, 0.910257, 0 ), Vector3( -2.38419e-07, 0.819826, 0 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CollisionShape:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 1.00611, 1.00611 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CollisionShape:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ 0.412125, 0.412125 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CollisionShape:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.38419e-07, 0.910257, 0 ), Vector3( -2.38419e-07, 0.910257, 0 ) ]
+}
+
+[node name="Male" instance=ExtResource( 1 )]
+script = ExtResource( 28 )
+mesh_path = NodePath("Armature/Skeleton3D/teenage_male")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/pose = Transform( 0.733262, 0.0579453, -0.677472, 0.000878664, 0.996281, 0.0861645, 0.679945, -0.0637764, 0.730484, 0.0186808, -0.0601013, -0.0199004 )
+bones/0/bound_children = [ NodePath("HipsBone") ]
+bones/1/pose = Transform( 0.996877, 0.0156416, 0.077409, -0.00833609, 0.995555, -0.093813, -0.0785323, 0.0928747, 0.992576, -3.12866e-10, 4.09782e-07, 0 )
+bones/1/bound_children = [ NodePath("BoneAttachment3D") ]
+bones/2/pose = Transform( 0.986536, 0.0425682, 0.157908, -0.0123644, 0.982182, -0.187526, -0.163077, 0.183048, 0.969484, -1.45519e-11, 0, 0 )
+bones/2/bound_children = [ NodePath("TorsoBone"), NodePath("SpineBone") ]
+bones/3/pose = Transform( 0.986536, 0.0425681, 0.157908, -0.0123643, 0.982182, -0.187526, -0.163077, 0.183048, 0.969484, -7.27596e-12, 0, 0 )
+bones/3/bound_children = [  ]
+bones/4/pose = Transform( 0.999768, -0.00257768, -0.0213786, 0.00316283, 0.99962, 0.0273822, 0.0212999, -0.0274435, 0.999396, -2.63597e-18, 5.73695e-06, -4.03263e-07 )
+bones/4/bound_children = [  ]
+bones/5/pose = Transform( 0.937423, -0.00834597, 0.348092, -0.0249949, 0.995521, 0.0911808, -0.347294, -0.0941755, 0.933015, -9.27347e-25, 0, 4.76837e-07 )
+bones/5/bound_children = [ NodePath("HeadBone") ]
+bones/6/bound_children = [  ]
+bones/7/pose = Transform( 0.999173, 0.0357452, 0.0193851, -0.0334648, 0.993656, -0.107369, -0.0231001, 0.106631, 0.99403, 4.25207e-07, -2.38419e-06, -8.10623e-06 )
+bones/7/bound_children = [  ]
+bones/8/pose = Transform( 0.97044, -0.146008, -0.192164, -0.13822, 0.316471, -0.938478, 0.19784, 0.937298, 0.286935, -1.17882e-06, -3.23355e-06, 1.95391e-05 )
+bones/8/bound_children = [  ]
+bones/9/pose = Transform( 0.596814, -0.793266, 0.12059, 0.793877, 0.605604, 0.0547999, -0.1165, 0.0630282, 0.991189, 1.2149e-06, 3.9041e-06, 5.34906e-06 )
+bones/9/bound_children = [  ]
+bones/10/pose = Transform( 0.958244, -0.155808, 0.239774, 0.084898, 0.955724, 0.281751, -0.273057, -0.24963, 0.929045, -1.70838e-08, 4.17233e-07, 9.88576e-06 )
+bones/10/bound_children = [ NodePath("HandBone"), NodePath("LeftHandBone") ]
+bones/11/pose = Transform( 0.984961, 0.168251, -0.0392766, -0.171928, 0.976945, -0.126565, 0.0170765, 0.131414, 0.99118, -2.85447e-08, 7.45058e-09, 1.58252e-10 )
+bones/11/bound_children = [  ]
+bones/12/pose = Transform( 0.990659, -0.112625, 0.0768845, 0.127108, 0.966842, -0.221495, -0.0493892, 0.229199, 0.972126, -7.59028e-07, 2.71201e-06, 8.39704e-06 )
+bones/12/bound_children = [  ]
+bones/13/pose = Transform( 0.99637, -0.0819645, 0.0229686, 0.0836511, 0.992779, -0.0859828, -0.0157552, 0.087592, 0.996032, 9.05246e-07, -7.87899e-06, 7.09342e-06 )
+bones/13/bound_children = [  ]
+bones/14/bound_children = [  ]
+bones/15/pose = Transform( 0.992618, 0.0988, -0.0703406, -0.107448, 0.985382, -0.132205, 0.0562505, 0.138787, 0.988723, -4.03379e-07, -2.41026e-06, -8.58307e-06 )
+bones/15/bound_children = [  ]
+bones/16/pose = Transform( 0.884585, -0.275934, 0.375992, 0.447161, 0.272762, -0.851849, 0.132498, 0.921662, 0.364668, 5.89294e-07, -6.54161e-06, 2.31117e-05 )
+bones/16/bound_children = [  ]
+bones/17/pose = Transform( 0.689522, 0.721492, -0.0633185, -0.722516, 0.679152, -0.129316, -0.0502973, 0.134915, 0.98958, 3.79832e-07, 5.73695e-06, 6.89335e-06 )
+bones/17/bound_children = [  ]
+bones/18/pose = Transform( 0.956215, 0.260541, -0.133308, -0.280661, 0.94546, -0.165335, 0.082961, 0.19551, 0.977186, -1.28888e-06, 3.51667e-06, -1.05101e-05 )
+bones/18/bound_children = [ NodePath("RightHandBone") ]
+bones/19/pose = Transform( 0.925779, -0.376328, 0.0361909, 0.377046, 0.926068, -0.0153505, -0.0277384, 0.0278568, 0.999227, -1.46172e-08, 1.19209e-07, -5.69668e-09 )
+bones/19/bound_children = [  ]
+bones/20/pose = Transform( 0.978899, 0.155228, -0.132895, -0.199121, 0.870711, -0.449682, 0.0459098, 0.466655, 0.883247, -4.76791e-06, -8.46013e-06, 1.55387e-05 )
+bones/20/bound_children = [  ]
+bones/21/pose = Transform( 0.938919, 0.319306, 0.128359, -0.336381, 0.930277, 0.1464, -0.0726634, -0.180636, 0.980862, 1.30385e-06, 9.46224e-07, 6.69807e-06 )
+bones/21/bound_children = [  ]
+bones/22/bound_children = [  ]
+bones/23/pose = Transform( 0.971129, -0.206693, -0.119105, 0.148874, 0.915228, -0.374422, 0.186398, 0.34588, 0.919579, -1.2368e-06, 1.02445e-06, -2.14204e-07 )
+bones/23/bound_children = [  ]
+bones/24/pose = Transform( 0.965632, -0.0165469, 0.259384, -0.11462, 0.868578, 0.482115, -0.233273, -0.495276, 0.83683, -5.96046e-07, -3.75509e-06, -3.27826e-07 )
+bones/24/bound_children = [  ]
+bones/25/pose = Transform( 0.993427, 0.0520089, -0.101971, -0.0600973, 0.995146, -0.0779223, 0.097423, 0.0835383, 0.991731, -5.96046e-08, -1.89245e-06, 2.98023e-08 )
+bones/25/bound_children = [  ]
+bones/26/pose = Transform( 0.998491, 0.0521993, 0.0170846, -0.051374, 0.997637, -0.0456235, -0.0194258, 0.0446769, 0.998813, 3.57994e-07, -9.98378e-07, -6.67572e-06 )
+bones/26/bound_children = [ NodePath("LeftFootBone") ]
+bones/27/bound_children = [  ]
+bones/28/pose = Transform( 0.940087, 0.225844, 0.255399, -0.233383, 0.972384, -0.000808108, -0.248528, -0.0588461, 0.966837, 1.64658e-06, 4.84288e-08, 2.08616e-07 )
+bones/28/bound_children = [  ]
+bones/29/pose = Transform( 0.988325, 0.00505179, 0.152275, -0.0722332, 0.895524, 0.439111, -0.134148, -0.444984, 0.885434, 1.49012e-08, -7.59959e-06, -3.98606e-07 )
+bones/29/bound_children = [  ]
+bones/30/pose = Transform( 0.952431, -0.106289, 0.28562, 0.187122, 0.943699, -0.272796, -0.240544, 0.313265, 0.918697, -4.09782e-08, 3.8296e-06, -1.49012e-07 )
+bones/30/bound_children = [  ]
+bones/31/pose = Transform( 0.999945, 0.00894191, 0.00555217, -0.00876942, 0.999501, -0.0303502, -0.00582078, 0.0302998, 0.999524, 9.53674e-07, 2.98023e-08, 3.8147e-06 )
+bones/31/bound_children = [ NodePath("RightFootBone") ]
+bones/32/bound_children = [  ]
+
+[node name="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
+transform = Transform( 0.783247, 0.0335291, -0.620805, -0.0172628, 0.999333, 0.0321933, 0.62147, -0.0144985, 0.783304, 0.0263122, 1.03184, -0.00744409 )
+
+[node name="SkeletonHead" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="2"]
+process_priority = 1
+root_bone = @"neck"
+tip_bone = @"head"
+target_node = NodePath("../HeadBone/Target")
+script = null
+
+[node name="SkeletonTorso" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="3"]
+process_priority = 1
+root_bone = @"spine"
+tip_bone = @"spine_1"
+target_node = NodePath("../TorsoBone/Target")
+script = null
+
+[node name="SkeletonHand" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="4"]
+process_priority = 1
+root_bone = @"left_arm"
+tip_bone = @"left_hand"
+interpolation = 0.22
+use_magnet = true
+magnet = Vector3( 1.116, 0, 0 )
+target_node = NodePath("../TorchPosition")
+script = null
+
+[node name="SkeletonRightHand" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="5"]
+process_priority = 1
+root_bone = @"right_arm"
+tip_bone = @"right_hand"
+interpolation = 0.0
+use_magnet = true
+magnet = Vector3( -1, 0, 0 )
+target_node = NodePath("../RigthHandPosition")
+script = null
+
+[node name="SkeletonLeftHand" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="6"]
+process_priority = 1
+root_bone = @"left_arm"
+tip_bone = @"left_hand"
+interpolation = 0.0
+use_magnet = true
+magnet = Vector3( 2.25, 0, -4 )
+target_node = NodePath("../LeftHandPosition")
+script = null
+
+[node name="SkeletonRightFoot" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="7"]
+process_priority = 1
+root_bone = @"right_up_leg"
+tip_bone = @"right_foot"
+interpolation = 0.106
+use_magnet = true
+magnet = Vector3( 0, 0, 10 )
+target_node = NodePath("../RigthFootPosition/Target")
+script = null
+
+[node name="SkeletonLeftFoot" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="8"]
+process_priority = 1
+root_bone = @"left_up_leg"
+tip_bone = @"left_foot"
+interpolation = 0.22
+use_magnet = true
+magnet = Vector3( -3, 0, 15 )
+target_node = NodePath("../LeftFootPosition/Target")
+script = null
+
+[node name="SkeletonSpine" type="SkeletonIK3D" parent="Armature/Skeleton3D" index="9"]
+process_priority = 1
+root_bone = @"spine"
+tip_bone = @"spine_1"
+interpolation = 0.0
+target_node = NodePath("../SpineBone/Target")
+script = null
+
+[node name="HeadBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="10"]
+transform = Transform( 0.996816, -0.0796736, -0.00317127, 0.0762132, 0.963705, -0.25586, 0.0234413, 0.254803, 0.966709, 0.000148068, 1.45175, 0.0876554 )
+bone_name = "head"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/HeadBone" index="0"]
+script = null
+
+[node name="TorsoBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="11"]
+transform = Transform( 0.873526, -0.0473644, -0.484467, -0.0346364, 0.986685, -0.158916, 0.485543, 0.155597, 0.860254, 0.02982, 1.13639, -0.0089609 )
+bone_name = "spine_1"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/TorsoBone" index="0"]
+script = null
+
+[node name="HandBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="12"]
+transform = Transform( 0.640838, 0.142408, -0.754351, -0.579528, -0.554699, -0.597039, -0.503462, 0.819773, -0.272943, 0.255541, 0.889884, 0.218525 )
+bone_name = "left_hand"
+script = null
+
+[node name="Torch" type="Node3D" parent="Armature/Skeleton3D/HandBone" index="0" instance=ExtResource( 5 )]
+transform = Transform( -0.215111, -0.957814, 0.190583, 0.0253287, -0.200558, -0.979356, 0.976262, -0.205843, 0.0674024, -0.0374124, 0.121796, 0.0222339 )
+visible = false
+script = null
+
+[node name="RightHandBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="13"]
+transform = Transform( -0.280584, -0.231805, 0.931417, 0.464991, -0.88175, -0.0793678, 0.839675, 0.410832, 0.355193, -0.230878, 0.876579, -0.150731 )
+bone_name = "right_hand"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/RightHandBone" index="0"]
+script = null
+
+[node name="LeftHandBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="14"]
+transform = Transform( 0.640838, 0.142408, -0.754351, -0.579528, -0.554699, -0.597039, -0.503462, 0.819773, -0.272943, 0.255541, 0.889884, 0.218525 )
+bone_name = "left_hand"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/LeftHandBone" index="0"]
+script = null
+
+[node name="RightFootBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="15"]
+transform = Transform( -0.305276, -0.950837, 0.0522461, 0.110218, 0.019217, 0.993721, -0.945867, 0.309127, 0.0989335, -0.160668, 0.00174323, -0.23627 )
+bone_name = "right_toe_base"
+script = null
+
+[node name="RayCastPosition" type="Position3D" parent="Armature/Skeleton3D/RightFootBone" index="0"]
+script = null
+
+[node name="LeftFootBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="16"]
+transform = Transform( -0.67437, -0.734886, -0.0717421, -0.141354, 0.0331244, 0.989404, -0.724727, 0.677361, -0.126217, 0.00028079, -0.00157323, 0.373839 )
+bone_name = "left_toe_base"
+script = null
+
+[node name="RayCastPosition" type="Position3D" parent="Armature/Skeleton3D/LeftFootBone" index="0"]
+script = null
+
+[node name="SpineBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="17"]
+transform = Transform( 0.873526, -0.0473644, -0.484467, -0.0346364, 0.986685, -0.158916, 0.485543, 0.155597, 0.860254, 0.02982, 1.13639, -0.0089609 )
+bone_name = "spine_1"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/SpineBone" index="0"]
+script = null
+
+[node name="HipsBone" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="18"]
+transform = Transform( 0.733265, 0.0580715, -0.677458, 0.000787514, 0.996273, 0.0862526, 0.679942, -0.0637795, 0.730487, 0.0186733, 0.942879, 0.000896916 )
+bone_name = "hips"
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/HipsBone" index="0"]
+script = null
+
+[node name="TorchPosition" type="Position3D" parent="Armature/Skeleton3D" index="19"]
+transform = Transform( 0.212918, -0.0141316, -0.976968, -0.957051, -0.204385, -0.205621, -0.196772, 0.978789, -0.057042, 0.057021, 1.13856, 0.432021 )
+script = null
+
+[node name="RigthHandPosition" type="Position3D" parent="Armature/Skeleton3D" index="20"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.143, 0.413 )
+script = null
+
+[node name="LeftHandPosition" type="Position3D" parent="Armature/Skeleton3D" index="21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.143, 0.413 )
+script = null
+
+[node name="RigthFootPosition" type="Node3D" parent="Armature/Skeleton3D" index="22"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060333, 0, -0.311141 )
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/RigthFootPosition" index="0"]
+transform = Transform( -0.955379, -0.21267, -0.204994, -0.0505082, -0.566156, 0.822749, -0.291032, 0.796392, 0.530152, 0, 0, 0 )
+script = null
+
+[node name="LeftFootPosition" type="Node3D" parent="Armature/Skeleton3D" index="23"]
+transform = Transform( 0.983844, 0, -0.179025, 0, 1, 0, 0.179025, 0, 0.983844, 0, 0.0845036, 0.223357 )
+script = null
+
+[node name="Target" type="Position3D" parent="Armature/Skeleton3D/LeftFootPosition" index="0"]
+transform = Transform( -0.899732, 0.278079, 0.336386, 0.1363, -0.553165, 0.821846, 0.414615, 0.785291, 0.459798, 0.110756, 0, -0.0201538 )
+script = null
+
+[node name="Sonar" type="Area3D" parent="Armature" index="1"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 8 )
+enabled = true
+height = 1.6
+debug_enabled = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Armature/Sonar" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
+shape = SubResource( 1 )
+script = null
+
+[node name="RayCastStairsMax" type="RayCast3D" parent="Armature" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.440733, 0 )
+target_position = Vector3( 0, 0, 1 )
+script = null
+
+[node name="RayCastStairsMin" type="RayCast3D" parent="Armature" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0236679, 0 )
+target_position = Vector3( 0, 0, 1 )
+script = null
+
+[node name="RayCastWallRight" type="RayCast3D" parent="Armature" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.14321, 0 )
+target_position = Vector3( 0, 0, 1 )
+script = null
+
+[node name="RayCastWallLeft" type="RayCast3D" parent="Armature" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.14321, 0 )
+target_position = Vector3( 0, 0, 1 )
+script = null
+
+[node name="AnimationPlayer" parent="." index="1"]
+blend_times = [  ]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="2"]
+anims/T-Pose = ExtResource( 3 )
+anims/basic-idle-loop = ExtResource( 7 )
+anims/basic-jump = ExtResource( 9 )
+anims/basic-walking-loop = ExtResource( 2 )
+anims/generic-climbing-01-loop = ExtResource( 6 )
+anims/generic-climbing-02-loop = ExtResource( 10 )
+anims/generic-idle-01-loop = ExtResource( 15 )
+anims/generic-idle-02-loop = ExtResource( 16 )
+anims/generic-jump-idle-01 = ExtResource( 17 )
+anims/generic-jump-running-01 = ExtResource( 11 )
+anims/generic-jump-running-down = ExtResource( 18 )
+anims/generic-picking-door-01 = ExtResource( 12 )
+anims/generic-picking-item-01 = ExtResource( 20 )
+anims/generic-pushing-01-loop = ExtResource( 21 )
+anims/generic-running-01-loop = ExtResource( 22 )
+anims/generic-running-02-loop = ExtResource( 23 )
+anims/generic-running-03-loop = ExtResource( 24 )
+anims/generic-sneaking-idle-01-loop = ExtResource( 13 )
+anims/generic-sneaking-walking-01-loop = ExtResource( 25 )
+anims/generic-sneaking-walking-02-loop = ExtResource( 19 )
+anims/generic-walking-01-loop = ExtResource( 26 )
+anims/generic-walking-02-loop = ExtResource( 27 )
+anims/generic-walking-03-loop = ExtResource( 14 )
+blend_times = [  ]
+script = null
+
+[node name="CollisionShape" type="CollisionShape3D" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, 0.893257, 0 )
+shape = SubResource( 2 )
+script = null
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+tree_root = SubResource( 16 )
+anim_player = NodePath("../AnimationPlayer2")
+active = true
+parameters/jump/active = false
+parameters/jump_time/scale = 1.0
+parameters/jump_transition/current = 0
+parameters/locomotion/blend_position = Vector2( 0, 0 )
+parameters/locomotion_time/scale = 1.0
+script = null
+
+[node name="CollisionStates" type="AnimationPlayer" parent="." index="5"]
+anims/crouching = SubResource( 17 )
+anims/pushing = SubResource( 18 )
+anims/standing = SubResource( 19 )
+blend_times = [  ]
+script = null
+
+[node name="RayCastCrouch" type="RayCast3D" parent="." index="6"]
+target_position = Vector3( 0, 2, 0 )
+script = null
+
+[node name="Interactor" type="Node" parent="." index="7"]
+script = ExtResource( 4 )
+sonar = NodePath("../Armature/Sonar")
+max_distance = 2.0

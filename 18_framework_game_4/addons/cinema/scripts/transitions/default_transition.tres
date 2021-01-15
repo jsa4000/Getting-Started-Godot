@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/cinema/scripts/transitions/CameraTransition.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+from_camera = NodePath("")
+to_camera = NodePath("")
+transition_type = 1
+ease_type = 2
+duration = 2.0

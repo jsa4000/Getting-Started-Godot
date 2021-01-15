@@ -1,0 +1,68 @@
+{
+    "greeting": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hey, How are you doing?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "next": "3",
+            "actor": "ball",
+            "text": "Nothing at all man, and you?",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "3",
+            "next": "4",
+            "actor": "player",
+            "text": "Just looking for some healthy potion..",
+            "status": "normal",
+            "type": "0"
+        },
+        {
+            "id": "4",
+            "next": "5",
+            "actor": "ball",
+            "text": "I am giving you one that I have",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "5",
+            "next": "6",
+            "actor": "player",
+            "text": "Oh, thanks you so much!",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "6",
+            "actor": "ball",
+            "text": "You're wellcome",
+            "status": "happy",
+            "type": "0"
+        }
+    ],
+    "done": [
+        {
+            "id": "1",
+            "next": "2",
+            "actor": "player",
+            "text": "Hey, thanks for your help!",
+            "status": "happy",
+            "type": "0"
+        },
+        {
+            "id": "2",
+            "actor": "ball",
+            "text": "You owe me now!",
+            "status": "happy",
+            "type": "0"
+        }
+    ]
+}

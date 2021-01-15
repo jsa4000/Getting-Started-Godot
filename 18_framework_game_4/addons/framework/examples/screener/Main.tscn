@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/framework/examples/screener/GameManager.gd" type="Script" id=1]
+[ext_resource path="res://addons/framework/screener/Screener.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/framework/common/delegates/game_delegate.tres" type="Resource" id=3]
+[ext_resource path="res://addons/framework/common/delegates/scene_delegate.tres" type="Resource" id=4]
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+scene_loader = NodePath("Screener")
+game_delegate = ExtResource( 3 )
+
+[node name="Screener" parent="." instance=ExtResource( 2 )]
+scene_delegate = ExtResource( 4 )
