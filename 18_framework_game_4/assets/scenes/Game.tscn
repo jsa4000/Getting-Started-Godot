@@ -23,6 +23,8 @@ game_delegate = ExtResource( 3 )
 scene_delegate = ExtResource( 1 )
 
 [node name="Debugger" parent="." instance=ExtResource( 4 )]
+show_stats = true
+show_console = false
 refresh_subscription = SubResource( 1 )
 
 [node name="TimeLogger" type="Node" parent="."]

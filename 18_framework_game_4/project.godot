@@ -699,8 +699,6 @@ _global_script_class_icons={
 @"CameraFlyType": "",
 @"CatalogueCardItem": "",
 @"Interactive": "res://addons/framework/icons/interactive.svg",
-@"CameraFollowType": "",
-@"DropdownControl": "",
 @"DialogScene": "",
 @"TransitionDecorator": "res://addons/framework/icons/transition.svg",
 @"SelectionByGroup": "",
@@ -708,6 +706,8 @@ _global_script_class_icons={
 @"Inventory": "",
 @"CinemaGlobal": "",
 @"ProjectionUtils": "",
+@"CameraExternalType": "",
+@"CameraFollowType": "",
 @"CollectionUtils": "",
 @"Player": "",
 @"DialogSceneItem": "",
@@ -759,7 +759,7 @@ _global_script_class_icons={
 @"TimeLogger": "res://addons/logging/icons/icon.svg",
 @"RadarDrawer": "",
 @"CameraDollyType": "",
-@"CameraExternalType": ""
+@"DropdownControl": ""
 }
 
 [application]

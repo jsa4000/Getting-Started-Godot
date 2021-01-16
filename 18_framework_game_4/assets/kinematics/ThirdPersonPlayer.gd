@@ -319,7 +319,7 @@ func _step_on_wall(delta):
 	
 	var space_state = get_viewport().world_3d.get_direct_space_state() 
 	var ray = space_state.intersect_ray(from, to, [self], 2147483647, true, false)
-	if ray.empty():
+	if ray.is_empty():
 		_reset_step_on_wall(delta)
 		return
 		
@@ -396,7 +396,7 @@ func _check_foot_target(foot_pos : Vector3) -> Dictionary:
 	var to = foot_pos + (Vector3.DOWN * foot_raycast_length)
 	var space_state = get_viewport().world_3d.get_direct_space_state() 
 	var ray = space_state.intersect_ray(from, to, [self], 2147483647, true, false)
-	if not ray.empty():
+	if not ray.is_empty():
 		return { "position" : ray.position + offset_foot_position, "normal" : ray.normal}
 	return { "position" : Vector3.ZERO, "normal" : Vector3.ZERO }
 	
@@ -595,7 +595,7 @@ var mesh_test : Dictionary = {}
 func _create_debug_mesh(key, color : Color):
 	if key in mesh_test:
 		return
-	if mesh_test.empty():
+	if mesh_test.is_empty():
 		add_child(node_test)
 	var instance = MeshInstance3D.new()
 	var mesh : Mesh = BoxMesh.new()
