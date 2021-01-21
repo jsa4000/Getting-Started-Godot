@@ -2,6 +2,9 @@
 class_name Cinema extends Node3D
 @icon("../icons/icon.svg")
 
+signal camera_enabled(proxy)
+signal camera_disabled(proxy)
+
 @export var enabled : bool = true #setget _set_enabled
 @export_node_path var gimbal_path
 @export_placeholder var camera_id : String #setget _set_camera_id
@@ -14,8 +17,9 @@ class_name Cinema extends Node3D
 @onready var _gimbal: Gimbal = get_node(gimbal_path)
 @onready var _postprocess: Control = $PostProcess
 
-var camera = null #setget ,_get_camera
-var _current : CameraProxy = null #setget _set_current
+var camera : Camera3D:
+	get = _get_camera
+var _current : CameraProxy #setget _set_current
 var _cameras : Dictionary = {}
 var _tween : Tween
 
@@ -58,10 +62,12 @@ func _on_camera_enabled(camera) -> void:
 func _set_current(value : CameraProxy) -> void:
 	if _current != null:
 		_current.enabled = false
+		self.camera_disabled.emit(_current)
 	var previous = _current
 	_current = value
 	if _current != null:
 		_current.enabled = true
+		self.camera_enabled.emit(_current)
 		_process_transition(previous, _current) 
 
 func _set_camera_id(value : String) -> void:

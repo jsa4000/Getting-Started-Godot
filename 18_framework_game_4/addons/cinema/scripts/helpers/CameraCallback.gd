@@ -1,9 +1,10 @@
+@tool
 class_name CameraCallback extends Resource
 
 @export_node_path var node_path : NodePath #setget _set_node_path
 @export_placeholder var callback : String
 # TODO Godot 4..0 does not allow to specify the type for the items (String)
-@export var parameters : Array
+@export var parameters : Array = []
 
 var _node : Node
 var _parent : Node

@@ -21,6 +21,7 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	_init_cameras()
+	_init_callbacks()
 	_set_enabled(enabled)
 
 func _clean_layer_masks() -> void:
@@ -38,6 +39,10 @@ func _set_enabled(value: bool) -> void:
 func _init_cameras() -> void:
 	_camera_entered = get_node_or_null(camera_entered)
 	_camera_exited = get_node_or_null(camera_exited)
+	
+func _init_callbacks() -> void:
+	_set_callback_entered(callback_entered)
+	_set_callback_exited(callback_exited)
 	
 func _connect() -> void:
 	if self.body_entered.is_connected(_on_body_entered):

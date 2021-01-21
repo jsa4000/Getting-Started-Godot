@@ -1,5 +1,5 @@
-shader_type Node3D;
-render_mode depth_test_disable, depth_draw_never, unshaded, cull_disabled;
+shader_type spatial;
+render_mode depth_test_disabled, depth_draw_never, unshaded, cull_disabled;
 
 uniform vec3 linear_velocity; 
 uniform vec3 angular_velocity; //rads
